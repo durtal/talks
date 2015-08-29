@@ -4,11 +4,6 @@ Subjects to cover and Plan
 * Introduction
     - me
     - what I'll try cover
-* ...
-
-
-#### Subjects to cover
-
 * Introduction to R
     - show growth in popularity of the language
     - show Johns Hopkins coursera courses
