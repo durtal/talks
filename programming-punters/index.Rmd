@@ -1,26 +1,29 @@
 ---
-title       : 
-subtitle    : 
-author      : 
-job         : 
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
-highlighter : highlight.js  # {highlight.js, prettify, highlight}
-hitheme     : tomorrow      # 
-widgets     : []            # {mathjax, quiz, bootstrap}
-mode        : selfcontained # {standalone, draft}
+title       : Intro to R
+subtitle    : Programming for Punters
+author      : Tom Heslop
+job         : Data Analyst, Timeform
+framework   : revealjs
+revealjs    : {theme: night, transition: concave}
+highlighter : highlight.js
+hitheme     : tomorrow
+widgets     : [shiny, interactive]
+mode        : selfcontained
 knit        : slidify::knit2slides
 ---
 
-## Read-And-Delete
+# Intro to R
+## Programming for Punters
 
-1. Edit YAML front matter
-2. Write using R Markdown
-3. Use an empty line followed by three dashes to separate slides!
+#### Tom Heslop
+#### Data Analyst, Timeform
+#### @UTVilla
 
---- .class #id 
+<aside class="notes">
+<small>Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).</small>
+</aside>
+
+--- 
 
 ## Slide 2
-
-
-
 
