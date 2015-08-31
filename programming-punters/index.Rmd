@@ -36,13 +36,15 @@ knit        : slidify::knit2slides
 
 <br>
 
-1. Introduce [R](https://cran.r-project.org/) and [Git](https://git-scm.com/)
+<h4 class="fragment">Introduce <a href="https://cran.r-project.org/">R</a></h4>
 
-2. Using them to manage projects/analysis
+<h4 class="fragment">Introduce <a href="https://git-scm.com/">Git</a></h4>
 
-3. Existing R packages for exploring data
+<h4 class="fragment">Using them to manage projects/analysis</h4>
 
-4. Build your own packages for your specific needs
+<h4 class="fragment">Existing R packages for exploring data</h4>
+
+<h4 class="fragment">Build your own packages</h4>
 
 ---
 
@@ -60,32 +62,42 @@ Jan 2013, an Excel user*
 
 .fragment [_R is a free software environment for statistical computing and graphics_](https://www.r-project.org/)
 
+***
+
+## Learn R
+
+* [Coursera courses run by Johns Hopkins](https://www.coursera.org/specialization/jhudatascience/1?utm_medium=courseDescripTop)
+    - [R Programming](https://www.coursera.org/course/rprog)
+    - [Data Science Toolbox](https://www.coursera.org/course/datascitoolbox)
+    - includes introduction to git/github
+
+* [Statistical Learning by Stanford](https://class.stanford.edu/courses/HumanitiesScience/StatLearning/Winter2014/about)
+    - accompanied by free book ([Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/))
+
+* [Stat545 by University of British Columbia](http://stat545-ubc.github.io/index.html)
+    - course notes for Data Wrangling, Exploration and Analysis with R
+    - includes introduction to git/github
+
+* start writing code
+
+* write more code
+
 --- &vertical
 
 # What is Git?
 
 .fragment [_Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency_](https://git-scm.com/)
 
+.fragment
+
 ***
 
-# What is Git
+Git allows programmers to track changes they make to their code, these changes could include
+
+* bug fixes
+* additional features
+* or small improvements (as shown below)
+
+![](assets/img/git-diff-example.jpg)
 
 ---
-
-<div class="row">
-<div class="col-sm-4">
-
-#### HELLO
-
-</div>
-<div class="col-sm-4">
-
-#### HELLO
-
-</div>
-<div class="col-sm-4">
-
-#### HELLO
-
-</div>
-</div>

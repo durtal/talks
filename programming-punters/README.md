@@ -9,7 +9,8 @@ Subjects to cover and Plan
     - show Johns Hopkins coursera courses
     - teaches a way of thinking, a way of problem solving
 * Introduction to Git
-    - show a few R projects
+    - outline what it is
+    - show a few R projects, examples
     - ability to collaborate
 * Combining R and Git to manage projects
     - link to reproducible research
