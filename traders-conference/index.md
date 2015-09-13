@@ -67,7 +67,11 @@ Jan 2013, an Excel user*
 
 # What is R?
 
-<h4 class="fragment"><a href="https://www.r-project.org/">R is a free software environment for statistical computing and graphics</a></h4>
+<h3 class="fragment"><a href="https://www.r-project.org/">R is a free software environment for statistical computing and graphics</a></h3>
+
+***
+
+<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">The only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code</p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/589068687669243905">April 17, 2015</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ***
 
