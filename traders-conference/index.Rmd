@@ -44,14 +44,13 @@ knit        : slidify::knit2slides
 
 <h4 class="fragment name">Using R and Git to manage projects</h4>
 
-<h4 class="fragment name">Existing R packages for exploring data</h4>
-
-<h4 class="fragment name">Build your own packages</h4>
-
-<ul class="fragment">
-    <li>test</li>
-    <li>test 2</li>
-</ul>
+<div class="fragment">
+    <h4 class="name">Build your own packages</h4>
+    <ul>
+        <li>RcappeR</li>
+        <li>servevolleyR</li>
+    </ul>
+</div>
 
 ---
 
