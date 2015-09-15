@@ -20,16 +20,16 @@ knit        : slidify::knit2slides
 <br>
 
 
-<h4 class="name">Tom Heslop</h4>
-<h4 class="name"><a href="https://twitter.com/UTVilla">@UTVilla</a></h4>
+<h3 class="name">Tom Heslop</h3>
+<h3 class="name"><a href="https://twitter.com/UTVilla">@UTVilla</a></h3>
 
 <br>
 <hr>
 <br>
 
 <ul class="slide-list">
-    <li>slides <a href="http://bit.ly/1Jqzl3E">http://bit.ly/1Jqzl3E</a></li>
-    <li>src <a href="http://bit.ly/1NQF8ET">http://bit.ly/1NQF8ET</a></li>
+    <li>slides <a href="http://bit.ly/1UNtCQ3">http://bit.ly/1UNtCQ3</a></li>
+    <li>source <a href="http://bit.ly/1O9fAE2">http://bit.ly/1O9fAE2</a></li>
 </ul>
 
 ---
@@ -38,33 +38,94 @@ knit        : slidify::knit2slides
 
 <br>
 
-<h4 class="fragment name">Introduce <a href="https://cran.r-project.org/">R</a></h4>
+<h3 class="fragment name">Introduce <a href="https://cran.r-project.org/">R</a></h3>
 
-<h4 class="fragment name">Introduce <a href="https://git-scm.com/">Git</a></h4>
+<h3 class="fragment name">Introduce <a href="https://git-scm.com/">Git</a></h3>
 
-<h4 class="fragment name">Using R and Git to manage projects</h4>
+<h3 class="fragment name">Using R and Git to manage projects</h3>
 
 <div class="fragment">
-    <h4 class="name">Build your own packages</h4>
+    <h3 class="name">Build your own packages</h3>
     <ul>
         <li>RcappeR</li>
         <li>servevolleyR</li>
     </ul>
 </div>
 
----
+--- &vertical
 
 ## Background
 
-Jan 2013, an Excel user*
+<div class="fragment">
+    <h3 style="text-align: left">Jan 2013</h3>
+</div>
+<div class="fragment">
+    <h3>An Excel user</h3>
 
-<img src="assets/img/chain-smoking.jpg">
+    <img src="assets/img/chain-smoking.jpg" style="width:80%">
+</div>
 
-<small class="footnote">*abuser</small>
+***
+
+## Background
+
+<div class="fragment">
+    <h3 style="text-align: left">May 2013</h3>
+</div>
+<div class="fragment">
+    <h3>What is R?</h3>
+
+    <img src="assets/img/bert-ernie-r.jpg" style="width:50%">
+</div>
+
+***
+
+## Background
+
+<div class="fragment">
+    <h3 style="text-align: left">Jun 2013</h3>
+</div>
+<div class="fragment">
+    <h3>Type first R command</h3>
+
+    <img src="assets/img/cookie-monster.gif" style="width:80%">
+</div>
+
+***
+
+## Background
+
+<div class="fragment">
+    <h3 style="text-align: left">Jun 2014</h3>
+</div>
+<div class="fragment">
+    <h3>What is R?</h3>
+
+    <img src="assets/img/dog-fail.gif" style="width: 80%">
+</div>
+
+***
+
+## Background
+
+<div class="fragment">
+    <h3 style="text-align: left">Dec 2014</h3>
+</div>
+<div class="fragment">
+    <h3>Release my second R package</h3>
+
+    <img src="assets/img/i-am-invincible.gif" style="width: 80%">
+</div>
+
+***
+
+## Background
+
+<img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/dog-fail.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px">
 
 --- &vertical
 
-# What is R?
+## What is R?
 
 <h3 class="fragment"><a href="https://www.r-project.org/">R is a free software environment for statistical computing and graphics</a></h3>
 
