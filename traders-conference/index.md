@@ -67,8 +67,6 @@ knit        : slidify::knit2slides
 
 ***
 
-## Background
-
 <div class="fragment">
     <h3 style="text-align: left">May 2013</h3>
 </div>
@@ -79,8 +77,6 @@ knit        : slidify::knit2slides
 </div>
 
 ***
-
-## Background
 
 <div class="fragment">
     <h3 style="text-align: left">Jun 2013</h3>
@@ -93,20 +89,18 @@ knit        : slidify::knit2slides
 
 ***
 
-## Background
-
 <div class="fragment">
     <h3 style="text-align: left">Jun 2014</h3>
 </div>
 <div class="fragment">
-    <h3>What is R?</h3>
+    <h3>I got this</h3>
 
     <img src="assets/img/dog-fail.gif" style="width: 80%">
+
+    <h3>No I don't</h3>
 </div>
 
 ***
-
-## Background
 
 <div class="fragment">
     <h3 style="text-align: left">Dec 2014</h3>
@@ -119,9 +113,9 @@ knit        : slidify::knit2slides
 
 ***
 
-## Background
+<h3>Constantly learning</h3>
 
-<img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/dog-fail.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px">
+<img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/dog-fail.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/dog-fail.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px">
 
 --- &vertical
 
