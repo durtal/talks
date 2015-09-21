@@ -123,6 +123,14 @@ knit        : slidify::knit2slides
 
 <h3 class="fragment"><a href="https://www.r-project.org/">R is a free software environment for statistical computing and graphics</a></h3>
 
+<hr>
+<br>
+
+<h3 class="fragment">R is <span class="fragment">data analysis software</span></h3>
+<h3 class="fragment">R is <span class="fragment">a programming language</span></h3>
+<h3 class="fragment">R is <span class="fragment">open source</span></h3>
+<h3 class="fragment">R is <span class="fragment">a community</span></h3>
+
 ***
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">The only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code</p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/589068687669243905">April 17, 2015</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -147,9 +155,7 @@ knit        : slidify::knit2slides
 
 # What is Git?
 
-.fragment [_Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency_](https://git-scm.com/)
-
-.fragment
+<h3 class="fragment"><a href="https://git-scm.com">Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency</a></h3>
 
 ***
 
