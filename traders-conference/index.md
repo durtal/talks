@@ -97,7 +97,7 @@ knit        : slidify::knit2slides
 
     <img src="assets/img/dog-fail.gif" style="width: 80%">
 
-    <h3>No I don't</h3>
+    <h3 class="fragment">No I don't</h3>
 </div>
 
 ***
@@ -126,10 +126,18 @@ knit        : slidify::knit2slides
 <hr>
 <br>
 
-<h3 class="fragment">R is <span class="fragment">data analysis software</span></h3>
-<h3 class="fragment">R is <span class="fragment">a programming language</span></h3>
-<h3 class="fragment">R is <span class="fragment">open source</span></h3>
-<h3 class="fragment">R is <span class="fragment">a community</span></h3>
+<h2 class="fragment" style="text-align:left">R is...</h2>
+<h3 class="fragment">...open source</h3>
+<h3 class="fragment">...a programming language</h3>
+<h3 class="fragment">...data analysis software</h3>
+<h3 class="fragment">...a community</h3>
+
+--- &vertical
+
+## open source
+
+It's free to use on Windows, Linux and OSX.
+The source code is
 
 ***
 
