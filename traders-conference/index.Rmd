@@ -4,7 +4,7 @@ subtitle    : Programming for Punters
 author      : Tom Heslop
 job         : Data Analyst, Timeform
 framework   : revealjs
-revealjs    : {theme: night, transition: concave, center: "false"}
+revealjs    : {theme: night, transition: concave, center: "true"}
 highlighter : highlight.js
 hitheme     : tomorrow
 widgets     : [bootstrap]
@@ -32,29 +32,34 @@ knit        : slidify::knit2slides
     <li>source <a href="http://bit.ly/1O9fAE2">http://bit.ly/1O9fAE2</a></li>
 </ul>
 
----
+--- &vertical .title
 
-## Subjects To Cover
+<h1 class="slide-title">Subjects to Cover</h1>
 
-<br>
+***
 
-<h3 class="fragment name">Introduce <a href="https://cran.r-project.org/">R</a></h3>
-
-<h3 class="fragment name">Introduce <a href="https://git-scm.com/">Git</a></h3>
-
-<h3 class="fragment name">Using R and Git to manage projects</h3>
-
-<div class="fragment">
-    <h3 class="name">Build your own packages</h3>
-    <ul>
-        <li>RcappeR</li>
-        <li>servevolleyR</li>
-    </ul>
-</div>
+<ul class="subject-list">
+    <li class="fragment name">Introduce <a href="https://cran.r-project.org/">R</a></li>
+    <br>
+    <li class="fragment name">Introduct <a href="https://git-scm.com/">Git</a></li>
+    <br>
+    <li class="fragment name">Use R, Git, other open source tools to manage projects/analysis</li>
+    <br>
+    <li class="fragment name">
+        Build your own R packages
+        <ul>
+            <li><a href="http://durtal.github.io/RcappeR/">RcappeR</a> - horse racing</li>
+            <li><a href="http://durtal.github.io/servevolleyR/">servevolleyR</a> - tennis</li>
+            <li><a href="http://durtal.github.io/betfaiR/">betfaiR</a> - Betfair (incomplete)</li>
+        </ul>
+    </li>
+</ul>
 
 --- &vertical
 
-## Background
+<h1 class="slide-title">Background</h1>
+
+***
 
 <div class="fragment">
     <h3 style="text-align: left">Jan 2013</h3>
@@ -62,7 +67,7 @@ knit        : slidify::knit2slides
 <div class="fragment">
     <h3>An Excel user</h3>
 
-    <img src="assets/img/chain-smoking.jpg" style="width:80%">
+    <img src="assets/img/chain-smoking.jpg" style="width:50%">
 </div>
 
 ***
@@ -84,7 +89,7 @@ knit        : slidify::knit2slides
 <div class="fragment">
     <h3>Type first R command</h3>
 
-    <img src="assets/img/cookie-monster.gif" style="width:80%">
+    <img src="assets/img/cookie-monster.gif" style="width:50%">
 </div>
 
 ***
@@ -95,7 +100,7 @@ knit        : slidify::knit2slides
 <div class="fragment">
     <h3>I got this</h3>
 
-    <img src="assets/img/dog-fail.gif" style="width: 80%">
+    <img src="assets/img/dog-fail.gif" style="width: 50%">
 
     <h3 class="fragment">No I don't</h3>
 </div>
@@ -108,23 +113,22 @@ knit        : slidify::knit2slides
 <div class="fragment">
     <h3>Release my second R package</h3>
 
-    <img src="assets/img/i-am-invincible.gif" style="width: 80%">
+    <img src="assets/img/i-am-invincible.gif" style="width: 50%">
 </div>
 
 ***
 
 <h3>Constantly learning</h3>
 
-<img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/dog-fail.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/dog-fail.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px">
+<img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/cookie-monster.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width: 100px; height: 75px"><img src="assets/img/bert-ernie-r.jpg" style="width:100px; height:75px"><img src="assets/img/dog-fail.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/dog-fail.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px"><img src="assets/img/cookie-monster.gif" style="width:100px; height:75px"><img src="assets/img/dog-fail.gif" style="width: 100px; height: 75px"><img src="assets/img/i-am-invincible.gif" style="width:100px; height:75px">
 
---- &vertical
+--- &vertical .title
 
-## What is R?
+<h1 class="slide-title">What is R?</h1>
 
-<h3 class="fragment"><a href="https://www.r-project.org/">R is a free software environment for statistical computing and graphics</a></h3>
+***
 
-<hr>
-<br>
+<h2 class="fragment"><a href="https://www.r-project.org/">R is a free software environment for statistical computing and graphics</a></h2>
 
 <h2 class="fragment" style="text-align:left">R is...</h2>
 <h3 class="fragment">...open source</h3>
@@ -132,7 +136,7 @@ knit        : slidify::knit2slides
 <h3 class="fragment">...data analysis software</h3>
 <h3 class="fragment">...a community</h3>
 
---- &vertical
+***
 
 ## open source
 
@@ -140,11 +144,9 @@ It's free to use on Windows, Linux and OSX.
 
 The source code is available to read, inspect, learn from.
 
---- &vertical
+***
 
 ## programming language
-
-
 
 ***
 
@@ -166,11 +168,13 @@ The source code is available to read, inspect, learn from.
 * start writing code
 * write more code
 
---- &vertical
+--- &vertical .title
 
-# What is Git?
+<h1 class="slide-title">What is Git?</h1>
 
-<h3 class="fragment"><a href="https://git-scm.com">Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency</a></h3>
+***
+
+<h2 class="fragment"><a href="https://git-scm.com">Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency</a></h2>
 
 ***
 
@@ -182,4 +186,18 @@ Git allows programmers to track changes they make to their code, these changes c
 
 ![](assets/img/git-diff-example.jpg)
 
----
+--- &vertical .title
+
+<h1 class="slide-title">RcappeR</h1>
+
+***
+
+### R package to aid the analysis and cleaning of horse racing data
+
+--- &vertical .title
+
+<h1 class="slide-title">servevolleyR</h1>
+
+***
+
+### R package to simulate tennis points, games, tiebreask, sets and matches
