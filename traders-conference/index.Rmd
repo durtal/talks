@@ -39,20 +39,21 @@ knit        : slidify::knit2slides
 ***
 
 <ul class="subject-list">
-    <li class="fragment name">Introduce <a href="https://cran.r-project.org/">R</a></li>
+    <li class="fragment roll-in name">Introduce <a href="https://cran.r-project.org/">R</a></li>
     <br>
-    <li class="fragment name">Introduct <a href="https://git-scm.com/">Git</a></li>
+    <li class="fragment roll-in name">Introduce <a href="https://git-scm.com/">Git</a> (very briefly)</li>
     <br>
-    <li class="fragment name">Use R, Git, other open source tools to manage projects/analysis</li>
-    <br>
-    <li class="fragment name">
+    <li class="fragment roll-in name">
         Build your own R packages
+        <br>
         <ul>
             <li><a href="http://durtal.github.io/RcappeR/">RcappeR</a> - horse racing</li>
             <li><a href="http://durtal.github.io/servevolleyR/">servevolleyR</a> - tennis</li>
             <li><a href="http://durtal.github.io/betfaiR/">betfaiR</a> - Betfair (incomplete)</li>
         </ul>
     </li>
+    <br>
+    <li class="fragment roll-in name">Use R, Git, other open source tools to manage projects/analysis</li>
 </ul>
 
 --- &vertical
@@ -61,58 +62,43 @@ knit        : slidify::knit2slides
 
 ***
 
-<div class="fragment">
-    <h3 style="text-align: left">Jan 2013</h3>
-</div>
-<div class="fragment">
-    <h3>An Excel user</h3>
 
+<h3 style="text-align: left">January 2013</h3>
+<h3>an Excel user</h3>
+<div class="fragment">
     <img src="assets/img/chain-smoking.jpg" style="width:50%">
 </div>
 
 ***
 
+<h3 style="text-align: left">May 2013</h3>
+<h3>What is R?</h3>
 <div class="fragment">
-    <h3 style="text-align: left">May 2013</h3>
-</div>
-<div class="fragment">
-    <h3>What is R?</h3>
-
     <img src="assets/img/bert-ernie-r.jpg" style="width:50%">
 </div>
 
 ***
 
+<h3 style="text-align: left">June 2013</h3>
+<h3>Type first R command</h3>
 <div class="fragment">
-    <h3 style="text-align: left">Jun 2013</h3>
-</div>
-<div class="fragment">
-    <h3>Type first R command</h3>
-
     <img src="assets/img/cookie-monster.gif" style="width:50%">
 </div>
 
 ***
 
+<h3 style="text-align: left">June 2014</h3>
+<h3>I understand...</h3>
 <div class="fragment">
-    <h3 style="text-align: left">Jun 2014</h3>
-</div>
-<div class="fragment">
-    <h3>I got this</h3>
-
     <img src="assets/img/dog-fail.gif" style="width: 50%">
-
-    <h3 class="fragment">No I don't</h3>
+    <h3 class="fragment">...no I don't</h3>
 </div>
 
 ***
 
+<h3 style="text-align: left">December 2014</h3>
+<h3>Release my second R package</h3>
 <div class="fragment">
-    <h3 style="text-align: left">Dec 2014</h3>
-</div>
-<div class="fragment">
-    <h3>Release my second R package</h3>
-
     <img src="assets/img/i-am-invincible.gif" style="width: 50%">
 </div>
 
@@ -128,13 +114,13 @@ knit        : slidify::knit2slides
 
 ***
 
-<h2 class="fragment"><a href="https://www.r-project.org/">R is a free software environment for statistical computing and graphics</a></h2>
+<h2><a href="https://www.r-project.org/">R is a free software environment for statistical computing and graphics</a></h2>
 
-<h2 class="fragment" style="text-align:left">R is...</h2>
-<h3 class="fragment">...open source</h3>
-<h3 class="fragment">...a programming language</h3>
-<h3 class="fragment">...data analysis software</h3>
-<h3 class="fragment">...a community</h3>
+<h2 class="fragment roll-in" style="text-align:left">R is...</h2>
+<h3 class="fragment roll-in">...open source</h3>
+<h3 class="fragment roll-in">...a programming language</h3>
+<h3 class="fragment roll-in">...data analysis software</h3>
+<h3 class="fragment roll-in">...a community</h3>
 
 ***
 
@@ -194,10 +180,14 @@ Git allows programmers to track changes they make to their code, these changes c
 
 ### R package to aid the analysis and cleaning of horse racing data
 
+[help pages](http://durtal.github.io/RcappeR/)
+
 --- &vertical .title
 
 <h1 class="slide-title">servevolleyR</h1>
 
 ***
 
-### R package to simulate tennis points, games, tiebreask, sets and matches
+### R package to simulate tennis points, games, tiebreaks, sets and matches
+
+[help pages](http://durtal.github.io/RcappeR/)
