@@ -1,0 +1,16 @@
+{
+  "name": "talks",
+  "version": "0.0.0",
+  "homepage": "https://github.com/durtal/talks",
+  "authors": [
+    "Tom Heslop <t_heslop@hotmail.co.uk>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
