@@ -2,12 +2,14 @@ Subjects to cover and Plan
 ==========================
 
 * Introduction
-    - me
     - what I'll try cover
 * Introduction to R
-    - show growth in popularity of the language
-    - show Johns Hopkins coursera courses
-    - teaches a way of thinking, a way of problem solving
+    - what is R
+        - open source
+        - a programming language
+        - data analysis software
+        - a community
+    - link to various resources for learning R
 * Introduction to Git
     - outline what it is
     - show a few R projects, examples
