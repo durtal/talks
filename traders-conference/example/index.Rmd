@@ -1,3 +1,5 @@
 ---
-title: "Example"
+title: "about"
 ---
+
+This website serves as an example workflow using R, Git and Make to automate the collection of tennis data, cleaning and preparing that data, before producing output that could be useful in making smarter decisions when striking a bet or bets.
