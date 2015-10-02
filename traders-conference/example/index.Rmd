@@ -2,4 +2,6 @@
 title: "about"
 ---
 
-This website serves as an example workflow using R, Git and Make to automate the collection of tennis data, cleaning and preparing that data, before producing output that could be useful in making smarter decisions when striking a bet or bets.
+This website serves as an example workflow using R, Git and Make to automate the [collection](data-collection.html) of tennis data, [cleaning and preparing](data-cleaning.html) that data, before producing output that could be useful in making smarter decisions when striking a bet or bets.
+
+The site is split into 3 sections, [collection](data-collection.html), [cleaning](data-cleaning.html), and output, I've tried to explain the steps I've taken in those sections, these explanations will hopefully improve over time as I have more time.  I will also try to link to useful resources when I use an R package, or some programming _skill_ that may be of interest.

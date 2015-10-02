@@ -1,0 +1,5 @@
+---
+title: "data collection"
+---
+
+**R** can be used to retreive data from many sources and in many different formats.  R also has the potential, via some fantastic packages, to scrape/harvest data from the web, which is how we will collect data for the various tennis players we will need to look at.
