@@ -143,10 +143,73 @@ img {
 <p><strong>R</strong> can be used to retreive data from many sources and in many different formats. R also has the potential, via some fantastic packages, to scrape/harvest data from the web, which is how we will collect data for the various tennis players we will need to look at.</p>
 <p>We’ll use a number of R packages to do this, including <code>jsonlite</code> which is used to parse JSON data, and <code>rvest</code> which can be used on websites to target and select html tags and return the <em>data</em> found on webpages.</p>
 <p>The ATP site contains a lot of data, and it can be filtered for various summary stats that are to be used in some of the <code>servevolleyR</code> functions.</p>
-<div id="player-pages" class="section level2">
-<h2>player pages</h2>
+<div id="tournaments" class="section level2">
+<h2>tournaments</h2>
+<p>Collecting data about the various tournaments throughout the year will be useful, things like start date, end date, court surface, etc, can be used to either schedule future tasks, or filter relevant player data. The <a href="http://www.atpworldtour.com/en/tournaments">tournaments</a> homepage appears to show all the tournaments from that calendar year, whether completed or not. To get this data we’ll use the <code>rvest</code> package built by Hadley Wickham (if you use R there’s a good chance you reside for part of the time in Hadleyverse), which can be used to <strong>easily harvest (scrape) web pages</strong>, and <code>stringr</code> (also by Hadley) to clean some of the data.</p>
+<div class="row">
+<div class="col-sm-4">
+<p>To make selecting the various elements of a webpage easier, we’ll also use the <a href="http://selectorgadget.com/">selectorgadget</a> tool recommended by <code>rvest</code>. This tool allows you to hover over displayed content and will return the html tags to select that content, this is much easier than trawling through the raw HTML for tags (as I used to do). SelectorGadget can be seen in action to the right, as it selects the tournament names, and returns the tags <code>.tourney-title</code> that are to be used in the code belwo to select those elements.</p>
+</div>
+<div class="col-sm-8">
+<p><img class="img-reponsive" src="images/snipping-tool-eg.jpg" href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/images/snipping-tool-eg.jpg"></p>
+</div>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
+<span class="kw">library</span>(stringr)
+<span class="co"># read in HTML document </span>
+tourney_page &lt;-<span class="st"> </span><span class="kw">html</span>(<span class="st">&quot;http://www.atpworldtour.com/en/tournaments&quot;</span>)
+
+tourney &lt;-<span class="st"> </span>tourney_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tourney-title&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>()
+
+tourney_link &lt;-<span class="st"> </span>tourney_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tourney-title&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)
+
+tourney_location &lt;-<span class="st"> </span>tourney_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tourney-location&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot;&quot;</span>)
+
+tourney_date &lt;-<span class="st"> </span>tourney_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tourney-dates&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot;&quot;</span>)
+
+tourney_surface &lt;-<span class="st"> </span>tourney_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tourney-details:nth-child(2) .item-details&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot;&quot;</span>)</code></pre>
+<p>The code above returns vectors of data about the tournaments, the name (<code>tourney</code>), the url (<code>tourney_link</code>), the location (<code>tourney_location</code>), the date (<code>tourney_date</code>) and the surface (<code>tourney_surface</code>). One word of caution, web developers can change their sites, which can cause some of this code to break, so it may require updating and adjusting over time, but the tools are there to make this a relatively simple process. The vectors above can be combined into a dataframe, the first 6 rows are then printed, and we can also write the dataframe to a spreadsheet:</p>
+<pre class="sourceCode r"><code class="sourceCode r">tourneys &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> tourney,
+                       <span class="dt">link =</span> tourney_link,
+                       <span class="dt">venue =</span> tourney_location,
+                       <span class="dt">date =</span> tourney_date,
+                       <span class="dt">surface =</span> tourney_surface,
+                       <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
+<span class="kw">head</span>(tourneys)</code></pre>
+<pre><code>##              name                                         link
+## 1        Brisbane        /en/tournaments/brisbane/339/overview
+## 2            Doha            /en/tournaments/doha/451/overview
+## 3         Chennai         /en/tournaments/chennai/891/overview
+## 4          Sydney          /en/tournaments/sydney/338/overview
+## 5        Auckland        /en/tournaments/auckland/301/overview
+## 6 Australian Open /en/tournaments/australian-open/580/overview
+##                   venue                    date      surface
+## 1   Brisbane, Australia 2015.01.04 - 2015.01.11 Outdoor Hard
+## 2           Doha, Qatar 2015.01.05 - 2015.01.10 Outdoor Hard
+## 3        Chennai, India 2015.01.05 - 2015.01.11 Outdoor Hard
+## 4     Sydney, Australia 2015.01.11 - 2015.01.17 Outdoor Hard
+## 5 Auckland, New Zealand 2015.01.12 - 2015.01.17 Outdoor Hard
+## 6  Melbourne, Australia 2015.01.19 - 2015.02.01 Outdoor Hard</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(<span class="dt">x =</span> tourneys, <span class="dt">file =</span> <span class="st">&quot;data/tournaments.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre>
+</div>
+<div id="player-pages-and-data" class="section level2">
+<h2>player pages and data</h2>
 <p>Individual players stats are found on their own page, we need to know these individual urls in order to get the relevant data. This data can be quickly retrieved using R (or other programming languages), for either a collection of players or individuals, the url <a href="http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?"><code>http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?</code></a> returns a JSON object with the players name and the partial url to their profile page.</p>
-<p>If we wanted to search for all players called <em>andy</em> then we can do it using the code below, which converts the JSON into a nice dataframe for us. First we load the <code>jsonlite</code> package using <code>libary(jsonlite)</code>, then use the <code>fromJSON</code> function to parse the json, before printing the first 6 rows of our new dataset with <code>head()</code></p>
+<p>If we wanted to search for all players called <em>andy</em> then we can do it using the code below, which converts the JSON into a list with an items object that holds a nice dataframe of players and their urls. First we load the <code>jsonlite</code> package using <code>libary(jsonlite)</code>, then use the <code>fromJSON()</code> function to parse the json, before printing the first 6 rows of our new dataset with <code>head()</code></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
 andy &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?SearchTerm=andy murray&quot;</span>)
 <span class="kw">head</span>(andy$items)</code></pre>
@@ -157,7 +220,11 @@ andy &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class=
 ## 4   Andy Stewart   /en/players/andy-stewart/s599/overview
 ## 5  Randy Rocchio  /en/players/randy-rocchio/r710/overview
 ## 6     Andy Solis     /en/players/andy-solis/s294/overview</code></pre>
-<p>If you go to <a href="http://www.atpworldtour.com/en/players/andy-murray/mc10/overview" class="uri">http://www.atpworldtour.com/en/players/andy-murray/mc10/overview</a>, then it should take you to <em>Andy Murray</em>’s profile page, which includes some of the data shown below behind one of the tabs. This page contains the data we need for the various functions found in <code>servevolleyR</code>.</p>
+<p>If you go to <a href="http://www.atpworldtour.com/en/players/andy-murray/mc10/overview" class="uri">http://www.atpworldtour.com/en/players/andy-murray/mc10/overview</a>, then it should take you to <em>Andy Murray</em>’s profile page, which includes various sections about the player. It takes you to the overview page, the data we want for the various functions found in <code>servevolleyR</code> is behind the player stats tab, shown below. When selecting that tab the url changes from <code>overview</code> to <code>player-stats</code>, this can be done in R using the following:</p>
+<pre class="sourceCode r"><code class="sourceCode r">(andymurray &lt;-<span class="st"> </span>andy$items$Value[<span class="dv">1</span>])</code></pre>
+<pre><code>## [1] &quot;/en/players/andy-murray/mc10/overview&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">(andymurray &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;overview&quot;</span>, <span class="st">&quot;player-stats&quot;</span>, andymurray))</code></pre>
+<pre><code>## [1] &quot;/en/players/andy-murray/mc10/player-stats&quot;</code></pre>
 <p><img src="images/andy-murray.jpg" /></p>
 </div>
 
