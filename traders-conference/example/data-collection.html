@@ -24,6 +24,7 @@
 	body {
 		padding-top: 20px;
 		padding-bottom: 20px;
+		text-align: justify;
 	}
 	@media (max-width: 979px) {
 		body {
@@ -54,6 +55,32 @@
 	}
 </style>
 
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -114,6 +141,25 @@ img {
 
 
 <p><strong>R</strong> can be used to retreive data from many sources and in many different formats. R also has the potential, via some fantastic packages, to scrape/harvest data from the web, which is how we will collect data for the various tennis players we will need to look at.</p>
+<p>We’ll use a number of R packages to do this, including <code>jsonlite</code> which is used to parse JSON data, and <code>rvest</code> which can be used on websites to target and select html tags and return the <em>data</em> found on webpages.</p>
+<p>The ATP site contains a lot of data, and it can be filtered for various summary stats that are to be used in some of the <code>servevolleyR</code> functions.</p>
+<div id="player-pages" class="section level2">
+<h2>player pages</h2>
+<p>Individual players stats are found on their own page, we need to know these individual urls in order to get the relevant data. This data can be quickly retrieved using R (or other programming languages), for either a collection of players or individuals, the url <a href="http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?"><code>http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?</code></a> returns a JSON object with the players name and the partial url to their profile page.</p>
+<p>If we wanted to search for all players called <em>andy</em> then we can do it using the code below, which converts the JSON into a nice dataframe for us. First we load the <code>jsonlite</code> package using <code>libary(jsonlite)</code>, then use the <code>fromJSON</code> function to parse the json, before printing the first 6 rows of our new dataset with <code>head()</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
+andy &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?SearchTerm=andy murray&quot;</span>)
+<span class="kw">head</span>(andy$items)</code></pre>
+<pre><code>##              Key                                    Value
+## 1    Andy Murray    /en/players/andy-murray/mc10/overview
+## 2      Andy Sugg      /en/players/andy-sugg/sf80/overview
+## 3 Andy Schrecker /en/players/andy-schrecker/s590/overview
+## 4   Andy Stewart   /en/players/andy-stewart/s599/overview
+## 5  Randy Rocchio  /en/players/randy-rocchio/r710/overview
+## 6     Andy Solis     /en/players/andy-solis/s294/overview</code></pre>
+<p>If you go to <a href="http://www.atpworldtour.com/en/players/andy-murray/mc10/overview" class="uri">http://www.atpworldtour.com/en/players/andy-murray/mc10/overview</a>, then it should take you to <em>Andy Murray</em>’s profile page, which includes some of the data shown below behind one of the tabs. This page contains the data we need for the various functions found in <code>servevolleyR</code>.</p>
+<p><img src="images/andy-murray.jpg" /></p>
+</div>
 
 
 </div>

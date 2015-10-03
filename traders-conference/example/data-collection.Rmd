@@ -2,4 +2,33 @@
 title: "data collection"
 ---
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE,
+               warning = FALSE)
+
+```
+
 **R** can be used to retreive data from many sources and in many different formats.  R also has the potential, via some fantastic packages, to scrape/harvest data from the web, which is how we will collect data for the various tennis players we will need to look at.
+
+We'll use a number of R packages to do this, including `jsonlite` which is used to parse JSON data, and `rvest` which can be used on websites to target and select html tags and return the _data_ found on webpages.
+
+The ATP site contains a lot of data, and it can be filtered for various summary stats that are to be used in some of the `servevolleyR` functions.
+
+## player pages
+
+Individual players stats are found on their own page, we need to know these individual urls in order to get the relevant data.  This data can be quickly retrieved using R (or other programming languages), for either a collection of players or individuals, the url [`http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?`](http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?) returns a JSON object with the players name and the partial url to their profile page.
+
+If we wanted to search for all players called _andy_ then we can do it using the code below, which converts the JSON into a nice dataframe for us.  First we load the `jsonlite` package using `libary(jsonlite)`, then use the `fromJSON` function to parse the json, before printing the first 6 rows of our new dataset with `head()`
+
+```{r}
+library(jsonlite)
+andy <- fromJSON("http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?SearchTerm=andy murray")
+head(andy$items)
+```
+
+If you go to `r paste0("http://www.atpworldtour.com", head(andy$items, 1)$Value)`, then it should take you to _`r paste0(head(andy$items, 1)$Key)`_'s profile page, which includes some of the data shown below behind one of the tabs.  This page contains the data we need for the various functions found in `servevolleyR`.
+
+![](images/andy-murray.jpg)
+
+
