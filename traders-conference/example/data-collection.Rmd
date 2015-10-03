@@ -22,7 +22,7 @@ Collecting data about the various tournaments throughout the year will be useful
 <div class="row">
 <div class="col-sm-4">
 
-To make selecting the various elements of a webpage easier, we'll also use the [selectorgadget](http://selectorgadget.com/) tool recommended by `rvest`.  This tool allows you to hover over displayed content and will return the html tags to select that content, this is much easier than trawling through the raw HTML for tags (as I used to do).  SelectorGadget can be seen in action to the right, as it selects the tournament names, and returns the tags `.tourney-title` that are to be used in the code belwo to select those elements.
+To make selecting the various elements of a webpage easier, we'll also use the [selectorgadget](http://selectorgadget.com/) tool recommended by `rvest`.  This tool allows you to hover over displayed content and will return the html tags to select that content, this is much easier than trawling through the raw HTML for tags (as I used to do).  SelectorGadget can be seen in action to the right, as it selects the tournament names, and returns the tag `.tourney-title` that is to be used in the code below to harvest that data.
 
 </div>
 <div class="col-sm-8">
