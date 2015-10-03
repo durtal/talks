@@ -181,7 +181,8 @@ knit        : slidify::knit2slides
 <h3>...a community</h3>
 
 <aside class="notes" style="font-size: 10px">
-    <p style="font-size:15px">I'll run through each of these quickly, and why they are important to any analysis you hope to do.</p>
+    <p style="font-size:15px">I'll run through each of these quickly</p>
+    <p style="font-size:15px">Which will hopefully show why learning R would be useful</p>
 </aside>
 
 --- &vertical .title
@@ -208,6 +209,10 @@ knit        : slidify::knit2slides
     <br>
     <li class="name">plenty of useful tutorials/help pages to learn</li>
 </ul>
+
+<aside class="notes">
+    <p style="font-size:15px">if you've a question about R, there's a good chance someone has already asked the very same, or similar, and someone else has already answered</p>
+</aside>
 
 --- &vertical .title
 
@@ -236,6 +241,26 @@ knit        : slidify::knit2slides
 ***
 
 ## hadleyverse
+
+<ul class="subject-list">
+    <li class="name">dplyr</li>
+    <li class="name">plyr</li>
+    <li class="name">tidyr</li>
+    <li class="name">stringr</li>
+    <li class="name">ggplot2</li>
+    <li class="name">devtools</li>
+</ul>
+
+<br>
+<br>
+### Hadley Wickham's impact on R is <strong style="color:#d9220f">seismic</strong>
+
+<aside class="notes">
+    <p style="font-size:15px">packages built by Hadley Wickham (chief scientist at RStudio) make up the hadleyverse</p>
+    <p style="font-size:15px">they range from visualisation packages like `ggplot2` and `ggvis`, to data manipulation packages like `dplyr` and `plyr`</p>
+    <p style="font-size:15px">also made packages to make the development of packages easier, impact he's had is seismic</p>
+    <p style="font-size:15px">if you use R for any period of time, you will enter hadleyverse</p>
+</aside>
 
 --- &vertical .title
 
