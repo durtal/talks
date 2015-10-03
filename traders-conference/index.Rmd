@@ -174,7 +174,7 @@ knit        : slidify::knit2slides
 
 ***
 
-<h2 style="text-align:left">R is...</h2>
+<h2 style="text-align:left"><a href="http://www.inside-r.org/what-is-r">R is...</a></h2>
 <h3>...open source</h3>
 <h3>...a programming language</h3>
 <h3>...data analysis software</h3>
@@ -184,45 +184,138 @@ knit        : slidify::knit2slides
     <p style="font-size:15px">I'll run through each of these quickly, and why they are important to any analysis you hope to do.</p>
 </aside>
 
-***
+--- &vertical .title
 
-## open source
-
-It's free to use on Windows, Linux and OSX.
-
-The source code is available to read, inspect, learn from.
+# open source
 
 ***
 
-## programming language
+<ul class="subject-list">
+    <li class="name">it's free to use on Windows, Linux and OSX</li>
+    <br>
+    <li class="name">source code is open to read, inspect, learn from</li>
+    <br>
+    <li class="name">many eyes means improvements/bugs can be made/fixed</li>
+    <br>
+</ul>
 
 ***
 
-## data analysis software
+<ul class="subject-list">
+    <li class="name">easy to collaborate as <strong>everyone</strong> should have access to the same tools</li>
+    <br>
+    <li class="name">ability to extend the language and build packages yourself</li>
+    <br>
+    <li class="name">plenty of useful tutorials/help pages to learn</li>
+</ul>
+
+--- &vertical .title
+
+# programming language
+
+--- &vertical .title
+
+# data analysis software
 
 ***
 
-## a community
+## retrieving data
 
 ***
 
-<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">The only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code</p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/589068687669243905">April 17, 2015</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+## manipulating data
 
 ***
 
-## Learn R
+## visualising data
 
-* [Coursera courses run by Johns Hopkins](https://www.coursera.org/specialization/jhudatascience/1?utm_medium=courseDescripTop)
-    - [R Programming](https://www.coursera.org/course/rprog)
-    - [Data Science Toolbox](https://www.coursera.org/course/datascitoolbox)
-    - includes introduction to git/github
-* [Statistical Learning by Stanford](https://class.stanford.edu/courses/HumanitiesScience/StatLearning/Winter2014/about)
-    - accompanied by free book ([Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/))
-* [Stat545 by University of British Columbia](http://stat545-ubc.github.io/index.html)
-    - course notes for Data Wrangling, Exploration and Analysis with R
-    - includes introduction to git/github
-* start writing code
-* write more code
+***
+
+## model data
+
+***
+
+## hadleyverse
+
+--- &vertical .title
+
+# a community
+
+***
+
+<ul class="subject-list">
+    <li class="name">dedicated and passionate community who contribute to improving R</li>
+    <br>
+    <li class="name">over 7000 R packages on CRAN</li>
+    <br>
+    <li class="name">
+        packages built by experts in their field, including
+        <br>
+        <ul>
+            <li>statistics</li>
+            <li>machine learning</li>
+            <li>finance</li>
+            <li>visualisation</li>
+            <li>biology</li>
+            ...
+        </ul>
+    </li>
+    <br>
+    <li class="name">many more packages available on Github/Bioconductor</li>
+</ul>
+
+<aside class="notes">
+    <p style="font-size: 15px">CRAN - Comprehensive R Archive Network</p>
+</aside>
+
+***
+
+Community
+
+--- &vertical .title
+
+# learn R
+
+***
+
+<ul class="subject-list">
+    <li class="name">
+        <a href="https://www.coursera.org/specialization/jhudatascience/1?utm_medium=courseDescripTop">Coursera courses run by Johns Hopkins</a>
+        <br>
+        <ul>
+            <li><a href="https://www.coursera.org/course/rprog">R Programming</a></li>
+            <li><a href="https://www.coursera.org/course/datascitoolbox">Data Science Toolbox</a></li>
+            <li>includes introduction to git/github</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        <a href="https://class.stanford.edu/courses/HumanitiesScience/StatLearning/Winter2014/about">Statistical Learning by Stanford</a>
+        <br>
+        <ul>
+            <li>accompanied by free book <a href="http://www-bcf.usc.edu/~gareth/ISL/">Introduction to Statistical Learning</a></li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        <a href="http://stat545-ubc.github.io/index.html">Stat545 by University of British Columbia</a>
+        <br>
+        <ul>
+            <li>course notes for Data Wrangling, Exploration and Analysis with R</li>
+            <li>includes introduction to git/github</li>
+        </ul>
+    </li>
+</ul>
+
+***
+
+### write code
+
+<div>
+    <img src="assets/img/write-shitty-code.jpg" style="width: 50%">
+</div>
+
+### write more code
 
 --- &vertical .title
 
@@ -294,6 +387,10 @@ be like Doc Brown and time travel
 ### R package to simulate tennis points, games, tiebreaks, sets and matches
 
 [help pages](http://durtal.github.io/servevolleyR/)
+
+--- &vertical .title
+
+<h1 class="slide-title">example workflow</h1>
 
 --- .title
 
