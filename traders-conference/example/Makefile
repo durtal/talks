@@ -3,6 +3,8 @@ HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd)) \
 
 all: clean html
 
+collect:
+	Rscript R/collect-data.R
 
 html: $(HTML_FILES)
 
@@ -15,6 +17,3 @@ html: $(HTML_FILES)
 .PHONY: clean
 clean:
 	$(RM) $(HTML_FILES)
-
-test:
-	Rscript test.R
