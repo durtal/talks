@@ -60,14 +60,23 @@ knit        : slidify::knit2slides
         </ul>
     </li>
     <br>
-    <li class="name">Use R, Git, other open source tools to manage projects/analysis</li>
+    <li class="name">
+        example workflow
+        <br>
+        <ul>
+            <li>use R, Git, other open source tools to manage projects/analysis</li>
+            <li>use community built packages to collect and clean data</li>
+            <li>use my own <a href="http://durtal.github.io/servevolleyR/">servevolleyR</a> package on the collected data</li>
+            <li>present findings using more community built packages</li>
+        </ul>
+    </li>
 </ul>
 
 <aside class="notes" style="font-size: 10px">
     <p style="font-size:15px">Introduce R, what it is, some packages.</p>
     <p style="font-size:15px">Introduce Git, briefly, important when writing lots of code.</p>
     <p style="font-size:15px">Build your own tools, talk about a couple of R packages I've built.</p>
-    <p style="font-size:15px">An example use case, involving servevolleyR, some other R packages, and Make.</p>
+    <p style="font-size:15px">An example workflow, involving servevolleyR, some other R packages, git and Make.</p>
 </aside>
 
 --- &vertical
@@ -219,6 +228,22 @@ knit        : slidify::knit2slides
 --- &vertical .title
 
 # programming language
+
+***
+
+<ul class="subject-list">
+    <li class="name">language designed specifically for data analysis</li>
+    <br>
+    <li class="name">powerful and flexible</li>
+    <br>
+    <li class="name">used interactively or write scripts to automate tasks</li>
+</ul>
+
+<aside class="notes">
+    <p style="font-size:15px">designed by statisticians for statistics, so can appear a little idiosyncratic if coming to R having used other languages</p>
+    <p style="font-size:15px">the first language I made an effort to learn, so didn't have any expectations</p>
+    <p style="font-size:15px">I'll share some examples of using scripts to automate tasks later</p>
+</aside>
 
 --- &vertical .title
 
@@ -399,15 +424,19 @@ be like Doc Brown and time travel
 
 <h1 class="slide-title">RcappeR</h1>
 
+### to aid the cleaning, analysis and handicapping of horse racing data
+
 ***
 
-### R package to aid the analysis and cleaning of horse racing data
+## [help pages](http://durtal.github.io/RcappeR/)
 
-[help pages](http://durtal.github.io/RcappeR/)
+<br>
+
+## install package
 
 
 ```r
-# devtools package needed
+# devtools package needed to install package from github
 # install.packages('devtools')
 devtools::install_github('durtal/RcappeR')
 ```
@@ -424,25 +453,46 @@ conv_times(times = c("1m39.99", "1:12.78", "1min23.34"))
 ```
 ## [1] 99.99 72.78 83.34
 ```
+<br>
 
 ```r
-conv_len(lengths = c("nse", "hd", "nk", "0.5", "1 3/4"))
+conv_len(lengths = c("0", "nse", "hd", "nk", "0.5", "1 3/4"))
 ```
 
 ```
-## [1] 0.02 0.10 0.20 0.50 1.75
+## [1] 0.00 0.02 0.10 0.20 0.50 1.75
+```
+<br>
+
+```r
+conv_margins(btn_l = c(0, 0.02, 0.1, 0.2, 0.5, 1.75),
+             cum_l = FALSE,
+             win_time = 99.99)
 ```
 
+```
+## [1]  99.99  99.99 100.01 100.05 100.15 100.50
+```
+
+<aside class="notes">
+    <p style="font-size:15px">write functions to do specific tasks, such as cleaning race times</p>
+    <p style="font-size:15px">or converting lengths from characters describing distances into numeric</p>
+    <p style="font-size:15px">or converting lengths into seconds beaten, or individual final times</p>
+</aside>
 
 --- &vertical .title
 
 <h1 class="slide-title">servevolleyR</h1>
 
+### simulate tennis points, games, tiebreaks, sets and matches
+
 ***
 
-### R package to simulate tennis points, games, tiebreaks, sets and matches
+## [help pages](http://durtal.github.io/servevolleyR/)
 
-[help pages](http://durtal.github.io/servevolleyR/)
+<br>
+
+## install package
 
 
 ```r
