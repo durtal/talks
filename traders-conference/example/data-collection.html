@@ -127,9 +127,6 @@ img {
 				<li>
 					<a href="data-collection.html">collection</a>
 				</li>
-				<li>
-					<a href="data-cleaning.html">cleaning</a>
-				</li>
 			</ul>
 		</div>
 	</div>
@@ -141,22 +138,23 @@ img {
 
 
 <p><strong>R</strong> can be used to retreive data from many sources and in many different formats. R also has the potential, via some fantastic packages, to scrape/harvest data from the web, which is how we will collect data for the various tennis players we will need to look at.</p>
-<p>We’ll use a number of R packages to do this, including <code>jsonlite</code> which is used to parse JSON data, and <code>rvest</code> which can be used on websites to target and select html tags and return the <em>data</em> found on webpages.</p>
+<p>We’ll use a number of R packages to do this, including <code>jsonlite</code> which is used to parse JSON data, and <code>rvest</code> which can be used on websites to target and select html tags and return the <em>data</em> found on webpages, so we will load the required libraries:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
+<span class="kw">library</span>(stringr)
+<span class="kw">library</span>(jsonlite)</code></pre>
 <p>The ATP site contains a lot of data, and it can be filtered for various summary stats that are to be used in some of the <code>servevolleyR</code> functions.</p>
 <div id="tournaments" class="section level2">
 <h2>tournaments</h2>
 <p>Collecting data about the various tournaments throughout the year will be useful, things like start date, end date, court surface, etc, can be used to either schedule future tasks, or filter relevant player data. The <a href="http://www.atpworldtour.com/en/tournaments">tournaments</a> homepage appears to show all the tournaments from that calendar year, whether completed or not. To get this data we’ll use the <code>rvest</code> package built by Hadley Wickham (if you use R there’s a good chance you reside for part of the time in Hadleyverse), which can be used to <strong>easily harvest (scrape) web pages</strong>, and <code>stringr</code> (also by Hadley) to clean some of the data.</p>
 <div class="row">
 <div class="col-sm-4">
-<p>To make selecting the various elements of a webpage easier, we’ll also use the <a href="http://selectorgadget.com/">selectorgadget</a> tool recommended by <code>rvest</code>. This tool allows you to hover over displayed content and will return the html tags to select that content, this is much easier than trawling through the raw HTML for tags (as I used to do). SelectorGadget can be seen in action to the right, as it selects the tournament names, and returns the tags <code>.tourney-title</code> that are to be used in the code belwo to select those elements.</p>
+<p>To make selecting the various elements of a webpage easier, we’ll also use the <a href="http://selectorgadget.com/">selectorgadget</a> tool recommended by <code>rvest</code>. This tool allows you to hover over displayed content and will return the html tags to select that content, this is much easier than trawling through the raw HTML for tags (as I used to do). SelectorGadget can be seen in action to the right, as it selects the tournament names, and returns the tag <code>.tourney-title</code> that is to be used in the code below to harvest that data.</p>
 </div>
 <div class="col-sm-8">
 <p><img class="img-reponsive" src="images/snipping-tool-eg.jpg" href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/images/snipping-tool-eg.jpg"></p>
 </div>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
-<span class="kw">library</span>(stringr)
-<span class="co"># read in HTML document </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># read in HTML document</span>
 tourney_page &lt;-<span class="st"> </span><span class="kw">html</span>(<span class="st">&quot;http://www.atpworldtour.com/en/tournaments&quot;</span>)
 
 tourney &lt;-<span class="st"> </span>tourney_page %&gt;%
@@ -192,26 +190,31 @@ tourney_surface &lt;-<span class="st"> </span>tourney_page %&gt;%
 <span class="kw">head</span>(tourneys)</code></pre>
 <pre><code>##              name                                         link
 ## 1        Brisbane        /en/tournaments/brisbane/339/overview
-## 2            Doha            /en/tournaments/doha/451/overview
-## 3         Chennai         /en/tournaments/chennai/891/overview
+## 2         Chennai         /en/tournaments/chennai/891/overview
+## 3            Doha            /en/tournaments/doha/451/overview
 ## 4          Sydney          /en/tournaments/sydney/338/overview
 ## 5        Auckland        /en/tournaments/auckland/301/overview
 ## 6 Australian Open /en/tournaments/australian-open/580/overview
 ##                   venue                    date      surface
 ## 1   Brisbane, Australia 2015.01.04 - 2015.01.11 Outdoor Hard
-## 2           Doha, Qatar 2015.01.05 - 2015.01.10 Outdoor Hard
-## 3        Chennai, India 2015.01.05 - 2015.01.11 Outdoor Hard
+## 2        Chennai, India 2015.01.05 - 2015.01.11 Outdoor Hard
+## 3           Doha, Qatar 2015.01.05 - 2015.01.10 Outdoor Hard
 ## 4     Sydney, Australia 2015.01.11 - 2015.01.17 Outdoor Hard
 ## 5 Auckland, New Zealand 2015.01.12 - 2015.01.17 Outdoor Hard
 ## 6  Melbourne, Australia 2015.01.19 - 2015.02.01 Outdoor Hard</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(<span class="dt">x =</span> tourneys, <span class="dt">file =</span> <span class="st">&quot;data/tournaments.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre>
 </div>
 <div id="player-pages-and-data" class="section level2">
 <h2>player pages and data</h2>
-<p>Individual players stats are found on their own page, we need to know these individual urls in order to get the relevant data. This data can be quickly retrieved using R (or other programming languages), for either a collection of players or individuals, the url <a href="http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?"><code>http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?</code></a> returns a JSON object with the players name and the partial url to their profile page.</p>
+<div class="row">
+<div class="col-sm-4">
+<p>Individual players stats are found on their own page, we need to know these individual urls in order to get the relevant data. This data can be quickly retrieved using R (or other programming languages), for either a collection of players or individuals, the url to the right returns a JSON object with the players name and the partial url to their profile page.</p>
 <p>If we wanted to search for all players called <em>andy</em> then we can do it using the code below, which converts the JSON into a list with an items object that holds a nice dataframe of players and their urls. First we load the <code>jsonlite</code> package using <code>libary(jsonlite)</code>, then use the <code>fromJSON()</code> function to parse the json, before printing the first 6 rows of our new dataset with <code>head()</code></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
-andy &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?SearchTerm=andy murray&quot;</span>)
+</div>
+<div class="col-sm-8">
+<p><a href="http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?"><code>http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?</code></a> <img class="img-reponsive" src="images/andy-murray.jpg" href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/images/andy-murray.jpg"></p>
+</div>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r">andy &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?SearchTerm=andy murray&quot;</span>)
 <span class="kw">head</span>(andy$items)</code></pre>
 <pre><code>##              Key                                    Value
 ## 1    Andy Murray    /en/players/andy-murray/mc10/overview
@@ -220,12 +223,94 @@ andy &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class=
 ## 4   Andy Stewart   /en/players/andy-stewart/s599/overview
 ## 5  Randy Rocchio  /en/players/randy-rocchio/r710/overview
 ## 6     Andy Solis     /en/players/andy-solis/s294/overview</code></pre>
-<p>If you go to <a href="http://www.atpworldtour.com/en/players/andy-murray/mc10/overview" class="uri">http://www.atpworldtour.com/en/players/andy-murray/mc10/overview</a>, then it should take you to <em>Andy Murray</em>’s profile page, which includes various sections about the player. It takes you to the overview page, the data we want for the various functions found in <code>servevolleyR</code> is behind the player stats tab, shown below. When selecting that tab the url changes from <code>overview</code> to <code>player-stats</code>, this can be done in R using the following:</p>
+<p>If you go to <a href="http://www.atpworldtour.com/en/players/andy-murray/mc10/overview" class="uri">http://www.atpworldtour.com/en/players/andy-murray/mc10/overview</a>, then it should take you to <em>Andy Murray</em>’s profile page, which includes various sections about the player. It takes you to the overview page, the data we want for the various functions found in <code>servevolleyR</code> is behind the player stats tab, shown below. When selecting that tab the url changes from <code>overview</code> to <code>player-stats</code>, this can be done in R using the following code:</p>
 <pre class="sourceCode r"><code class="sourceCode r">(andymurray &lt;-<span class="st"> </span>andy$items$Value[<span class="dv">1</span>])</code></pre>
 <pre><code>## [1] &quot;/en/players/andy-murray/mc10/overview&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">(andymurray &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;overview&quot;</span>, <span class="st">&quot;player-stats&quot;</span>, andymurray))</code></pre>
 <pre><code>## [1] &quot;/en/players/andy-murray/mc10/player-stats&quot;</code></pre>
-<p><img src="images/andy-murray.jpg" /></p>
+<p>The stats we need for <code>servevolleyR</code> functions are the win percentage on first serve, and ideally second serve win percentage and first serve in percentage. All of this can be scraped from the profile page, the code below creates the correct url and reads in the source of the webpage using the <code>html</code> function from <code>rvest</code>. It then extracts the tables from that page, returning two tables containing service stats and return stats; we only want the first table containing the service stats. It’s possible to get surface and seasonal stats, but for now we’ll just keep things simple and get career numbers:</p>
+<pre class="sourceCode r"><code class="sourceCode r">(andymurray &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www.atpworldtour.com&quot;</span>, andymurray))</code></pre>
+<pre><code>## [1] &quot;http://www.atpworldtour.com/en/players/andy-murray/mc10/player-stats&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">andymurray_page &lt;-<span class="st"> </span><span class="kw">html</span>(andymurray)
+(andymurray_service_stats &lt;-<span class="st"> </span>andymurray_page %&gt;%
+<span class="st">    </span><span class="kw">html_table</span>() %&gt;%
+<span class="st">    </span>.[[<span class="dv">1</span>]])</code></pre>
+<pre><code>##          Service Record    NA
+## 1                  Aces 4,663
+## 2         Double Faults 1,675
+## 3             1st Serve   58%
+## 4  1st Serve Points Won   74%
+## 5  2nd Serve Points Won   52%
+## 6    Break Points Faced 4,099
+## 7    Break Points Saved   63%
+## 8  Service Games Played 8,443
+## 9     Service Games Won   82%
+## 10   Service Points Won   65%</code></pre>
+<p>The data returned contains what we need but it isn’t in a usable format, the <code>NA</code> variable is a character vector, we need to select the relevant rows, and then clean the values by removing the punctuation and dividing the number by 100, so 58% becomes 0.58.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr) <span class="co"># used to quickly manipulate data</span>
+<span class="kw">names</span>(andymurray_service_stats) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;stat&quot;</span>, <span class="st">&quot;value&quot;</span>)
+andymurray_service_stats &lt;-<span class="st"> </span>andymurray_service_stats %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;1st Serve|2nd Serve&quot;</span>, stat)) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">new_value =</span> <span class="kw">str_replace</span>(value, <span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot;&quot;</span>),
+           <span class="dt">new_value =</span> <span class="kw">as.numeric</span>(new_value) /<span class="st"> </span><span class="dv">100</span>)
+andymurray_service_stats</code></pre>
+<pre><code>##                   stat value new_value
+## 1            1st Serve   58%      0.58
+## 2 1st Serve Points Won   74%      0.74
+## 3 2nd Serve Points Won   52%      0.52</code></pre>
+</div>
+<div id="servevolleyr" class="section level2">
+<h2><code>servevolleyR</code></h2>
+<p>The stats can now be used with the functions from <code>servevolleyR</code>, we’ll just use the <code>simGame</code> and <code>simGames</code> functions for now, which simulate service games. <code>simGame</code> returns a <strong>1</strong> if the server wins and a <strong>0</strong> if the returner wins.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(servevolleyR)
+
+<span class="kw">simGame</span>(<span class="dt">p =</span> andymurray_service_stats[<span class="dv">2</span>,<span class="dv">3</span>],
+        <span class="dt">p2 =</span> andymurray_service_stats[<span class="dv">3</span>,<span class="dv">3</span>],
+        <span class="dt">firstServe =</span> andymurray_service_stats[<span class="dv">1</span>,<span class="dv">3</span>])</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we can use the replicate function to repeatedly use the simGame function and log the results in a vector</span>
+results &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, {
+    <span class="kw">simGame</span>(<span class="dt">p =</span> andymurray_service_stats[<span class="dv">2</span>,<span class="dv">3</span>],
+            <span class="dt">p2 =</span> andymurray_service_stats[<span class="dv">3</span>,<span class="dv">3</span>],
+            <span class="dt">firstServe =</span> andymurray_service_stats[<span class="dv">1</span>,<span class="dv">3</span>])
+})
+<span class="kw">table</span>(results)</code></pre>
+<pre><code>## results
+##   0   1 
+## 161 839</code></pre>
+<p>So Andy Murray won <strong>0.839</strong> of his service games. Alternatively, we can use the <code>simGames</code> function to simulate many games but return a lot of simulated data about those games, rather than the binary response returned by <code>simGame</code>. The <code>simGames</code> function returns a list with a few generic methods, which means the results can be printed, summarised or plotted.</p>
+<pre class="sourceCode r"><code class="sourceCode r">results2 &lt;-<span class="st"> </span><span class="kw">simGames</span>(<span class="dt">n =</span> <span class="dv">1000</span>,
+                     <span class="dt">p =</span> andymurray_service_stats[<span class="dv">2</span>,<span class="dv">3</span>],
+                     <span class="dt">p2 =</span> andymurray_service_stats[<span class="dv">3</span>,<span class="dv">3</span>],
+                     <span class="dt">firstServe =</span> andymurray_service_stats[<span class="dv">1</span>,<span class="dv">3</span>])
+results2</code></pre>
+<pre><code>## 
+## Simulation of 1000 service games:
+## Server won 0.826 (826/1000) of games.
+## 
+## Server probabilities:
+##     p   p2 firstServe
+##  0.74 0.52       0.58</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(results2)</code></pre>
+<pre><code>## 
+## Simulation of 1000 service games:
+## Server won 0.826 (826/1000) of games.
+## 
+## Server probabilities:
+##     p   p2 firstServe
+##  0.74 0.52       0.58
+## 
+## Service Game scores:
+##       returner
+## server     0     1     2     3     4     5
+##      0                         0.016      
+##      1                         0.033      
+##      2                         0.063      
+##      3                               0.062
+##      4 0.158 0.256 0.218                  
+##      5                   0.194</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(results2)</code></pre>
+<p><img src="data-collection_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="672" /></p>
 </div>
 
 
