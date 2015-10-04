@@ -12,6 +12,15 @@ mode        : selfcontained
 knit        : slidify::knit2slides
 ---
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+opts_chunk$set(warning = FALSE,
+               message = FALSE)
+
+library(RcappeR)
+library(servevolleyR)
+```
+
 # Introduction to R
 ## Programming for Punters
 
@@ -403,6 +412,23 @@ be like Doc Brown and time travel
 
 [help pages](http://durtal.github.io/RcappeR/)
 
+```{r eval=FALSE}
+# devtools package needed
+# install.packages('devtools')
+devtools::install_github('durtal/RcappeR')
+```
+
+***
+
+## simple cleaning tasks
+
+```{r}
+conv_times(times = c("1m39.99", "1:12.78", "1min23.34"))
+
+conv_len(lengths = c("nse", "hd", "nk", "0.5", "1 3/4"))
+```
+
+
 --- &vertical .title
 
 <h1 class="slide-title">servevolleyR</h1>
@@ -412,6 +438,12 @@ be like Doc Brown and time travel
 ### R package to simulate tennis points, games, tiebreaks, sets and matches
 
 [help pages](http://durtal.github.io/servevolleyR/)
+
+```{r eval=FALSE}
+# devtools package needed
+# install.packages('devtools')
+devtools::install_github('durtal/servevolleyR')
+```
 
 --- &vertical .title
 

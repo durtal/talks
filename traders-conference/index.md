@@ -12,6 +12,8 @@ mode        : selfcontained
 knit        : slidify::knit2slides
 ---
 
+
+
 # Introduction to R
 ## Programming for Punters
 
@@ -253,12 +255,13 @@ knit        : slidify::knit2slides
 
 <br>
 <br>
-### Hadley's impact on R is <strong style="color:#d9220f">seismic</strong>
+### Hadley Wickham's impact on R is <strong style="color:#d9220f">seismic</strong>
 
 <aside class="notes">
     <p style="font-size:15px">packages built by Hadley Wickham (chief scientist at RStudio) make up the hadleyverse</p>
     <p style="font-size:15px">they range from visualisation packages like `ggplot2` and `ggvis`, to data manipulation packages like `dplyr` and `plyr`</p>
-    <p style="font-size:15px">also made packages to make the development of packages easier, impact he's had is seismic
+    <p style="font-size:15px">also made packages to make the development of packages easier, impact he's had is seismic</p>
+    <p style="font-size:15px">if you use R for any period of time, you will enter hadleyverse</p>
 </aside>
 
 --- &vertical .title
@@ -402,6 +405,35 @@ be like Doc Brown and time travel
 
 [help pages](http://durtal.github.io/RcappeR/)
 
+
+```r
+# devtools package needed
+# install.packages('devtools')
+devtools::install_github('durtal/RcappeR')
+```
+
+***
+
+## simple cleaning tasks
+
+
+```r
+conv_times(times = c("1m39.99", "1:12.78", "1min23.34"))
+```
+
+```
+## [1] 99.99 72.78 83.34
+```
+
+```r
+conv_len(lengths = c("nse", "hd", "nk", "0.5", "1 3/4"))
+```
+
+```
+## [1] 0.02 0.10 0.20 0.50 1.75
+```
+
+
 --- &vertical .title
 
 <h1 class="slide-title">servevolleyR</h1>
@@ -411,6 +443,13 @@ be like Doc Brown and time travel
 ### R package to simulate tennis points, games, tiebreaks, sets and matches
 
 [help pages](http://durtal.github.io/servevolleyR/)
+
+
+```r
+# devtools package needed
+# install.packages('devtools')
+devtools::install_github('durtal/servevolleyR')
+```
 
 --- &vertical .title
 
