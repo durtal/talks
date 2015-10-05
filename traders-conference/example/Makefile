@@ -17,3 +17,6 @@ html: $(HTML_FILES)
 .PHONY: clean
 clean:
 	$(RM) $(HTML_FILES)
+
+test:
+	Rscript R/collect-matches.R

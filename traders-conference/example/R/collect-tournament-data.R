@@ -1,5 +1,5 @@
 #===============================================================================
-#                   RETRIEVE DATA FOR ATP TENNIS PLAYERS                       #
+#                   RETRIEVE DATA FOR ATP TOURNAMENTS                          #
 #  see durtal.github.io/talks/traders-conference/example/data-collection.html  #
 #===============================================================================
 
