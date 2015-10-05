@@ -52,4 +52,5 @@ tourneys$start_date <- as.Date(str_extract(string = tourneys$date,
 tourneys$end_date <- as.Date(str_extract(string = tourneys$date,
                                          pattern = "[[:digit:]]{4}\\.[[:digit:]]{2}\\.[[:digit:]]{2}$"),
                              format = "%Y.%m.%d")
-# data from players can be collected from their player pages on www.atpworldtour.com
+
+write.csv(tourneys, file = "../data/tournaments.csv", row.names = FALSE)
