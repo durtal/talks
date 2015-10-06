@@ -1,6 +1,6 @@
 ---
 title       : Introduction to R
-subtitle    : Programming for Punters
+subtitle    : Matchbook Traders Conference 2015
 author      : Tom Heslop
 job         : Data Analyst, Timeform
 framework   : revealjs
@@ -15,7 +15,7 @@ knit        : slidify::knit2slides
 
 
 # Introduction to R
-## Programming for Punters
+## Matchbook Traders Conference 2015
 
 <br>
 <hr>
