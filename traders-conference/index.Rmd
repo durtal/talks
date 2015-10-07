@@ -368,6 +368,14 @@ Community
 
 ***
 
+```{r echo=FALSE}
+library(cowsay)
+say("You must unlearn what you have learned", by="yoda")
+
+```
+
+***
+
 ### write code
 
 <div>
