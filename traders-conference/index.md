@@ -154,8 +154,8 @@ knit        : slidify::knit2slides
 </div>
 
 <aside class="notes" style="font-size: 10px">
-    <p style="font-size:15px">Every so often I felt like I was invincible... I wasn't.</p>
-    <p style="font-size:15px">Released my second R package, which helped with horse racing analysis, we'll see some of it later.</p>
+    <p style="font-size:15px">Every so often I felt like I was making real progress, occasionally a lightbulb went off.</p>
+    <p style="font-size:15px">I released my second R package, which helped with horse racing analysis, we'll see some of it later, this was the reason why I wanted to learn R, so was delighted to reach this point.</p>
 </aside>
 
 ***
@@ -166,8 +166,8 @@ knit        : slidify::knit2slides
 
 <aside class="notes" style="font-size: 10px">
     <p style="font-size:15px">Timeline since June 2013 looks like this, moments of despair, failure, struggle.</p>
-    <p style="font-size:15px">punctured with moments of triumph, small successes.</p>
-    <p style="font-size:15px">I'm always learning.</p>
+    <p style="font-size:15px">punctured with moments of triumph, success and progress.</p>
+    <p style="font-size:15px">However, I'm always learning.</p>
     <p style="font-size:15px">so tag of 'R programming specialist' is a bit of marketing, still learning every day.</p>
 </aside>
 
@@ -192,57 +192,7 @@ knit        : slidify::knit2slides
 <h3>...a community</h3>
 
 <aside class="notes" style="font-size: 10px">
-    <p style="font-size:15px">I'll run through each of these quickly</p>
-    <p style="font-size:15px">Which will hopefully show why learning R would be useful</p>
-</aside>
-
---- &vertical .title
-
-# open source
-
-***
-
-<ul class="subject-list">
-    <li class="name">it's free to use on Windows, Linux and OSX</li>
-    <br>
-    <li class="name">source code is open to read, inspect, learn from</li>
-    <br>
-    <li class="name">many eyes means improvements/bugs can be made/fixed</li>
-    <br>
-</ul>
-
-***
-
-<ul class="subject-list">
-    <li class="name">easy to collaborate as <strong>everyone</strong> should have access to the same tools</li>
-    <br>
-    <li class="name">ability to extend the language and build packages yourself</li>
-    <br>
-    <li class="name">plenty of useful tutorials/help pages to learn</li>
-</ul>
-
-<aside class="notes">
-    <p style="font-size:15px">if you've a question about R, there's a good chance someone has already asked the very same, or similar, and someone else has already answered</p>
-</aside>
-
---- &vertical .title
-
-# programming language
-
-***
-
-<ul class="subject-list">
-    <li class="name">language designed specifically for data analysis</li>
-    <br>
-    <li class="name">powerful and flexible</li>
-    <br>
-    <li class="name">used interactively or write scripts to automate tasks</li>
-</ul>
-
-<aside class="notes">
-    <p style="font-size:15px">designed by statisticians for statistics, so can appear a little idiosyncratic if coming to R having used other languages</p>
-    <p style="font-size:15px">the first language I made an effort to learn, so didn't have any expectations</p>
-    <p style="font-size:15px">I'll share some examples of using scripts to automate tasks later</p>
+    <p style="font-size:15px">I'll run through a couple of these quickly, which will hopefully show why learning R would be useful</p>
 </aside>
 
 --- &vertical .title
@@ -253,7 +203,47 @@ knit        : slidify::knit2slides
 
 ## retrieving data
 
+### R can import data from a huge range of sources.
+
 ***
+
+## explore data
+
+
+#### the `gulfstream` dataset is collection of horse races from Gulfstream Park
+
+
+```r
+str(gulfstream)
+```
+
+```
+## 'data.frame':	2863 obs. of  17 variables:
+##  $ date     : chr  "01/01/13" "01/01/13" "01/01/13" "01/01/13" ...
+##  $ race     : int  1 1 1 1 1 1 1 1 2 2 ...
+##  $ race_type: chr  "mdn clm" "mdn clm" "mdn clm" "mdn clm" ...
+##  $ dist     : int  6 6 6 6 6 6 6 6 6 6 ...
+##  $ surf     : chr  "dirt" "dirt" "dirt" "dirt" ...
+##  $ value    : int  17500 17500 17500 17500 17500 17500 17500 17500 17500 17500 ...
+##  $ going    : chr  "fast" "fast" "fast" "fast" ...
+##  $ trainer  : chr  "nicholas gonzalez" "anthony pecoraro" "edwin t broome" "edward plesa jr" ...
+##  $ jockey   : chr  "jermaine bridgmohan" "joseph rocco jr" "gabriel saez" "elvis trujillo" ...
+##  $ j_clm    : int  0 0 0 0 5 0 7 0 0 0 ...
+##  $ age      : int  3 3 3 3 3 3 3 3 3 3 ...
+##  $ wgt      : int  122 122 122 122 117 122 115 122 122 122 ...
+##  $ gate     : int  6 1 8 7 5 2 4 3 2 4 ...
+##  $ pos      : int  1 2 3 4 5 6 7 8 1 2 ...
+##  $ horse    : chr  "don'tgetmestarted" "dream of scipio" "beltram" "gold bitten tiger" ...
+##  $ fintime  : num  72.4 74.2 74.5 74.7 74.7 ...
+##  $ sect_4f  : num  47 47.1 47.4 48.4 47.4 ...
+```
+
+<aside class="notes">
+    <p style="font-size:15px">The `str` command allows you to see the structure of a dataset, including the type of data, numeric, character, logical</p>
+</aside>
+
+***
+
 
 ## manipulating data
 
@@ -265,29 +255,7 @@ knit        : slidify::knit2slides
 
 ## model data
 
-***
 
-## hadleyverse
-
-<ul class="subject-list">
-    <li class="name">dplyr</li>
-    <li class="name">plyr</li>
-    <li class="name">tidyr</li>
-    <li class="name">stringr</li>
-    <li class="name">ggplot2</li>
-    <li class="name">devtools</li>
-</ul>
-
-<br>
-<br>
-### Hadley Wickham's impact on R is <strong style="color:#d9220f">seismic</strong>
-
-<aside class="notes">
-    <p style="font-size:15px">packages built by Hadley Wickham (chief scientist at RStudio) make up the hadleyverse</p>
-    <p style="font-size:15px">they range from visualisation packages like `ggplot2` and `ggvis`, to data manipulation packages like `dplyr` and `plyr`</p>
-    <p style="font-size:15px">also made packages to make the development of packages easier, impact he's had is seismic</p>
-    <p style="font-size:15px">if you use R for any period of time, you will enter hadleyverse</p>
-</aside>
 
 --- &vertical .title
 
@@ -296,7 +264,7 @@ knit        : slidify::knit2slides
 ***
 
 <ul class="subject-list">
-    <li class="name">dedicated and passionate community who contribute to improving R</li>
+    <li class="name">dedicated and passionate community who improve and extend R</li>
     <br>
     <li class="name">over 7000 R packages on CRAN</li>
     <br>
@@ -314,10 +282,16 @@ knit        : slidify::knit2slides
     </li>
     <br>
     <li class="name">many more packages available on Github/Bioconductor</li>
+    <br>
+    <li class="name">check out the <a href="https://twitter.com/search?f=tweets&vertical=default&q=%23rstats&src=typd">#rstats</a> hashtag for the latest articles on R</li>
 </ul>
 
 <aside class="notes">
     <p style="font-size: 15px">CRAN - Comprehensive R Archive Network</p>
+    <p style="font-size: 15px">leveraging the knowledge and expertise of the community</p>
+    <p style="font-size: 15px">an incredibly powerful set of tools at your disposal</p>
+    <p style="font-size: 15px">community are prominent on twitter, posting short and incredibly interesting articles</p>
+    <p style="font-size: 15px">articles often include code chunks that can be run, very useful in learning new skills/techniques, or learning about packages</p>
 </aside>
 
 ***
@@ -361,63 +335,17 @@ Community
 
 ***
 
+## write code
 
-```
-## 
-## 
-## 
-##  ----- 
-## You must unlearn what you have learned 
-##  ------ 
-##     \   
-##      \
-##                    ____
-##                 _.' :  `._
-##             .-.'`.  ;   .'`.-.
-##    __      / : ___\ ;  /___ ; \      __
-##   ,'_ ""--.:__;".-.";: :".-.":__;.--"" _`,
-##   :' `.t""--.. '<@.`;_  ',@>` ..--""j.' `;
-##        `:-.._J '-.-'L__ `-- ' L_..-;'
-##           "-.__ ;  .-"  "-.  : __.-"
-##              L ' /.------.\ ' J
-##              "-.   "--"   .-"
-##              __.l"-:_JL_;-";.__
-##          .-j/'.;  ;""""  / .'\"-.
-##          .' /:`. "-.:     .-" .';  `.
-##       .-"  / ;  "-. "-..-" .-"  :    "-.
-##   .+"-.  : :      "-.__.-"      ;-._   \
-##   ; \  `.; ;                    : : "+. ;
-##   :  ;   ; ;                    : ;  : \:
-##   ;  :   ; :                    ;:   ;  :
-##   : \  ;  :  ;                  : ;  /  ::
-##   ;  ; :   ; :                  ;   :   ;:
-##   :  :  ;  :  ;                : :  ;  : ;
-##   ;\    :   ; :                ; ;     ; ;
-##   : `."-;   :  ;              :  ;    /  ;
-##  ;    -:   ; :              ;  : .-"   :
-##   :\     \  :  ;            : \.-"      :
-##   ;`.    \  ; :            ;.'_..--  / ;
-##   :  "-.  "-:  ;          :/."      .'  :
-##    \         \ :          ;/  __        :
-##     \       .-`.\        /t-""  ":-+.   :
-##      `.  .-"    `l    __/ /`. :  ; ; \  ;
-##        \   .-" .-"-.-"  .' .'j \  /   ;/
-##         \ / .-"   /.     .'.' ;_:'    ;
-##   :-""-.`./-.'     /    `.___.'
-##                \ `t  ._  /  bug
-##                 "-.t-._:'
-## 
-```
-
-***
-
-### write code
+<br>
 
 <div>
     <img src="assets/img/write-shitty-code.jpg" style="width: 50%">
 </div>
 
-### write more code
+<br>
+
+## write more code
 
 --- &vertical .title
 
@@ -426,6 +354,20 @@ Community
 ***
 
 <h2><a href="https://git-scm.com">Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency</a></h2>
+
+***
+
+<h2 style="text-align:left">Git allows you</h2>
+<h3>...to organise and manage a collection of files</h3>
+<h3>...to go back to older versions of the files</h3>
+<h3>...branch out and add features with the flexibility to jump between project versions</h3>
+
+<aside class="notes">
+    <p style="font-size: 15px">Git can be incredibly helpful in managing files which make up a small project</p>
+    <p style="font-size: 15px">tracking changes in files is incredibly powerful as you can inspect the changes you've made over time, and even go back to previous versions</p>
+    <p style="font-size: 15px">when used with code you write (whether it be R, Javascript, Python), being able to go back and forth, and track changes is invaluable</p>
+    <p style="font-size: 15px">and the ability to create different branches of a project, such as an R package in one branch and a website with help pages in another</p>
+</aside>
 
 ***
 
@@ -461,20 +403,28 @@ Community
 
 </div>
 
+<aside class="notes">
+    <p style="font-size: 15px">without Git a project might grow organically, you re-write work, but want to preserve previous versions so new files are created showing this iteration, analysis-1.R, etc</p>
+    <p style="font-size: 15px">with git, the project is much cleaner, but the previous versions are all available</p>
+</aside>
 
 ***
 
-## An example
+<h3>Many popular R packages are developed in the open</h3>
+<br>
 
-be like Doc Brown and time travel
+<img src="assets/img/github-ggplot2.jpg">
 
-![](assets/img/git-diff-example.jpg)
+
+<aside class="notes">
+    <p style="font-size: 15px">ability to read code written by incredibly smart people is very useful in learning more about the language</p>
+</aside>
 
 --- &vertical .title
 
 <h1 class="slide-title">RcappeR</h1>
 
-### to aid the cleaning, analysis and handicapping of horse racing data
+### to aid the analysis and handicapping of horse racing
 
 ***
 
@@ -528,7 +478,15 @@ conv_margins(btn_l = c(0, 0.02, 0.1, 0.2, 0.5, 1.75),
     <p style="font-size:15px">write functions to do specific tasks, such as cleaning race times</p>
     <p style="font-size:15px">or converting lengths from characters describing distances into numeric</p>
     <p style="font-size:15px">or converting lengths into seconds beaten, or individual final times</p>
+    <p style="font-size:15px">these are pretty simple tasks, but now can be done in a consistent manner</p>
+    <p style="font-size:15px">I didn't get the functions right first time, git helped me track changes I made and avoid repeating errors</p>
 </aside>
+
+***
+
+## basic handicapping (use other R packages with `RcappeR`)
+
+
 
 --- &vertical .title
 

@@ -199,8 +199,8 @@
 </div>
 
 <p><aside class="notes" style="font-size: 10px">
-    <p style="font-size:15px">Every so often I felt like I was invincible... I wasn&#39;t.</p>
-    <p style="font-size:15px">Released my second R package, which helped with horse racing analysis, we&#39;ll see some of it later.</p>
+    <p style="font-size:15px">Every so often I felt like I was making real progress, occasionally a lightbulb went off.</p>
+    <p style="font-size:15px">I released my second R package, which helped with horse racing analysis, we&#39;ll see some of it later, this was the reason why I wanted to learn R, so was delighted to reach this point.</p>
 </aside></p>
 
     <aside class='notes'>
@@ -214,8 +214,8 @@
 
 <p><aside class="notes" style="font-size: 10px">
     <p style="font-size:15px">Timeline since June 2013 looks like this, moments of despair, failure, struggle.</p>
-    <p style="font-size:15px">punctured with moments of triumph, small successes.</p>
-    <p style="font-size:15px">I&#39;m always learning.</p>
+    <p style="font-size:15px">punctured with moments of triumph, success and progress.</p>
+    <p style="font-size:15px">However, I&#39;m always learning.</p>
     <p style="font-size:15px">so tag of &#39;R programming specialist&#39; is a bit of marketing, still learning every day.</p>
 </aside></p>
 
@@ -256,76 +256,7 @@
 <h3>...a community</h3>
 
 <p><aside class="notes" style="font-size: 10px">
-    <p style="font-size:15px">I&#39;ll run through each of these quickly</p>
-    <p style="font-size:15px">Which will hopefully show why learning R would be useful</p>
-</aside></p>
-
-    <aside class='notes'>
-      
-    </aside>
-   </section>
-</section>
-<section>
-   <section class='title' data-state=''>
-    <h1>open source</h1>
-    
-    <aside class='notes'>
-      
-    </aside>
-   </section>
-   <section class='' data-state=''>
-    <ul class="subject-list">
-    <li class="name">it's free to use on Windows, Linux and OSX</li>
-    <br>
-    <li class="name">source code is open to read, inspect, learn from</li>
-    <br>
-    <li class="name">many eyes means improvements/bugs can be made/fixed</li>
-    <br>
-</ul>
-
-    <aside class='notes'>
-      
-    </aside>
-   </section>
-   <section class='' data-state=''>
-    <ul class="subject-list">
-    <li class="name">easy to collaborate as <strong>everyone</strong> should have access to the same tools</li>
-    <br>
-    <li class="name">ability to extend the language and build packages yourself</li>
-    <br>
-    <li class="name">plenty of useful tutorials/help pages to learn</li>
-</ul>
-
-<p><aside class="notes">
-    <p style="font-size:15px">if you&#39;ve a question about R, there&#39;s a good chance someone has already asked the very same, or similar, and someone else has already answered</p>
-</aside></p>
-
-    <aside class='notes'>
-      
-    </aside>
-   </section>
-</section>
-<section>
-   <section class='title' data-state=''>
-    <h1>programming language</h1>
-    
-    <aside class='notes'>
-      
-    </aside>
-   </section>
-   <section class='' data-state=''>
-    <ul class="subject-list">
-    <li class="name">language designed specifically for data analysis</li>
-    <br>
-    <li class="name">powerful and flexible</li>
-    <br>
-    <li class="name">used interactively or write scripts to automate tasks</li>
-</ul>
-
-<p><aside class="notes">
-    <p style="font-size:15px">designed by statisticians for statistics, so can appear a little idiosyncratic if coming to R having used other languages</p>
-    <p style="font-size:15px">the first language I made an effort to learn, so didn&#39;t have any expectations</p>
-    <p style="font-size:15px">I&#39;ll share some examples of using scripts to automate tasks later</p>
+    <p style="font-size:15px">I&#39;ll run through a couple of these quickly, which will hopefully show why learning R would be useful</p>
 </aside></p>
 
     <aside class='notes'>
@@ -343,6 +274,44 @@
    </section>
    <section class='' data-state=''>
     <h2>retrieving data</h2>
+
+<h3>R can import data from a huge range of sources.</h3>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>explore data</h2>
+
+<h4>the <code>gulfstream</code> dataset is collection of horse races from Gulfstream Park</h4>
+
+<pre><code class="r">str(gulfstream)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    2863 obs. of  17 variables:
+##  $ date     : chr  &quot;01/01/13&quot; &quot;01/01/13&quot; &quot;01/01/13&quot; &quot;01/01/13&quot; ...
+##  $ race     : int  1 1 1 1 1 1 1 1 2 2 ...
+##  $ race_type: chr  &quot;mdn clm&quot; &quot;mdn clm&quot; &quot;mdn clm&quot; &quot;mdn clm&quot; ...
+##  $ dist     : int  6 6 6 6 6 6 6 6 6 6 ...
+##  $ surf     : chr  &quot;dirt&quot; &quot;dirt&quot; &quot;dirt&quot; &quot;dirt&quot; ...
+##  $ value    : int  17500 17500 17500 17500 17500 17500 17500 17500 17500 17500 ...
+##  $ going    : chr  &quot;fast&quot; &quot;fast&quot; &quot;fast&quot; &quot;fast&quot; ...
+##  $ trainer  : chr  &quot;nicholas gonzalez&quot; &quot;anthony pecoraro&quot; &quot;edwin t broome&quot; &quot;edward plesa jr&quot; ...
+##  $ jockey   : chr  &quot;jermaine bridgmohan&quot; &quot;joseph rocco jr&quot; &quot;gabriel saez&quot; &quot;elvis trujillo&quot; ...
+##  $ j_clm    : int  0 0 0 0 5 0 7 0 0 0 ...
+##  $ age      : int  3 3 3 3 3 3 3 3 3 3 ...
+##  $ wgt      : int  122 122 122 122 117 122 115 122 122 122 ...
+##  $ gate     : int  6 1 8 7 5 2 4 3 2 4 ...
+##  $ pos      : int  1 2 3 4 5 6 7 8 1 2 ...
+##  $ horse    : chr  &quot;don&#39;tgetmestarted&quot; &quot;dream of scipio&quot; &quot;beltram&quot; &quot;gold bitten tiger&quot; ...
+##  $ fintime  : num  72.4 74.2 74.5 74.7 74.7 ...
+##  $ sect_4f  : num  47 47.1 47.4 48.4 47.4 ...
+</code></pre>
+
+<p><aside class="notes">
+    <p style="font-size:15px">The <code>str</code> command allows you to see the structure of a dataset, including the type of data, numeric, character, logical</p>
+</aside></p>
 
     <aside class='notes'>
       
@@ -369,34 +338,6 @@
       
     </aside>
    </section>
-   <section class='' data-state=''>
-    <h2>hadleyverse</h2>
-
-<ul class="subject-list">
-    <li class="name">dplyr</li>
-    <li class="name">plyr</li>
-    <li class="name">tidyr</li>
-    <li class="name">stringr</li>
-    <li class="name">ggplot2</li>
-    <li class="name">devtools</li>
-</ul>
-
-<p><br>
-<br></p>
-
-<h3>Hadley Wickham&#39;s impact on R is <strong style="color:#d9220f">seismic</strong></h3>
-
-<p><aside class="notes">
-    <p style="font-size:15px">packages built by Hadley Wickham (chief scientist at RStudio) make up the hadleyverse</p>
-    <p style="font-size:15px">they range from visualisation packages like <code>ggplot2</code> and <code>ggvis</code>, to data manipulation packages like <code>dplyr</code> and <code>plyr</code></p>
-    <p style="font-size:15px">also made packages to make the development of packages easier, impact he&#39;s had is seismic</p>
-    <p style="font-size:15px">if you use R for any period of time, you will enter hadleyverse</p>
-</aside></p>
-
-    <aside class='notes'>
-      
-    </aside>
-   </section>
 </section>
 <section>
    <section class='title' data-state=''>
@@ -408,7 +349,7 @@
    </section>
    <section class='' data-state=''>
     <ul class="subject-list">
-    <li class="name">dedicated and passionate community who contribute to improving R</li>
+    <li class="name">dedicated and passionate community who improve and extend R</li>
     <br>
     <li class="name">over 7000 R packages on CRAN</li>
     <br>
@@ -426,10 +367,16 @@
     </li>
     <br>
     <li class="name">many more packages available on Github/Bioconductor</li>
+    <br>
+    <li class="name">check out the <a href="https://twitter.com/search?f=tweets&vertical=default&q=%23rstats&src=typd">#rstats</a> hashtag for the latest articles on R</li>
 </ul>
 
 <p><aside class="notes">
     <p style="font-size: 15px">CRAN - Comprehensive R Archive Network</p>
+    <p style="font-size: 15px">leveraging the knowledge and expertise of the community</p>
+    <p style="font-size: 15px">an incredibly powerful set of tools at your disposal</p>
+    <p style="font-size: 15px">community are prominent on twitter, posting short and incredibly interesting articles</p>
+    <p style="font-size: 15px">articles often include code chunks that can be run, very useful in learning new skills/techniques, or learning about packages</p>
 </aside></p>
 
     <aside class='notes'>
@@ -487,64 +434,17 @@
     </aside>
    </section>
    <section class='' data-state=''>
-    <pre><code>## 
-## 
-## 
-##  ----- 
-## You must unlearn what you have learned 
-##  ------ 
-##     \   
-##      \
-##                    ____
-##                 _.&#39; :  `._
-##             .-.&#39;`.  ;   .&#39;`.-.
-##    __      / : ___\ ;  /___ ; \      __
-##   ,&#39;_ &quot;&quot;--.:__;&quot;.-.&quot;;: :&quot;.-.&quot;:__;.--&quot;&quot; _`,
-##   :&#39; `.t&quot;&quot;--.. &#39;&lt;@.`;_  &#39;,@&gt;` ..--&quot;&quot;j.&#39; `;
-##        `:-.._J &#39;-.-&#39;L__ `-- &#39; L_..-;&#39;
-##           &quot;-.__ ;  .-&quot;  &quot;-.  : __.-&quot;
-##              L &#39; /.------.\ &#39; J
-##              &quot;-.   &quot;--&quot;   .-&quot;
-##              __.l&quot;-:_JL_;-&quot;;.__
-##          .-j/&#39;.;  ;&quot;&quot;&quot;&quot;  / .&#39;\&quot;-.
-##          .&#39; /:`. &quot;-.:     .-&quot; .&#39;;  `.
-##       .-&quot;  / ;  &quot;-. &quot;-..-&quot; .-&quot;  :    &quot;-.
-##   .+&quot;-.  : :      &quot;-.__.-&quot;      ;-._   \
-##   ; \  `.; ;                    : : &quot;+. ;
-##   :  ;   ; ;                    : ;  : \:
-##   ;  :   ; :                    ;:   ;  :
-##   : \  ;  :  ;                  : ;  /  ::
-##   ;  ; :   ; :                  ;   :   ;:
-##   :  :  ;  :  ;                : :  ;  : ;
-##   ;\    :   ; :                ; ;     ; ;
-##   : `.&quot;-;   :  ;              :  ;    /  ;
-##  ;    -:   ; :              ;  : .-&quot;   :
-##   :\     \  :  ;            : \.-&quot;      :
-##   ;`.    \  ; :            ;.&#39;_..--  / ;
-##   :  &quot;-.  &quot;-:  ;          :/.&quot;      .&#39;  :
-##    \         \ :          ;/  __        :
-##     \       .-`.\        /t-&quot;&quot;  &quot;:-+.   :
-##      `.  .-&quot;    `l    __/ /`. :  ; ; \  ;
-##        \   .-&quot; .-&quot;-.-&quot;  .&#39; .&#39;j \  /   ;/
-##         \ / .-&quot;   /.     .&#39;.&#39; ;_:&#39;    ;
-##   :-&quot;&quot;-.`./-.&#39;     /    `.___.&#39;
-##                \ `t  ._  /  bug
-##                 &quot;-.t-._:&#39;
-## 
-</code></pre>
+    <h2>write code</h2>
 
-    <aside class='notes'>
-      
-    </aside>
-   </section>
-   <section class='' data-state=''>
-    <h3>write code</h3>
+<p><br></p>
 
 <div>
     <img src="assets/img/write-shitty-code.jpg" style="width: 50%">
 </div>
 
-<h3>write more code</h3>
+<p><br></p>
+
+<h2>write more code</h2>
 
     <aside class='notes'>
       
@@ -562,6 +462,26 @@
    </section>
    <section class='' data-state=''>
     <h2><a href="https://git-scm.com">Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency</a></h2>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2 style="text-align:left">Git allows you</h2>
+
+<h3>...to organise and manage a collection of files</h3>
+
+<h3>...to go back to older versions of the files</h3>
+
+<h3>...branch out and add features with the flexibility to jump between project versions</h3>
+
+<p><aside class="notes">
+    <p style="font-size: 15px">Git can be incredibly helpful in managing files which make up a small project</p>
+    <p style="font-size: 15px">tracking changes in files is incredibly powerful as you can inspect the changes you&#39;ve made over time, and even go back to previous versions</p>
+    <p style="font-size: 15px">when used with code you write (whether it be R, Javascript, Python), being able to go back and forth, and track changes is invaluable</p>
+    <p style="font-size: 15px">and the ability to create different branches of a project, such as an R package in one branch and a website with help pages in another</p>
+</aside></p>
 
     <aside class='notes'>
       
@@ -601,16 +521,25 @@
 
 </div>
 
+<p><aside class="notes">
+    <p style="font-size: 15px">without Git a project might grow organically, you re-write work, but want to preserve previous versions so new files are created showing this iteration, analysis-1.R, etc</p>
+    <p style="font-size: 15px">with git, the project is much cleaner, but the previous versions are all available</p>
+</aside></p>
+
     <aside class='notes'>
       
     </aside>
    </section>
    <section class='' data-state=''>
-    <h2>An example</h2>
+    <h3>Many popular R packages are developed in the open</h3>
 
-<p>be like Doc Brown and time travel</p>
+<p><br></p>
 
-<p><img src="assets/img/git-diff-example.jpg" alt=""></p>
+<p><img src="assets/img/github-ggplot2.jpg"></p>
+
+<p><aside class="notes">
+    <p style="font-size: 15px">ability to read code written by incredibly smart people is very useful in learning more about the language</p>
+</aside></p>
 
     <aside class='notes'>
       
@@ -622,7 +551,7 @@
     
     <h1 class="slide-title">RcappeR</h1>
 
-<h3>to aid the cleaning, analysis and handicapping of horse racing data</h3>
+<h3>to aid the analysis and handicapping of horse racing</h3>
 
     <aside class='notes'>
       
@@ -675,7 +604,16 @@ devtools::install_github(&#39;durtal/RcappeR&#39;)
     <p style="font-size:15px">write functions to do specific tasks, such as cleaning race times</p>
     <p style="font-size:15px">or converting lengths from characters describing distances into numeric</p>
     <p style="font-size:15px">or converting lengths into seconds beaten, or individual final times</p>
+    <p style="font-size:15px">these are pretty simple tasks, but now can be done in a consistent manner</p>
+    <p style="font-size:15px">I didn&#39;t get the functions right first time, git helped me track changes I made and avoid repeating errors</p>
 </aside></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>basic handicapping (use other R packages with <code>RcappeR</code>)</h2>
 
     <aside class='notes'>
       
@@ -720,7 +658,7 @@ devtools::install_github(&#39;durtal/servevolleyR&#39;)
     </aside>
    </section>
 </section>
-<section class='title' data-state='' id='slide-14'>
+<section class='title' data-state='' id='slide-12'>
   <h2>Me</h2>
   <h3><a href="https://twitter.com/UTVilla">@UTVilla</a></h3>
 
