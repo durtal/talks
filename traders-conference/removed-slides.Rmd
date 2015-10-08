@@ -1,0 +1,59 @@
+
+--- &vertical .title
+
+# open source
+
+***
+
+<ul class="subject-list">
+    <li class="name">it's free</li>
+    <br>
+    <li class="name">it works on Windows, Linux and OSX</li>
+    <br>
+    <li class="name">source code is open to read, inspect, learn from</li>
+    <br>
+    <li class="name">many eyes make light work</li>
+    <br>
+</ul>
+
+<aside class="notes" style="font-size: 10px">
+    <p style="font-size:15px">it's free, that should be enough</p>
+    <p style="font-size:15px">source code being open means many eyes can highlight potential bugs and help improve the language</p>
+</aside>
+
+***
+
+<ul class="subject-list">
+    <li class="name">easy to collaborate as <strong>everyone</strong> should have access to the same tools</li>
+    <br>
+    <li class="name">ability to extend the language and build packages yourself</li>
+    <br>
+    <li class="name">plenty of useful tutorials/help pages to learn</li>
+</ul>
+
+<aside class="notes">
+    <p style="font-size:15px">collaboration is easy</p>
+    <p style="font-size:15px">ability to reproduce work by others because it's available to all, can really help the learning process</p>
+    <p style="font-size:15px">if you've a question about R, there's a good chance someone has already asked the very same, or similar, and someone else has already answered</p>
+</aside>
+
+--- &vertical .title
+
+# programming language
+
+***
+
+<ul class="subject-list">
+    <li class="name">language designed specifically for data analysis</li>
+    <br>
+    <li class="name">powerful and flexible</li>
+    <br>
+    <li class="name">used interactively or write scripts to automate tasks</li>
+</ul>
+
+<aside class="notes">
+    <p style="font-size:15px">designed by statisticians for statistics, so can appear a little idiosyncratic if coming to R having used other languages</p>
+    <p style="font-size:15px">the first language I made an effort to learn, so didn't have any expectations</p>
+    <p style="font-size:15px">being a language means code should run day after day</p>
+    <p style="font-size:15px">I'll share some examples of using scripts to automate tasks later</p>
+</aside>
