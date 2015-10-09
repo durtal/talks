@@ -9,6 +9,7 @@
 library(rvest)
 library(jsonlite)
 library(stringr)
+setwd("c:\\Users\\TomHeslop\\Documents\\GitHub\\talks\\traders-conference\\example")
 
 #===============================================================================
 #   COLLECT TOURNAMENTS
@@ -53,4 +54,10 @@ tourneys$end_date <- as.Date(str_extract(string = tourneys$date,
                                          pattern = "[[:digit:]]{4}\\.[[:digit:]]{2}\\.[[:digit:]]{2}$"),
                              format = "%Y.%m.%d")
 
-write.csv(tourneys, file = "../data/tournaments.csv", row.names = FALSE)
+old_tourneys <- read.csv("data/tournaments.csv", stringsAsFactors = FALSE)
+
+tourneys <- plyr::rbind.fill(old_tourneys, tourneys)
+
+tourneys <- tourneys[!duplicated(tourneys),]
+
+write.csv(tourneys, file = "data/tournaments.csv", row.names = FALSE)
