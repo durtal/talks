@@ -192,12 +192,50 @@ knit        : slidify::knit2slides
 <h3>...a community</h3>
 
 <aside class="notes" style="font-size: 10px">
-    <p style="font-size:15px">I'll run through a couple of these quickly, which will hopefully show why learning R would be useful</p>
+    <p style="font-size:15px">I'll run through a couple of these, which will hopefully show why learning R would be useful</p>
 </aside>
 
 --- &vertical .title
 
 # data analysis software
+
+***
+
+## data analysis workflow
+
+<img src="assets/img/hadley-process.jpg">
+
+<sub><a href="https://dl.dropboxusercontent.com/u/41902/future-da-5-unconf.pdf">Hadley Wickham, Chief Scientist RStudio</a></sub>
+
+<aside class="notes" style="font-size: 10px">
+    <p style="font-size: 15px">A slide by Hadley Wickham, of RStudio.</p>
+    <p style="font-size: 15px">This workflow is pretty standard for any enquiry/problem/question you might wwant to solve/answer.</p>
+    <p style="font-size: 15px">Hadley has built a huge number of tools that have helped make this process easier, more efficient, faster, and consistent</p>
+    <p style="font-size: 15px">The packages he's built has become known as the Hadleyverse, you will use packages built by Hadley, his impact on the R community is huge.</p>
+</aside>
+
+***
+
+## data analysis workflow
+
+<h3 style="text-align:left">OSEMN</h3>
+<h3>Obtain</h3>
+<h3>Scrub</h3>
+<h3>Explore</h3>
+<h3>Model</h3>
+<h3>iNterpret</h3>
+
+<sub><a href="http://www.dataists.com/2010/09/a-taxonomy-of-data-science/">The Taxonomy of Data Science by Hilary Mason and Chris Wiggins</a></sub>
+
+<aside class="notes" style="font-size: 10px">
+    <p style="font-size: 15px">Similar to Hadley's slide is the AWESOME acronym for data analysis</p>
+    <p style="font-size: 15px">Obtain or Collect data</p>
+    <p style="font-size: 15px">Clean, Tidy and combine/munge data, data is rarely clean, this is a vitally important part of any analysis and can be around 80% of any analysis, learning a programming language means this step can be done with a level of consistency and care</p>
+    <p style="font-size: 15px">Explore and Visualise, another important step that will likely flag up potential issues/errors in the data.</p>
+    <p style="font-size: 15px">Build your Model</p>
+    <p style="font-size: 15px">Interpret and Communicate your results</p>
+    <p style="font-size: 15px">As Hadley's slide shows, the workflow isn't a linear process.  Learning to code helps as it affords you the flexibility to return to any stage</p>
+</aside>
 
 ***
 
