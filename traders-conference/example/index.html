@@ -98,8 +98,21 @@ img {
 				<li>
 					<a href="index.html">home</a>
 				</li>
-				<li>
-					<a href="data-collection.html">collection</a>
+				<li class="dropdown">
+                    <a href="collection" class="dropdown-toggle" data-toggle="dropdown">
+                        data collection <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="tournament-data-collection.html">tournament data</a>
+                        </li>
+                        <li>
+                            <a href="match-data-collection.html">match data</a>
+                        </li>
+                        <li>
+                            <a href="player-data-collection.html">player data</a>
+                        </li>
+                    </ul>
 				</li>
 			</ul>
 		</div>
@@ -111,8 +124,9 @@ img {
 </div>
 
 
-<p>This website serves as an example workflow using R, Git and Make to automate the <a href="data-collection.html">collection</a> of tennis data, <a href="data-cleaning.html">cleaning and preparing</a> that data, before producing output that could be useful in making smarter decisions when striking a bet or bets.</p>
-<p>The site is split into 3 sections, <a href="data-collection.html">collection</a>, <a href="data-cleaning.html">cleaning</a>, and output, I’ve tried to explain the steps I’ve taken in those sections, these explanations will hopefully improve over time as I have more time. I will also try to link to useful resources when I use an R package, or some programming <em>skill</em> that may be of interest.</p>
+<p>This website serves as an example workflow using R to collect and clean ATP tennis data, and using that data to potentially make smarter decisions when striking a bet or bets. Other tools like <a href="https://www.gnu.org/software/make/">Make</a> and <a href="https://git-scm.com/">Git</a> are used. Make is used to build pipelines and join different tasks together, such as the collection and cleaning of data, as its name suggests it helps make or build things, while Git helps to manage all the different parts.</p>
+<p>The collection of tennis data has been split into 3 sections, I walk through collecting <a href="tournament-data-collection.html">tournament data</a>, <a href="match-data-collection.html">match data</a> and <a href="player-data-collection.html">player data</a>. If we were to use this code interactively then we can just go after the individual player data either with code, or navigating to the website and just typing in values, so the tournament data and match data doesn’t offer much value. However, if this is to ever be fully automated, then it requires a pipeline; automation can help save time and allow you to focus on other valuable work which can be integrated later.</p>
+<p>So the pipeline requires tournament data to tell us which tournaments are live, this helps us to find matches scheduled for <em>today</em>, and match data contains the players, whose data we require.</p>
 
 
 </div>
