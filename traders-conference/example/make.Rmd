@@ -17,3 +17,7 @@ The makefile below is the current makefile to build this website and collect, cl
 makefile <- paste0(readLines("makefile", warn = FALSE), collapse = "\n")
 cat(makefile)
 ```
+
+#### `collect-tournaments`
+
+The `collect-tournaments` task runs an R script called `collect-tournament-data.R`
