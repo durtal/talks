@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>tournament data</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/united.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<style type="text/css">
+	/* padding for bootstrap navbar */
+	body {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		text-align: justify;
+	}
+	@media (max-width: 979px) {
+		body {
+			padding-top: 0;
+		}
+	}
+	/* offset scroll position for anchor links (for fixed navbar) */
+	@media (min-width: 980px) {
+		.section h2 {
+			padding-top: 52px;
+			margin-top: -52px;
+		}
+		.section h3 {
+			padding-top: 52px;
+			margin-top: -52px;
+		}
+	}
+	p {
+		font-size: 13px;
+	}
+	/* don't use link color in navbar */
+	.dropdown-menu>li>a {
+		color: black;
+	}
+	/* some padding for disqus */
+	#disqus_thread {
+		margin-top: 45px;
+	}
+</style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<h1>traders conference example workflow</h1>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="https://github.com/durtal">durtal@github</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="index.html">home</a>
+				</li>
+				<li class="dropdown">
+                    <a href="collection" class="dropdown-toggle" data-toggle="dropdown">
+                        data collection <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="tournament-data-collection.html">tournament data</a>
+                        </li>
+                        <li>
+                            <a href="match-data-collection.html">match data</a>
+                        </li>
+                        <li>
+                            <a href="player-data-collection.html">player data</a>
+                        </li>
+                    </ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div id="header">
+<h1 class="title">tournament data</h1>
+</div>
+
+
+<p><strong>R</strong> can be used to retreive data from many sources and in many different formats. R also has the potential, via some fantastic packages, to scrape/harvest data from the web, which is how we will collect data for the various tennis players we will need to look at.</p>
+<p>We’ll use a number of R packages to do this, including <code>jsonlite</code> which is used to parse JSON data, and <code>rvest</code> which can be used on websites to target and select html tags and return the <em>data</em> found on webpages, so we will load the required libraries:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
+<span class="kw">library</span>(stringr)
+<span class="kw">library</span>(jsonlite)</code></pre>
+<p>The ATP site contains a lot of data, and it can be filtered for various summary stats that are to be used in some of the <code>servevolleyR</code> functions.</p>
+<div id="tournaments" class="section level2">
+<h2>tournaments</h2>
+<p>Collecting data about the various tournaments throughout the year will be useful, things like start date, end date, court surface, etc, can be used to either schedule future tasks, or filter relevant player data. The <a href="http://www.atpworldtour.com/en/tournaments">tournaments</a> homepage appears to show all the tournaments from that calendar year, whether completed or not. To get this data we’ll use the <code>rvest</code> package built by Hadley Wickham (if you use R there’s a good chance you reside for part of the time in Hadleyverse), which can be used to <strong>easily harvest (scrape) web pages</strong>, and <code>stringr</code> (also by Hadley) to clean some of the data.</p>
+<div class="row">
+<div class="col-sm-4">
+<p>To make selecting the various elements of a webpage easier, we’ll also use the <a href="http://selectorgadget.com/">selectorgadget</a> tool recommended by <code>rvest</code>. This tool allows you to hover over displayed content and will return the html tags to select that content, this is much easier than trawling through the raw HTML for tags (as I used to do). SelectorGadget can be seen in action to the right, as it selects the tournament names, and returns the tag <code>.tourney-title</code> that is to be used in the code below to harvest that data.</p>
+</div>
+<div class="col-sm-8">
+<p><img class="img-reponsive" src="images/snipping-tool-eg.jpg" href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/images/snipping-tool-eg.jpg"></p>
+</div>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># read in HTML document</span>
+tourney_page &lt;-<span class="st"> </span><span class="kw">html</span>(<span class="st">&quot;http://www.atpworldtour.com/en/tournaments&quot;</span>)
+
+tourney &lt;-<span class="st"> </span>tourney_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tourney-title&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>()
+
+tourney_link &lt;-<span class="st"> </span>tourney_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tourney-title&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)
+
+tourney_location &lt;-<span class="st"> </span>tourney_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tourney-location&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot;&quot;</span>)
+
+tourney_date &lt;-<span class="st"> </span>tourney_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tourney-dates&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot;&quot;</span>)
+
+tourney_surface &lt;-<span class="st"> </span>tourney_page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tourney-details:nth-child(2) .item-details&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot;&quot;</span>)</code></pre>
+<p>The code above returns vectors of data about the tournaments, the name (<code>tourney</code>), the url (<code>tourney_link</code>), the location (<code>tourney_location</code>), the date (<code>tourney_date</code>) and the surface (<code>tourney_surface</code>). One word of caution, web developers can change their sites, which can cause some of this code to break, so it may require updating and adjusting over time, but the tools are there to make this a relatively simple process. The vectors above can be combined into a dataframe, the first 6 rows are then printed, and we can also write the dataframe to a spreadsheet:</p>
+<pre class="sourceCode r"><code class="sourceCode r">tourneys &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> tourney,
+                       <span class="dt">link =</span> tourney_link,
+                       <span class="dt">venue =</span> tourney_location,
+                       <span class="dt">date =</span> tourney_date,
+                       <span class="dt">surface =</span> tourney_surface,
+                       <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
+<span class="kw">head</span>(tourneys)</code></pre>
+<pre><code>##              name                                         link
+## 1        Brisbane        /en/tournaments/brisbane/339/overview
+## 2            Doha            /en/tournaments/doha/451/overview
+## 3         Chennai         /en/tournaments/chennai/891/overview
+## 4          Sydney          /en/tournaments/sydney/338/overview
+## 5        Auckland        /en/tournaments/auckland/301/overview
+## 6 Australian Open /en/tournaments/australian-open/580/overview
+##                   venue                    date      surface
+## 1   Brisbane, Australia 2015.01.04 - 2015.01.11 Outdoor Hard
+## 2           Doha, Qatar 2015.01.05 - 2015.01.10 Outdoor Hard
+## 3        Chennai, India 2015.01.05 - 2015.01.11 Outdoor Hard
+## 4     Sydney, Australia 2015.01.11 - 2015.01.17 Outdoor Hard
+## 5 Auckland, New Zealand 2015.01.12 - 2015.01.17 Outdoor Hard
+## 6  Melbourne, Australia 2015.01.19 - 2015.02.01 Outdoor Hard</code></pre>
+<p>This tournament data can be saved to a csv file which can be used in order to make collection of other data a little easier. You can view this file <a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/data/tournaments.csv">here</a>, which includes the dates when tournaments are being played, useful for filtering data and getting up to date matches. We look at getting this match data <a href="match-data-collection.html">here</a>.</p>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+---
+title: "tournament data"
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE,
+               warning = FALSE)
+
+```
+
+**R** can be used to retreive data from many sources and in many different formats.  R also has the potential, via some fantastic packages, to scrape/harvest data from the web, which is how we will collect data for the various tennis players we will need to look at.
+
+We'll use a number of R packages to do this, including `jsonlite` which is used to parse JSON data, and `rvest` which can be used on websites to target and select html tags and return the _data_ found on webpages, so we will load the required libraries:
+
+```{r}
+library(rvest)
+library(stringr)
+library(jsonlite)
+```
+
+The ATP site contains a lot of data, and it can be filtered for various summary stats that are to be used in some of the `servevolleyR` functions.
+
+## tournaments
+
+Collecting data about the various tournaments throughout the year will be useful, things like start date, end date, court surface, etc, can be used to either schedule future tasks, or filter relevant player data.  The [tournaments](http://www.atpworldtour.com/en/tournaments) homepage appears to show all the tournaments from that calendar year, whether completed or not.  To get this data we'll use the `rvest` package built by Hadley Wickham (if you use R there's a good chance you reside for part of the time in Hadleyverse), which can be used to **easily harvest (scrape) web pages**, and `stringr` (also by Hadley) to clean some of the data.
+
+<div class="row">
+<div class="col-sm-4">
+
+To make selecting the various elements of a webpage easier, we'll also use the [selectorgadget](http://selectorgadget.com/) tool recommended by `rvest`.  This tool allows you to hover over displayed content and will return the html tags to select that content, this is much easier than trawling through the raw HTML for tags (as I used to do).  SelectorGadget can be seen in action to the right, as it selects the tournament names, and returns the tag `.tourney-title` that is to be used in the code below to harvest that data.
+
+</div>
+<div class="col-sm-8">
+<img class="img-reponsive" src="images/snipping-tool-eg.jpg" href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/images/snipping-tool-eg.jpg">
+</div>
+</div>
+
+```{r}
+# read in HTML document
+tourney_page <- html("http://www.atpworldtour.com/en/tournaments")
+
+tourney <- tourney_page %>%
+    html_nodes(".tourney-title") %>%
+    html_text()
+
+tourney_link <- tourney_page %>%
+    html_nodes(".tourney-title") %>%
+    html_attr("href")
+
+tourney_location <- tourney_page %>%
+    html_nodes(".tourney-location") %>%
+    html_text() %>%
+    str_replace_all("[[:cntrl:]]", "")
+
+tourney_date <- tourney_page %>%
+    html_nodes(".tourney-dates") %>%
+    html_text() %>%
+    str_replace_all("[[:cntrl:]]", "")
+
+tourney_surface <- tourney_page %>%
+    html_nodes(".tourney-details:nth-child(2) .item-details") %>%
+    html_text() %>%
+    str_replace_all("[[:cntrl:]]", "")
+
+```
+
+The code above returns vectors of data about the tournaments, the name (`tourney`), the url (`tourney_link`), the location (`tourney_location`), the date (`tourney_date`) and the surface (`tourney_surface`).  One word of caution, web developers can change their sites, which can cause some of this code to break, so it may require updating and adjusting over time, but the tools are there to make this a relatively simple process.  The vectors above can be combined into a dataframe, the first 6 rows are then printed, and we can also write the dataframe to a spreadsheet:
+
+```{r}
+tourneys <- data.frame(name = tourney,
+                       link = tourney_link,
+                       venue = tourney_location,
+                       date = tourney_date,
+                       surface = tourney_surface,
+                       stringsAsFactors = FALSE)
+
+head(tourneys)
+```
+
+This tournament data can be saved to a csv file which can be used in order to make collection of other data a little easier.  You can view this file [here](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/data/tournaments.csv), which includes the dates when tournaments are being played, useful for filtering data and getting up to date matches.  We look at getting this match data [here](match-data-collection.html).
