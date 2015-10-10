@@ -1,0 +1,31 @@
+---
+title: "match data"
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE,
+               warning = FALSE)
+
+```
+
+
+Load the necessary packages, `rvest` for parsing HTML pages, `stringr` for manipulating strings and extracting data from characters, `jsonlite` to parse JSON data, and `dplyr` to manipulate data.
+
+```{r}
+library(rvest)
+library(stringr)
+library(jsonlite)
+library(dplyr)
+```
+
+<div class="row">
+<div class="col-sm-4">
+
+Matches scheduled for _today_ can be found on the individual tournament pages, the screenshot to the right shows the some of the matches scheduled for October 11th 2015 in the ATP World Tour Masters tournament.  We looked at how to harvest data on invididual tournamets [here](tournament-data-collection.html), the data included url links to each individual tournaments, which means we can use this to get _todays_ matches.
+
+</div>
+<div class="col-sm-8">
+<img class="img-reponsive" src="images/match-schedule.jpg">
+</div>
+</div>
