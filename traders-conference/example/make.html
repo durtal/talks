@@ -154,6 +154,7 @@ img {
 
 
 <p><a href="https://www.gnu.org/software/make/">Make</a> is a tool I use for some pretty <em>simple</em> tasks, like building help pages for my R packages, these help pages include <a href="http://durtal.github.io/servevolleyR/">servevolleyR</a> and <a href="ttp://durtal.github.io/RcappeR/">RcappeR</a>. However it is a tool I haven’t fully explored, so small project has provided an excellent opportunity. What I will be using Make for is to build a pipeline that goes something like <strong>COLLECT &gt; CLEAN &gt; PROCESS &gt; ANALYSE &gt; OUTPUT</strong></p>
+<p>The makefile below is the current makefile to build this website and collect, clean, process and analyse data.</p>
 <pre class="sourceCode r"><code class="sourceCode r">makefile &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">readLines</span>(<span class="st">&quot;makefile&quot;</span>, <span class="dt">warn =</span> <span class="ot">FALSE</span>), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
 <span class="kw">cat</span>(makefile)</code></pre>
 <pre><code>## # collect data
