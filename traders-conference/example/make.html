@@ -56,32 +56,6 @@
 </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; }
-code > span.dt { color: #902000; }
-code > span.dv { color: #40a070; }
-code > span.bn { color: #40a070; }
-code > span.fl { color: #40a070; }
-code > span.ch { color: #4070a0; }
-code > span.st { color: #4070a0; }
-code > span.co { color: #60a0b0; font-style: italic; }
-code > span.ot { color: #007020; }
-code > span.al { color: #ff0000; font-weight: bold; }
-code > span.fu { color: #06287e; }
-code > span.er { color: #ff0000; font-weight: bold; }
-</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -155,38 +129,48 @@ img {
 
 <p><a href="https://www.gnu.org/software/make/">Make</a> is a tool I use for some pretty <em>simple</em> tasks, like building help pages for my R packages, these help pages include <a href="http://durtal.github.io/servevolleyR/">servevolleyR</a> and <a href="ttp://durtal.github.io/RcappeR/">RcappeR</a>. However it is a tool I haven’t fully explored, so small project has provided an excellent opportunity. What I will be using Make for is to build a pipeline that goes something like <strong>COLLECT &gt; CLEAN &gt; PROCESS &gt; ANALYSE &gt; OUTPUT</strong></p>
 <p>The makefile below is the current makefile to build this website and collect, clean, process and analyse data.</p>
-<pre class="sourceCode r"><code class="sourceCode r">makefile &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">readLines</span>(<span class="st">&quot;makefile&quot;</span>, <span class="dt">warn =</span> <span class="ot">FALSE</span>), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
-<span class="kw">cat</span>(makefile)</code></pre>
-<pre><code>## # collect data
-## collect-tournaments:
-##  Rscript R/collect-tournament-data.R
-## 
-## collect-matches:
-##  Rscript R/collect-matches.R
-## 
-## predict-matches:
-##  Rscript R/predict-matches.R
-## 
-## # build website
-## HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd)) \
-##               $(patsubst %.md, %.html ,$(wildcard *.md))
-## 
-## all: clean html
-## 
-## html: $(HTML_FILES)
-## 
-## %.html: %.Rmd
-##  R --vanilla --slave -e &quot;rmarkdown::render(&#39;$&lt;&#39;)&quot;
-## 
-## %.html: %.md
-##  R --vanilla --slave -e &quot;rmarkdown::render(&#39;$&lt;&#39;)&quot;
-## 
-## .PHONY: clean
-## clean:
-##  $(RM) $(HTML_FILES)</code></pre>
+<pre class="make"><code># collect data
+collect-tournaments:
+    Rscript R/collect-tournament-data.R
+
+collect-matches:
+    Rscript R/collect-matches.R
+
+predict-matches:
+    Rscript R/predict-matches.R
+
+# build website
+HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd)) \
+              $(patsubst %.md, %.html ,$(wildcard *.md))
+
+all: clean html
+
+html: $(HTML_FILES)
+
+%.html: %.Rmd
+    R --vanilla --slave -e &quot;rmarkdown::render(&#39;$&lt;&#39;)&quot;
+
+%.html: %.md
+    R --vanilla --slave -e &quot;rmarkdown::render(&#39;$&lt;&#39;)&quot;
+
+.PHONY: clean
+clean:
+    $(RM) $(HTML_FILES)</code></pre>
 <div id="collect-tournaments" class="section level4">
 <h4><code>collect-tournaments</code></h4>
-<p>The <code>collect-tournaments</code> task runs an R script called <code>collect-tournament-data.R</code></p>
+<p>The <code>collect-tournaments</code> task runs an R script called <code>collect-tournament-data.R</code>. Which harvests data about the ATP tournaments in the current calendar year, it then adds any new tournaments to a csv file of tournaments.</p>
+</div>
+<div id="collect-matches" class="section level4">
+<h4><code>collect-matches</code></h4>
+<p>The <code>collect-matches</code> task runs an R script called <code>collect-matches.R</code>. This harvests data about any matches due to be played in any live tournaments, it then adds any matches to a dataframe of matches.</p>
+</div>
+<div id="predict-matches" class="section level4">
+<h4><code>predict-matches</code></h4>
+<p>The <code>predict-matches</code> task uses the matches collected in the <code>collect-matches</code> task, filters to matches being played today and then uses the data to predict the match using the <code>servevolleyR</code> package.</p>
+</div>
+<div id="build-website" class="section level4">
+<h4>build website</h4>
+<p>Everything below the comment <code># build website</code> builds the website you are reading now.</p>
 </div>
 
 

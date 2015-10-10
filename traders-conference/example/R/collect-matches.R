@@ -77,8 +77,10 @@ for(tourney in 1:nrow(current_tourneys)) {
     tmp <- tmp %>%
         filter(grepl("H2H", atp))
 
-    matches <- plyr::rbind.fill(matches, tmp)
-    matches <- matches[!duplicated(matches),]
+    today_matches <- plyr::rbind.fill(matches, tmp)
+    today_matches <- matches[!duplicated(matches),]
 }
 
+matches <- plyr::rbind.fill(matches, today_matches)
+matches <- matches[!duplicated(matches),]
 saveRDS(matches, "data/matches.RDS")
