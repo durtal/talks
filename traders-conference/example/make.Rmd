@@ -1,0 +1,5 @@
+---
+title: "make"
+---
+
+[Make](https://www.gnu.org/software/make/) is a tool I use for some pretty _simple_ tasks, like building help pages for my R packages, these help pages include [servevolleyR](http://durtal.github.io/servevolleyR/) and [RcappeR](ttp://durtal.github.io/RcappeR/).  However it is a tool I haven't fully explored, so small project has provided an excellent opportunity.  What I will be using Make for is to build a pipeline that goes something like **COLLECT > CLEAN > PROCESS > ANALYSE > OUTPUT**
