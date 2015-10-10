@@ -1,0 +1,89 @@
+---
+title: "player data"
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE,
+               warning = FALSE)
+
+```
+
+Load the necessary packages, `rvest` for parsing HTML pages, `stringr` for manipulating strings and extracting data from characters, `jsonlite` to parse JSON data, and `dplyr` to manipulate data.
+
+```{r}
+library(rvest)
+library(stringr)
+library(jsonlite)
+library(dplyr)
+```
+
+<div class="row">
+<div class="col-sm-4">
+
+Individual players stats are found on their own page, we need to know these individual urls in order to get the relevant data.  This data can be quickly retrieved using R (or other programming languages), for either a collection of players or individuals, the url to the right returns a JSON object with the players name and the partial url to their profile page.
+
+If we wanted to search for all players called _andy_ then we can do it using the code below, which converts the JSON into a list with an items object that holds a nice dataframe of players and their urls.  First we load the `jsonlite` package using `libary(jsonlite)`, then use the `fromJSON()` function to parse the json, before printing the first 6 rows of our new dataset with `head()`
+
+</div>
+<div class="col-sm-8">
+[`http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?`](http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?)
+<img class="img-reponsive" src="images/andy-murray.jpg" href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/images/andy-murray.jpg">
+</div>
+</div>
+
+```{r}
+andy <- fromJSON("http://www.atpworldtour.com/-/ajax/playersearch/PlayerUrlSearch?SearchTerm=andy murray")
+head(andy$items)
+```
+
+If you go to `r paste0("http://www.atpworldtour.com", head(andy$items, 1)$Value)`, then it should take you to _`r paste0(head(andy$items, 1)$Key)`_'s profile page, which includes various sections about the player.  It takes you to the overview page, the data we want for the various functions found in `servevolleyR` is behind the player stats tab, shown below.  When selecting that tab the url changes from `overview` to `player-stats`, this can be done in R using the following code:
+```{r}
+(andymurray <- andy$items$Value[1])
+(andymurray <- gsub("overview", "player-stats", andymurray))
+```
+
+The stats we need for `servevolleyR` functions are the win percentage on first serve, and ideally second serve win percentage and first serve in percentage.  All of this can be scraped from the profile page, the code below creates the correct url and reads in the source of the webpage using the `html` function from `rvest`.  It then extracts the tables from that page, returning two tables containing service stats and return stats; we only want the first table containing the service stats.  It's possible to get surface and seasonal stats, but for now we'll just keep things simple and get career numbers:
+
+```{r}
+(andymurray <- paste0("http://www.atpworldtour.com", andymurray))
+andymurray_page <- html(andymurray)
+(andymurray_service_stats <- andymurray_page %>%
+    html_table() %>%
+    .[[1]])
+```
+
+The data returned contains what we need but it isn't in a usable format, the `NA` variable is a character vector, we need to select the relevant rows, and then clean the values by removing the punctuation and dividing the number by 100, so 58% becomes 0.58.
+
+```{r}
+names(andymurray_service_stats) <- c("stat", "value")
+andymurray_service_stats <- andymurray_service_stats %>%
+    filter(grepl("1st Serve|2nd Serve", stat)) %>%
+    mutate(new_value = str_replace(value, "[[:punct:]]", ""),
+           new_value = as.numeric(new_value) / 100)
+andymurray_service_stats
+```
+
+### more specific data
+
+Mentioned earlier, it is possible to get more specific data for individual players, either filtering by year, by surface, or both.  Here we'll walk through how to do both, however filtering by year might cause issues early in season when there is no data available, which would cause any automation an issue.
+
+The basic url to get more nuanced data is the same as that shown above, [http://www.atpworldtour.com/en/players/andy-murray/mc10/player-stats](http://www.atpworldtour.com/en/players/andy-murray/mc10/player-stats), with a little extra, the following `?year=2015&surfaceType=all` filters data to Andy Murrays stats in 2015 alone, while `?year=2015&surfaceType=grass` filters data for his stats in 2015 on grass.
+
+Given the data we collected for [tournaments](tournament-data-collection.html) we have both the year and surface available, so it's possible to filter based on both.  The code below filters Andy Murray data for Hard court in 2015.
+
+```{r}
+(andymurray <- paste0(andymurray, "?year=2015&surfaceType=hard"))
+
+andymurray_page <- html(andymurray)
+(andymurray_service_stats <- andymurray_page %>%
+    html_table() %>%
+    .[[1]])
+
+names(andymurray_service_stats) <- c("stat", "value")
+andymurray_service_stats <- andymurray_service_stats %>%
+    filter(grepl("1st Serve|2nd Serve", stat)) %>%
+    mutate(new_value = str_replace(value, "[[:punct:]]", ""),
+           new_value = as.numeric(new_value) / 100)
+andymurray_service_stats
+```
