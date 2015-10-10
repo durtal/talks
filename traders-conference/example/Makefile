@@ -1,8 +1,4 @@
-HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd)) \
-              $(patsubst %.md, %.html ,$(wildcard *.md))
-
-all: clean html
-
+# collect data
 collect-tournaments:
 	Rscript R/collect-tournament-data.R
 
@@ -11,6 +7,12 @@ collect-matches:
 
 predict-matches:
 	Rscript R/predict-matches.R
+
+# build website
+HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd)) \
+              $(patsubst %.md, %.html ,$(wildcard *.md))
+
+all: clean html
 
 html: $(HTML_FILES)
 
