@@ -3,8 +3,14 @@ HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd)) \
 
 all: clean html
 
-collect:
-	Rscript R/collect-data.R
+collect-tournaments:
+	Rscript R/collect-tournament-data.R
+
+collect-matches:
+	Rscript R/collect-matches.R
+
+predict-matches:
+	Rscript R/predict-matches.R
 
 html: $(HTML_FILES)
 
@@ -17,6 +23,3 @@ html: $(HTML_FILES)
 .PHONY: clean
 clean:
 	$(RM) $(HTML_FILES)
-
-test:
-	Rscript R/collect-matches.R

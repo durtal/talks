@@ -9,11 +9,14 @@
 library(rvest)
 library(jsonlite)
 library(stringr)
+library(dplyr)
+
+setwd("c:\\Users\\TomHeslop\\Documents\\GitHub\\talks\\traders-conference\\example")
 
 #===============================================================================
 #   COLLECT TOURNAMENTS
 #===============================================================================
-tourneys <- read.csv("C:\\Users\\TomHeslop\\Documents\\GitHub\\talks\\traders-conference\\example\\data\\tournaments.csv", stringsAsFactors = FALSE)
+tourneys <- read.csv("data/tournaments.csv", stringsAsFactors = FALSE)
 tourneys$start_date <- as.Date(tourneys$start_date)
 tourneys$end_date <- as.Date(tourneys$end_date)
 
@@ -21,7 +24,9 @@ current_tourneys <- subset(tourneys,
                            start_date <= Sys.Date() &
                            end_date >= Sys.Date())
 
-for(tourney in 1:length(current_tourneys$name)) {
+matches <- readRDS("data/matches.RDS")
+
+for(tourney in 1:nrow(current_tourneys)) {
 
     ind <- tourney
     cat("\n\n\nCollecting Matches for ATP", current_tourneys$name[ind], "tournament\n\n\n")
@@ -52,13 +57,28 @@ for(tourney in 1:length(current_tourneys$name)) {
         str_replace_all("[[:cntrl:]]", " ") %>%
         str_trim(side = "both")
 
-    tmp <- data.frame(rd = rd,
+    atp <- page %>%
+        html_nodes(".day-table-button") %>%
+        html_text() %>%
+        str_replace_all("[[:cntrl:]]", " ") %>%
+        str_trim(side = "both")
+
+    tmp <- data.frame(name = current_tourneys$name[ind],
+                      venue = current_tourneys$venue[ind],
+                      tourney_dates = current_tourneys$date[ind],
+                      surface = current_tourneys$surface[ind],
+                      date = Sys.Date(),
+                      rd = rd,
                       playerA = playerA,
                       playerB = playerB,
+                      atp = atp,
                       stringsAsFactors = FALSE)
 
-    cat("\n\n\n")
-    print(tmp, row.names = FALSE)
-    cat("\n\n\n")
+    tmp <- tmp %>%
+        filter(grepl("H2H", atp))
 
+    matches <- plyr::rbind.fill(matches, tmp)
+    matches <- matches[!duplicated(matches),]
 }
+
+saveRDS(matches, "data/matches.RDS")
