@@ -1,0 +1,5 @@
+---
+title: "servevolleyR"
+---
+
+Now the data has been collected we can use it with `servevolleyR` to simulate points:games:sets:tiebreaks:matches between two players.  Help pages for `servevolleyR` can be found [here](http://durtal.github.io/servevolleyR/), so won't be walking through the package here.  There are a couple of vignettes, which looked at Andy Murray vs Roger Federer ahead of their Wimbledon 2015 [semi-final](http://durtal.github.io/servevolleyR/federer-murray.html), and Maria Sharapova vs Serena Williams in their 2015 Wimbledon [semi-final](http://durtal.github.io/servevolleyR/williams-sharapova.html), both vignettes show the various functions, etc.

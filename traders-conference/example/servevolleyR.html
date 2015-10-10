@@ -10,7 +10,7 @@
 
 
 
-<title>about</title>
+<title>servevolleyR</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -123,13 +123,11 @@ img {
 </nav>
 
 <div id="header">
-<h1 class="title">about</h1>
+<h1 class="title">servevolleyR</h1>
 </div>
 
 
-<p>This website serves as an example workflow using R to collect and clean ATP tennis data, and using that data to potentially make smarter decisions when striking a bet or bets. Other tools like <a href="https://www.gnu.org/software/make/">Make</a> and <a href="https://git-scm.com/">Git</a> are used. Make is used to build pipelines and join different tasks together, such as the collection and cleaning of data, as its name suggests it helps make or build things, while Git helps to manage all the different parts.</p>
-<p>The collection of tennis data has been split into 3 sections, I walk through collecting <a href="tournament-data-collection.html">tournament data</a>, <a href="match-data-collection.html">match data</a> and <a href="player-data-collection.html">player data</a>. If we were to use this code interactively then we can just go after the individual player data either with code, or navigating to the website and just typing in values, so the tournament data and match data doesn’t offer much value. However, if this is to ever be fully automated, then it requires a pipeline; automation can help save time and allow you to focus on other valuable work which can be integrated later.</p>
-<p>So the pipeline requires tournament data to tell us which tournaments are live, this helps us to find matches scheduled for <em>today</em>, and match data contains the players, whose data we require.</p>
+<p>Now the data has been collected we can use it with <code>servevolleyR</code> to simulate points:games:sets:tiebreaks:matches between two players. Help pages for <code>servevolleyR</code> can be found <a href="http://durtal.github.io/servevolleyR/">here</a>, so won’t be walking through the package here. There are a couple of vignettes, which looked at Andy Murray vs Roger Federer ahead of their Wimbledon 2015 <a href="http://durtal.github.io/servevolleyR/federer-murray.html">semi-final</a>, and Maria Sharapova vs Serena Williams in their 2015 Wimbledon <a href="http://durtal.github.io/servevolleyR/williams-sharapova.html">semi-final</a>, both vignettes show the various functions, etc.</p>
 
 
 </div>

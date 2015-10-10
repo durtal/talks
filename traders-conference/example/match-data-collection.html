@@ -140,6 +140,9 @@ img {
                         </li>
                     </ul>
 				</li>
+				<li>
+				    <a href="servevolleyR.html">servevolleyR</a>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -157,12 +160,64 @@ img {
 <span class="kw">library</span>(dplyr)</code></pre>
 <div class="row">
 <div class="col-sm-4">
-<p>Matches scheduled for <em>today</em> can be found on the individual tournament pages, the screenshot to the right shows the some of the matches scheduled for October 11th 2015 in the ATP World Tour Masters tournament. We looked at how to harvest data on invididual tournamets <a href="tournament-data-collection.html">here</a>, the data included url links to each individual tournaments, which means we can use this to get <em>todays</em> matches.</p>
+<p>Matches scheduled for <em>today</em> can be found on the individual tournament pages, the screenshot to the right shows the some of the matches scheduled for October 11th 2015 in the ATP World Tour Masters tournament. We looked at how to harvest data on invididual tournamets <a href="tournament-data-collection.html">here</a>, the data included url links to each individual tournaments as well as the dates the tournament is being played, which means we can use this to get <em>todays</em> matches.</p>
 </div>
 <div class="col-sm-8">
 <p><img class="img-reponsive" src="images/match-schedule.jpg"></p>
 </div>
 </div>
+<p>The tournaments csv file we created (<a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/data/tournaments.csv">here</a>) is used to get the relevant data, save us from unneccesarily harvesting more ATP data (this file will likely need updating ahead of 2016). The data is then filtered down to tournaments starting today.</p>
+<pre class="sourceCode r"><code class="sourceCode r">tourneys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/tournaments.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+tourneys$start_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(tourneys$start_date)
+tourneys$end_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(tourneys$end_date)
+
+current_tourneys &lt;-<span class="st"> </span><span class="kw">subset</span>(tourneys,
+                           start_date &lt;=<span class="st"> </span><span class="kw">Sys.Date</span>() &amp;
+<span class="st">                           </span>end_date &gt;=<span class="st"> </span><span class="kw">Sys.Date</span>())</code></pre>
+<p>For each tournament in <code>current_tourneys</code> we want to find the schedule, the code below shows how this is done for the first row in the <code>current_tourneys</code> dataset. We first create the url using the <code>link</code> in the dataset above, and the <code>base url</code> of the ATP website, which is <code>http://www.atpworldtour.com</code>, a few other changes are made to the url:</p>
+<pre class="sourceCode r"><code class="sourceCode r">tournament_url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www.atpworldtour.com&quot;</span>, current_tourneys$link[<span class="dv">1</span>])
+tournament_url &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;overview&quot;</span>, <span class="st">&quot;daily-schedule&quot;</span>, tournament_url)
+tournament_url &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;tournaments&quot;</span>, <span class="st">&quot;scores/current&quot;</span>, tournament_url)</code></pre>
+<p>With our tournament specific url, we can then use <code>rvest</code> to harvest the data and matches from today. The code below parses the webpage with <code>html</code>, then collects data on the round of the tournament (<code>rd</code>), the name of playerA, playerB and the tour (<code>atp</code>). The <code>atp</code> variable is important as it allows us to filter to just mens singles, as this variable contains a head-to-head link, doubles matches do not, and womens matches have WTA. We build a dataframe of out matches, which is then filtered</p>
+<pre class="sourceCode r"><code class="sourceCode r">page &lt;-<span class="st"> </span><span class="kw">html</span>(tournament_url)
+
+rd &lt;-<span class="st"> </span>page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.day-table-round&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot; &quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">str_trim</span>(<span class="dt">side =</span> <span class="st">&quot;both&quot;</span>)
+
+playerA &lt;-<span class="st"> </span>page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.day-table-name:nth-child(4)&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot; &quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">str_trim</span>(<span class="dt">side =</span> <span class="st">&quot;both&quot;</span>)
+
+playerB &lt;-<span class="st"> </span>page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.day-table-name:nth-child(8)&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot; &quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">str_trim</span>(<span class="dt">side =</span> <span class="st">&quot;both&quot;</span>)
+
+atp &lt;-<span class="st"> </span>page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.day-table-button&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot; &quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">str_trim</span>(<span class="dt">side =</span> <span class="st">&quot;both&quot;</span>)
+
+todays_matches &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> current_tourneys$name[<span class="dv">1</span>],
+                  <span class="dt">venue =</span> current_tourneys$venue[<span class="dv">1</span>],
+                  <span class="dt">tourney_dates =</span> current_tourneys$date[<span class="dv">1</span>],
+                  <span class="dt">surface =</span> current_tourneys$surface[<span class="dv">1</span>],
+                  <span class="dt">date =</span> <span class="kw">Sys.Date</span>(),
+                  <span class="dt">rd =</span> rd,
+                  <span class="dt">playerA =</span> playerA,
+                  <span class="dt">playerB =</span> playerB,
+                  <span class="dt">atp =</span> atp,
+                  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
+todays_matches &lt;-<span class="st"> </span>todays_matches %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;H2H&quot;</span>, atp))</code></pre>
 
 
 </div>
