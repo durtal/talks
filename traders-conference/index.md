@@ -41,17 +41,19 @@ knit        : slidify::knit2slides
 
 --- &vertical .title
 
-<h1 class="slide-title">Subjects to Cover</h1>
+<h1 class="slide-title">subjects to cover</h1>
 
 ***
 
 <ul class="subject-list">
-    <li class="name">Introduce <a href="https://cran.r-project.org/">R</a></li>
+    <li class="name">background</li>
     <br>
-    <li class="name">Introduce <a href="https://git-scm.com/">Git</a> (very briefly)</li>
+    <li class="name">introduce <a href="https://cran.r-project.org/">R</a></li>
+    <br>
+    <li class="name">introduce <a href="https://git-scm.com/">Git</a> (very briefly)</li>
     <br>
     <li class="name">
-        Build your own R packages
+        build your own R packages
         <br>
         <ul>
             <li><a href="http://durtal.github.io/RcappeR/">RcappeR</a> - horse racing</li>
@@ -73,15 +75,16 @@ knit        : slidify::knit2slides
 </ul>
 
 <aside class="notes" style="font-size: 10px">
+    <p style="font-size:15px">A bit of background, where am I coming from with regard to R, why I learnt R.</p>
     <p style="font-size:15px">Introduce R, what it is, some packages.</p>
     <p style="font-size:15px">Introduce Git, briefly, important when writing lots of code.</p>
-    <p style="font-size:15px">Build your own tools, talk about a couple of R packages I've built.</p>
+    <p style="font-size:15px">Build your own tools, talk about a couple of R packages I've built that have made my life easier.</p>
     <p style="font-size:15px">An example workflow, involving servevolleyR, some other R packages, git and Make.</p>
 </aside>
 
 --- &vertical
 
-<h1 class="slide-title">Background</h1>
+<h1 class="slide-title">background</h1>
 
 <aside class="notes" style="font-size: 10px">
     <p style="font-size:15px">No programming background, entirely self taught.</p>
@@ -91,7 +94,7 @@ knit        : slidify::knit2slides
 ***
 
 
-<h3 style="text-align: left">January 2013</h3>
+<h3 style="text-align: left">january 2013</h3>
 <h3>an Excel user</h3>
 <div>
     <img src="assets/img/chain-smoking.jpg" style="width:50%">
@@ -105,8 +108,8 @@ knit        : slidify::knit2slides
 
 ***
 
-<h3 style="text-align: left">May 2013</h3>
-<h3>What is R?</h3>
+<h3 style="text-align: left">may 2013</h3>
+<h3>what is R?</h3>
 <div>
     <img src="assets/img/bert-ernie-r.jpg" style="width:50%">
 </div>
@@ -120,10 +123,10 @@ knit        : slidify::knit2slides
 
 ***
 
-<h3 style="text-align: left">June 2013</h3>
-<h3>Type first R command</h3>
+<h3 style="text-align: left">june 2013</h3>
+<h3>type first R command</h3>
 <div>
-    <img src="assets/img/cookie-monster.gif" style="width:50%">
+    <img src="assets/img/cookie-monster.gif" style="width:60%">
 </div>
 
 <aside class="notes" style="font-size: 10px">
@@ -134,10 +137,10 @@ knit        : slidify::knit2slides
 
 ***
 
-<h3 style="text-align: left">June 2014</h3>
+<h3 style="text-align: left">june 2014</h3>
 <h3>I understand...</h3>
 <div>
-    <img src="assets/img/dog-fail.gif" style="width: 50%">
+    <img src="assets/img/dog-fail.gif" style="width: 60%">
     <h3>...no I don't</h3>
 </div>
 
@@ -147,10 +150,10 @@ knit        : slidify::knit2slides
 
 ***
 
-<h3 style="text-align: left">December 2014</h3>
-<h3>Release my second R package</h3>
+<h3 style="text-align: left">december 2014</h3>
+<h3>release my second R package</h3>
 <div>
-    <img src="assets/img/i-am-invincible.gif" style="width: 50%">
+    <img src="assets/img/i-am-invincible.gif" style="width: 60%">
 </div>
 
 <aside class="notes" style="font-size: 10px">
@@ -173,14 +176,14 @@ knit        : slidify::knit2slides
 
 --- &vertical .title
 
-<h1 class="slide-title">What is R?</h1>
+<h1 class="slide-title">what is R?</h1>
 
 ***
 
 <h2><a href="https://www.r-project.org/">R is a free software environment for statistical computing and graphics</a></h2>
 
 <aside class="notes" style="font-size: 10px">
-    <p style="font-size:15px">From official R homepage</p>
+    <p style="font-size:15px">The official R homepage</p>
 </aside>
 
 ***
@@ -191,13 +194,21 @@ knit        : slidify::knit2slides
 <h3>...data analysis software</h3>
 <h3>...a community</h3>
 
+<sub><a href="http://www.inside-r.org/">inside-r.org</a></sub>
+
 <aside class="notes" style="font-size: 10px">
-    <p style="font-size:15px">I'll run through a couple of these, which will hopefully show why learning R would be useful</p>
+    <p style="font-size:15px">Open source:  it's free - available on all operating systems, Linux, Windows, OSX - source code is available to read, many eyes looking over the code means bugs can be caught and improvements made - integrates with other open source software, such as Git and Make - did I mention it's free, which means potential collaboration with others easier</p>
+    <p style="font-size:15px">Programming Language:  designed by statisticians for statistics, so can appear quirky and idiosyncratic to users of other languages - can be used interactively or writing scripts - facilitates reproducibility</p>
+    <p style="font-size:15px">data analysis software and community are worth more detailed explanations</p>
 </aside>
 
 --- &vertical .title
 
-# data analysis software
+<h1 class="slide-title">data analysis software</h1>
+
+<aside class="notes">
+    <p style="font-size:15px">To understand what is required from data analysis software, we need to look at the workflow of data analysis</p>
+</aside>
 
 ***
 
@@ -209,8 +220,9 @@ knit        : slidify::knit2slides
 
 <aside class="notes" style="font-size: 10px">
     <p style="font-size: 15px">A slide by Hadley Wickham, of RStudio.</p>
-    <p style="font-size: 15px">This workflow is pretty standard for any enquiry/problem/question you might wwant to solve/answer.</p>
-    <p style="font-size: 15px">Hadley has built a huge number of tools that have helped make this process easier, more efficient, faster, and consistent</p>
+    <p style="font-size: 15px">This workflow is pretty standard for any data analysis you embark on, for any problem or question you might wwant to solve or answer, reflecting the non linear nature of analysis.</p>
+    <p style="font-size: 15px">Start with collecting data, tidying and cleaning, munging and wrangling, exploring, modelling, and finally communicating</p>
+    <p style="font-size: 15px">Hadley has built a huge number of packages that have helped make this process easier, more efficient, faster, and consistent</p>
     <p style="font-size: 15px">The packages he's built has become known as the Hadleyverse, you will use packages built by Hadley, his impact on the R community is huge.</p>
 </aside>
 
@@ -228,7 +240,7 @@ knit        : slidify::knit2slides
 <sub><a href="http://www.dataists.com/2010/09/a-taxonomy-of-data-science/">The Taxonomy of Data Science by Hilary Mason and Chris Wiggins</a></sub>
 
 <aside class="notes" style="font-size: 10px">
-    <p style="font-size: 15px">Similar to Hadley's slide is the AWESOME acronym for data analysis</p>
+    <p style="font-size: 15px">Similar to Hadley's slide is the AWESOME acronym for data analysis, by Hilary Mason and Chris Wiggins</p>
     <p style="font-size: 15px">Obtain or Collect data</p>
     <p style="font-size: 15px">Clean, Tidy and combine/munge data, data is rarely clean, this is a vitally important part of any analysis and can be around 80% of any analysis, learning a programming language means this step can be done with a level of consistency and care</p>
     <p style="font-size: 15px">Explore and Visualise, another important step that will likely flag up potential issues/errors in the data.</p>
@@ -239,61 +251,333 @@ knit        : slidify::knit2slides
 
 ***
 
-## retrieving data
+## obtain/collect
 
-### R can import data from a huge range of sources.
-
-***
-
-## explore data
-
-
-#### the `gulfstream` dataset is collection of horse races from Gulfstream Park
-
-
-```r
-str(gulfstream)
-```
-
-```
-## 'data.frame':	2863 obs. of  17 variables:
-##  $ date     : chr  "01/01/13" "01/01/13" "01/01/13" "01/01/13" ...
-##  $ race     : int  1 1 1 1 1 1 1 1 2 2 ...
-##  $ race_type: chr  "mdn clm" "mdn clm" "mdn clm" "mdn clm" ...
-##  $ dist     : int  6 6 6 6 6 6 6 6 6 6 ...
-##  $ surf     : chr  "dirt" "dirt" "dirt" "dirt" ...
-##  $ value    : int  17500 17500 17500 17500 17500 17500 17500 17500 17500 17500 ...
-##  $ going    : chr  "fast" "fast" "fast" "fast" ...
-##  $ trainer  : chr  "nicholas gonzalez" "anthony pecoraro" "edwin t broome" "edward plesa jr" ...
-##  $ jockey   : chr  "jermaine bridgmohan" "joseph rocco jr" "gabriel saez" "elvis trujillo" ...
-##  $ j_clm    : int  0 0 0 0 5 0 7 0 0 0 ...
-##  $ age      : int  3 3 3 3 3 3 3 3 3 3 ...
-##  $ wgt      : int  122 122 122 122 117 122 115 122 122 122 ...
-##  $ gate     : int  6 1 8 7 5 2 4 3 2 4 ...
-##  $ pos      : int  1 2 3 4 5 6 7 8 1 2 ...
-##  $ horse    : chr  "don'tgetmestarted" "dream of scipio" "beltram" "gold bitten tiger" ...
-##  $ fintime  : num  72.4 74.2 74.5 74.7 74.7 ...
-##  $ sect_4f  : num  47 47.1 47.4 48.4 47.4 ...
-```
+<ul class="subject-list">
+    <li class="name">Excel
+        <ul>
+            <li>csv, xls, xlsx</li>
+        </ul>
+     </li>
+    <br>
+    <li class="name">Databases
+        <ul>
+            <li>SQL Server, MySQL, postgresQL, SQLite</li>
+            <li>MongoDB</li>
+            <li>Neo4j</li>
+            <li> ...</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">SAS, SPSS, Stata</li>
+    <br>
+    <li class="name">Web
+        <ul>
+            <li>API</li>
+            <li>web scraping</li>
+        </ul>
+    </li>
+    <br>
+</ul>
 
 <aside class="notes">
-    <p style="font-size:15px">The `str` command allows you to see the structure of a dataset, including the type of data, numeric, character, logical</p>
+    <p style="font-size: 15px">R can obtain data from a huge variety of sources, making it incredibly flexible compared with some proprietary software</p>
+    <p style="font-size: 15px">Data can be collected from multiple sources and munged/wrangled to make a more complete dataset</p>
+    <p style="font-size: 15px">Community contribute packages to help get data into R, this is the first step so packages are heavily used, meaning they are typically well developed and maintained</p>
 </aside>
 
 ***
 
 
-## manipulating data
+
+```r
+tournaments <- read.csv("example/data/tournaments.csv", stringsAsFactors = FALSE)
+```
+
+```r
+head(tournaments, 2)
+```
+
+```
+##       name                                  link               venue
+## 1 Brisbane /en/tournaments/brisbane/339/overview Brisbane, Australia
+## 2     Doha     /en/tournaments/doha/451/overview         Doha, Qatar
+##                      date      surface
+## 1 2015.01.04 - 2015.01.11 Outdoor Hard
+## 2 2015.01.05 - 2015.01.10 Outdoor Hard
+```
+
+<aside class="notes">
+    <p style="font-size: 15px">reading excel files is very easy, stringsAsFactors is defaulted to TRUE, very rare that you will want to leave the default</p>
+    <p style="font-size: 15px">the head command just shows the first two rows of our newly imported dataset</p>
+</aside>
 
 ***
 
-## visualising data
+## obtain/collect packages
+
+<ul class="subject-list">
+    <li class="name">Excel
+        <ul>
+            <li><code>read.csv</code>, <code>read.table</code>, <code>read.delim</code></li>
+            <li><a href="https://github.com/hadley/readxl">readxl</a></li>
+            <li><a href="https://cran.rstudio.com/web/packages/xlsx/">xlsx</a></li>
+        </ul>
+     </li>
+    <br>
+    <li class="name">Databases
+        <ul>
+            <li>SQL: <a href="https://cran.rstudio.com/web/packages/RODBC/">RODBC</a>, <a href="https://cran.r-project.org/web/packages/RMySQL/index.html">RMySQL</a>, <a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html">RPostgresQL</a>, <a href="https://cran.r-project.org/web/packages/RSQLite/index.html">RSQLite</a></li>
+            <li>MongoDB: <a href="https://cran.r-project.org/web/packages/mongolite/index.html">mongolite</a>, <a href="https://cran.r-project.org/web/packages/rmongodb/index.html">rmongodb</a></li>
+            <li>Neo4j: <a href="https://github.com/nicolewhite/RNeo4j">RNeo4j</a></li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">SAS, SPSS, Stata: <a href="https://cran.r-project.org/web/packages/foreign/index.html">foreign</a></li>
+    <br>
+    <li class="name">Web
+        <ul>
+            <li>API: <a href="https://cran.r-project.org/web/packages/httr/index.html">httr</a>, multiple packages for specific APIs (official and unofficial APIs)</li>
+            <li>web scraping: <a href="https://cran.r-project.org/web/packages/rvest/index.html">rvest</a></li>
+        </ul>
+    </li>
+    <br>
+</ul>
+
+<aside class="notes">
+    <p style="font-size: 15px">This list is far from extensive, but all packages should have strong documentation about how to use the functions therein, along with examples</a>
+</aside>
 
 ***
 
-## model data
+## scrub/clean/munge
 
 
+```r
+str(tournaments)
+```
+
+```
+## 'data.frame':	66 obs. of  5 variables:
+##  $ name   : chr  "Brisbane" "Doha" "Chennai" "Sydney" ...
+##  $ link   : chr  "/en/tournaments/brisbane/339/overview" "/en/tournaments/doha/451/overview" "/en/tournaments/chennai/891/overview" "/en/tournaments/sydney/338/overview" ...
+##  $ venue  : chr  "Brisbane, Australia" "Doha, Qatar" "Chennai, India" "Sydney, Australia" ...
+##  $ date   : chr  "2015.01.04 - 2015.01.11" "2015.01.05 - 2015.01.10" "2015.01.05 - 2015.01.11" "2015.01.11 - 2015.01.17" ...
+##  $ surface: chr  "Outdoor Hard" "Outdoor Hard" "Outdoor Hard" "Outdoor Hard" ...
+```
+
+```r
+library(stringr)
+tournaments$start_date <- str_extract(tournaments$date,
+    "^[[:digit:]]{4}\\.[[:digit:]]{2}\\.[[:digit:]]{2}")
+tournaments$end_date <- str_extract(tournaments$date,
+    "[[:digit:]]{4}\\.[[:digit:]]{2}\\.[[:digit:]]{2}$")
+```
+
+
+```
+##       name                    date start_date   end_date
+## 1 Brisbane 2015.01.04 - 2015.01.11 2015.01.04 2015.01.11
+## 2     Doha 2015.01.05 - 2015.01.10 2015.01.05 2015.01.10
+```
+
+
+<aside class="notes">
+    <p style="font-size:15px">data will rarely be clean, so requires some investigation, the str command lets us look at the structure of the data</p>
+    <p style="font-size:15px">cleaning can involve extracting additional variables, as the slide shows, we want to add the start_date variable</p>
+    <p style="font-size:15px">this is done with the stringr package for manipulating strings and regular expressions, used to match a sequence of characters, this regular expression looks for a string to start with 4 digits, followed by a full stop, followed by 2 digits, a full stop, then 2 more digits, the function str_extract extracts any value that matches this.</p>
+</aside>
+
+***
+
+## scrub/clean packages
+
+<ul class="subject-list">
+    <li class="name">subsetting, joining, summarising, mutating datasets:
+        <ul>
+            <li><a href="https://cran.r-project.org/web/packages/dplyr/index.html">dplyr</a></li>
+            <li><a href="https://cran.r-project.org/web/packages/tidyr/index.html">tidyr</a></li>
+            <li><a href="https://cran.r-project.org/web/packages/reshape2/index.html">reshape2</a></li>
+            <li><a href="https://cran.r-project.org/web/packages/data.table/index.html">data.table</a></li>
+        </ul>
+     </li>
+    <br>
+    <li class="name">string manipulation
+        <ul>
+            <li><a href="https://cran.r-project.org/web/packages/stringr/index.html">stringr</a></li>
+            <li><code>gsub</code>, <code>grep</code>, <code>grepl</code></li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">dates
+        <ul>
+            <li><a href="https://cran.r-project.org/web/packages/lubridate/index.html">lubridate</a></li>
+        </ul>
+    </li>
+    <br>
+</ul>
+
+<aside class="notes">
+    <p style="font-size:15px">5 of these packages are Hadley Wickham packages, builds packages which do a few things very well, combination of his packages provides a powerful set of tools for all you data cleaning needs.</p>
+</aside>
+
+***
+
+## explore/visualise
+
+
+
+
+```r
+summary(gulfstream)
+```
+
+```
+##      date                race         race_type              dist      
+##  Length:2863        Min.   : 1.000   Length:2863        Min.   :6.000  
+##  Class :character   1st Qu.: 2.000   Class :character   1st Qu.:6.000  
+##  Mode  :character   Median : 5.000   Mode  :character   Median :8.000  
+##                     Mean   : 4.997                      Mean   :7.088  
+##                     3rd Qu.: 7.000                      3rd Qu.:8.000  
+##                     Max.   :11.000                      Max.   :8.000  
+##                                                                        
+##      surf               value          going             trainer         
+##  Length:2863        Min.   :12500   Length:2863        Length:2863       
+##  Class :character   1st Qu.:17500   Class :character   Class :character  
+##  Mode  :character   Median :21250   Mode  :character   Mode  :character  
+##                     Mean   :23300                                        
+##                     3rd Qu.:27250                                        
+##                     Max.   :46200                                        
+##                                                                          
+##     jockey              j_clm             age              wgt     
+##  Length:2863        Min.   : 0.000   Min.   : 2.000   Min.   :108  
+##  Class :character   1st Qu.: 0.000   1st Qu.: 3.000   1st Qu.:118  
+##  Mode  :character   Median : 0.000   Median : 4.000   Median :119  
+##                     Mean   : 1.012   Mean   : 3.851   Mean   :119  
+##                     3rd Qu.: 0.000   3rd Qu.: 5.000   3rd Qu.:121  
+##                     Max.   :10.000   Max.   :10.000   Max.   :127  
+##                                                                    
+##       gate            pos           horse              fintime      
+##  Min.   : 1.00   Min.   : 1.00   Length:2863        Min.   : 69.93  
+##  1st Qu.: 3.00   1st Qu.: 3.00   Class :character   1st Qu.: 73.99  
+##  Median : 5.00   Median : 5.00   Mode  :character   Median : 96.12  
+##  Mean   : 5.12   Mean   : 5.12                      Mean   : 88.22  
+##  3rd Qu.: 7.00   3rd Qu.: 7.00                      3rd Qu.:100.17  
+##  Max.   :14.00   Max.   :14.00                      Max.   :122.35  
+##                                                     NA's   :16      
+##     sect_4f     
+##  Min.   :44.33  
+##  1st Qu.:46.77  
+##  Median :47.52  
+##  Mean   :47.67  
+##  3rd Qu.:48.42  
+##  Max.   :55.29  
+##  NA's   :3
+```
+
+<aside class="notes">
+    <p style="font-size:15px">hugely important step as it can lead to identifying errors in the data</p>
+    <p style="font-size:15px">can help and inform the cleaning of data</p>
+    <p style="font-size:15px">helps enormously in getting to now your data</p>
+    <p style="font-size:15px">the gulfstream dataset is included in my RcappeR horse racing package</p>
+    <p style="font-size:15px">the summary command looks at each variable in the dataset and summarises it based on its type, so for numeric vectors the min, mean, median, max, 1st quartile and 3rd quartile are shown, as well as the number of missing values</p>
+</aside>
+
+***
+
+
+```r
+ggplot(data = gulfstream) +
+    geom_histogram(binwidth = 0.5, aes(x = fintime))
+```
+
+![plot of chunk gulfstream-histogram](assets/fig/gulfstream-histogram-1.png) 
+<aside class="notes">
+    <p style="font-size:15px">very easy to quickly plot data when using R interactively, here we plot a histogram of the fintime variable</p>
+    <p style="font-size:15px">quick to see there looks to be two race distances</p>
+</aside>
+
+***
+
+
+```r
+ggplot(data = gulfstream) +
+    geom_point(aes(x = sect_4f, y = fintime))
+```
+
+```
+## Warning: Removed 16 rows containing missing values (geom_point).
+```
+
+![plot of chunk gulfstream-scatter](assets/fig/gulfstream-scatter-1.png) 
+
+***
+
+## model
+
+<ul class="subject-list">
+    <li class="name">
+        <a href="https://cran.r-project.org/web/packages/mgcv/index.html">mgcv</a> - generalised additive models
+    </li>
+    <br>
+    <li class="name">
+        <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4</a>/<a href="https://cran.r-project.org/web/packages/nlme/index.html">nlme</a> - linear and non linear mixed effects models
+    </li>
+    <br>
+    <li class="name">
+        <a href="https://cran.r-project.org/web/packages/neuralnet/index.html">neuralnet</a> - neural networks
+    </li>
+    <br>
+    <li class="name">
+        <a href="https://cran.r-project.org/web/packages/randomForest/index.html">randomForest</a> - random forest
+    </li>
+    <br>
+    <li class="name">
+        <a href="https://cran.r-project.org/web/packages/glmnet/index.html">glmnet</a> - lasso and other regression methods, with cross validation
+    </li>
+    <br>
+    <li class="name">
+        <a href="https://cran.r-project.org/web/packages/caret/index.html">glmnet</a> - classification and regression training
+    </li>
+</ul>
+
+<aside class="notes">
+    <p style="font-size:15px">Again a far from extensive list of packages.</p>
+    <p style="font-size:15px">resources to help use these packages are usually extensive.</p>
+    <p style="font-size:15px">designed and developed by prominent statisticians.  For example, the glmnet package was built by Trevor Hastie and Rob Tibshirani, of Stanford, who also run an online course I'll link to later, this course introduces some of the functions in their package.</p>
+</aside>
+
+
+***
+
+## interpret/communicate
+
+<ul class="subject-list">
+    <li class="name">
+        <a href="https://cran.r-project.org/web/packages/rmarkdown/index.html">rmarkdown</a> - build dynamic documents and make your workflow reproducible. Uses the <a href="https://cran.r-project.org/web/packages/knitr/index.html">knitr</a> package
+     </li>
+    <br>
+    <li class="name">
+        <a href="https://cran.r-project.org/web/packages/shiny/index.html">shiny</a> - interactive web applications
+    </li>
+    <br>
+    <li class="name">
+        <a href="https://cran.r-project.org/web/packages/htmlwidgets/index.html">htmlwidgets</a> - interactive visualisations that use existing Javascript libraries
+        <ul>
+            <li><a href="https://cran.r-project.org/web/packages/DiagrammeR/index.html">DiagrammeR</a> - diagrams</li>
+            <li><a href="https://cran.r-project.org/web/packages/dygraphs/index.html">dygraphs</a> - time series</li>
+            <li><a href="https://cran.r-project.org/web/packages/leaflet/index.html">leaflet</a> - maps</li>
+            <li><a href="https://cran.r-project.org/web/packages/ggvis/index.html">ggvis</a> - interactive <code>ggplot2</code></li>
+        </ul>
+    </li>
+</ul>
+
+<aside class="notes">
+    <p style="font-size:15px">rmarkdown allows you to combine your R code with text into a single document, when rendered the R code will produce results, so your document becomes dynamic, and you can reproduce results.</p>
+    <p style="font-size:15px">these slides are built with Rmarkdown, so the plots you saw a few slides ago are the output of running the R code above, if I change the R code and re-render then the plot automatically updates</p>
+    <p style="font-size:15px">the example workflow I walk through later builds an entire website using Rmarkdown and a few other open source tools.</p>
+    <p style="font-size:15px">it also uses a htmlwidget to present results.</p>
+</aside>
 
 --- &vertical .title
 
@@ -331,10 +615,6 @@ str(gulfstream)
     <p style="font-size: 15px">community are prominent on twitter, posting short and incredibly interesting articles</p>
     <p style="font-size: 15px">articles often include code chunks that can be run, very useful in learning new skills/techniques, or learning about packages</p>
 </aside>
-
-***
-
-Community
 
 --- &vertical .title
 
@@ -409,11 +689,13 @@ Community
 
 ***
 
+## cleaner and clearer
+
 <div style="width:50%; border: 10px solid:#000; height: 100%; float: left">
 
 <h3>without git</h3>
 
-<p>multiple files with very similar work</p>
+<p>multiple files, all very similar</p>
 
 <ul>
     <li><code>analysis.R</code></li>
@@ -421,6 +703,9 @@ Community
     <li><code>data.csv</code></li>
     <li><code>data-2.csv</code></li>
     <li><code>final-data.csv</code></li>
+    <li><code>plot.png</code></li>
+    <li><code>plot1.png</code></li>
+    <li><code>final-plot.png</code></li>
     <li><code>final-report.docx</code></li>
     <li><code>report.docx</code></li>
     <li><code>tmp.R</code></li>
@@ -442,8 +727,34 @@ Community
 </div>
 
 <aside class="notes">
-    <p style="font-size: 15px">without Git a project might grow organically, you re-write work, but want to preserve previous versions so new files are created showing this iteration, analysis-1.R, etc</p>
-    <p style="font-size: 15px">with git, the project is much cleaner, but the previous versions are all available</p>
+    <p style="font-size: 15px">without Git a project might grow out of control as you re-write work or code, but you may want to preserve previous versions so new files are created, analysis-1.R, etc</p>
+    <p style="font-size: 15px">with git, a project is much cleaner, but the previous versions are all available so you can travel back to older versions</p>
+    <p style="font-size: 15px">with git, you also have the chance to create different branches of a project</p>
+</aside>
+
+***
+
+## fantasysocceR
+
+### `master` branch
+
+<img src="assets/img/fantasysocceR-master.jpg">
+
+<aside class="notes">
+    <p style="font-size: 15px">so on the master, or main, branch of my fantasysocceR R package is the R code for the package</p>
+</aside>
+
+***
+
+## fantasysocceR
+
+### `gh-pages` branch
+
+<img src="assets/img/fantasysocceR-gh-pages.jpg">
+
+<aside class="notes">
+    <p style="font-size: 15px">while the gh-pages branch of my the package are the pages which make up the online help pages for the package</p>
+    <p style="font-size: 15px">both branches are doing very different things, but belong to the same project, so Git helps to organise these parts, rather than having multiple directories and files all doing very different things but possibly lacking organisation.</p>
 </aside>
 
 ***
@@ -456,6 +767,7 @@ Community
 
 <aside class="notes">
     <p style="font-size: 15px">ability to read code written by incredibly smart people is very useful in learning more about the language</p>
+    <p style="font-size: 15px">ability to contribute to packages, spot bugs, help fix things</p>
 </aside>
 
 --- &vertical .title
@@ -477,6 +789,13 @@ Community
 # devtools package needed to install package from github
 # install.packages('devtools')
 devtools::install_github('durtal/RcappeR')
+```
+
+<br>
+
+
+```r
+library(RcappeR)
 ```
 
 ***
@@ -522,9 +841,41 @@ conv_margins(btn_l = c(0, 0.02, 0.1, 0.2, 0.5, 1.75),
 
 ***
 
-## basic handicapping (use other R packages with `RcappeR`)
+## basic handicapping
 
 
+```
+##   pos wgt             horse fintime
+## 1   1 122 don'tgetmestarted   72.43
+## 2   2 122   dream of scipio   74.18
+## 3   3 122           beltram   74.54
+## 4   4 122 gold bitten tiger   74.65
+## 5   5 117  simon's a winner   74.68
+```
+
+
+
+```r
+races <- gulfstream %>%
+    group_by(date, race) %>%
+    mutate(btn_sec = btn_sec(fintime),
+           scale = lbs_per_sec(dist = dist, surf = "dirt"),
+           btn_lbs = scale * btn_sec,
+           diff_wgts = diff_at_wgts(btn_lbs = btn_lbs, wgt_carried = wgt))
+```
+
+
+```
+## Source: local data frame [5 x 7]
+## 
+##     pos   wgt             horse fintime btn_sec btn_lbs diff_wgts
+##   (int) (int)             (chr)   (dbl)   (dbl)   (dbl)     (dbl)
+## 1     1   122 don'tgetmestarted   72.43    0.00    0.00      0.00
+## 2     2   122   dream of scipio   74.18    1.75   29.75     29.75
+## 3     3   122           beltram   74.54    2.11   35.87     35.87
+## 4     4   122 gold bitten tiger   74.65    2.22   37.74     37.74
+## 5     5   117  simon's a winner   74.68    2.25   38.25     43.25
+```
 
 --- &vertical .title
 
