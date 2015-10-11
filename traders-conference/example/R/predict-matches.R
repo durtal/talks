@@ -12,8 +12,6 @@ library(rvest)
 library(stringr)
 library(servevolleyR)
 
-setwd("c:\\Users\\TomHeslop\\Documents\\GitHub\\talks\\traders-conference\\example")
-
 #===============================================================================
 #   RETRIEVE MATCHES
 #===============================================================================

@@ -9,7 +9,6 @@
 library(rvest)
 library(jsonlite)
 library(stringr)
-setwd("c:\\Users\\TomHeslop\\Documents\\GitHub\\talks\\traders-conference\\example")
 
 #===============================================================================
 #   COLLECT TOURNAMENTS

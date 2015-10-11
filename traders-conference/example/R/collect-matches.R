@@ -11,10 +11,8 @@ library(jsonlite)
 library(stringr)
 library(dplyr)
 
-setwd("c:\\Users\\TomHeslop\\Documents\\GitHub\\talks\\traders-conference\\example")
-
 #===============================================================================
-#   COLLECT TOURNAMENTS
+#   COLLECT MATCHES
 #===============================================================================
 tourneys <- read.csv("data/tournaments.csv", stringsAsFactors = FALSE)
 tourneys$start_date <- as.Date(tourneys$start_date)
@@ -78,9 +76,9 @@ for(tourney in 1:nrow(current_tourneys)) {
         filter(grepl("H2H", atp))
 
     today_matches <- plyr::rbind.fill(matches, tmp)
-    today_matches <- matches[!duplicated(matches),]
 }
 
 matches <- plyr::rbind.fill(matches, today_matches)
-matches <- matches[!duplicated(matches),]
+matches <- matches %>%
+    distinct(name, venue, tourney_dates, surface, rd, playerA, playerB)
 saveRDS(matches, "data/matches.RDS")
