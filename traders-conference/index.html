@@ -417,7 +417,11 @@
         </ul>
     </li>
     <br>
-    <li class="name">SAS, SPSS, Stata: <a href="https://cran.r-project.org/web/packages/foreign/index.html">foreign</a></li>
+    <li class="name">SAS, SPSS, Stata:
+        <ul>
+            <li><a href="https://cran.r-project.org/web/packages/foreign/index.html">foreign</a></li>
+        </ul>
+    </li>
     <br>
     <li class="name">Web
         <ul>
@@ -673,8 +677,9 @@ tournaments$end_date &lt;- str_extract(tournaments$date,
 </section>
 <section>
    <section class='title' data-state=''>
-    <h1>a community</h1>
     
+    <h1 class="slide-title">a community</h1>
+
     <aside class='notes'>
       
     </aside>
@@ -718,8 +723,9 @@ tournaments$end_date &lt;- str_extract(tournaments$date,
 </section>
 <section>
    <section class='title' data-state=''>
-    <h1>learn R</h1>
     
+    <h1 class="slide-title">learn R</h1>
+
     <aside class='notes'>
       
     </aside>
@@ -779,7 +785,7 @@ tournaments$end_date &lt;- str_extract(tournaments$date,
 <section>
    <section class='title' data-state=''>
     
-    <h1 class="slide-title">What is Git?</h1>
+    <h1 class="slide-title">what is Git?</h1>
 
     <aside class='notes'>
       
@@ -916,6 +922,10 @@ tournaments$end_date &lt;- str_extract(tournaments$date,
 
 <h3>to aid the analysis and handicapping of horse racing</h3>
 
+<p><aside class="notes">
+    <p style="font-size:15px">This was package was the reason I wanted to learn R, to help me with some horse racing analysis and handicapping I wanted to do</p>
+</aside></p>
+
     <aside class='notes'>
       
     </aside>
@@ -1010,6 +1020,52 @@ devtools::install_github(&#39;durtal/RcappeR&#39;)
 ## 5     5   117  simon&#39;s a winner   74.68    2.25   38.25     43.25
 </code></pre>
 
+<p><aside class="notes">
+    <p style="font-size:15px">This code combines RcappeR with dplyr to mutate a dataset of races, the gulfstream dataset.</p>
+    <p style="font-size:15px">It groups rows together so individual races are in groups, then creates additional variables using existing variables and some of RcappeR&#39;s functions.</p>
+    <p style="font-size:15px">btn_sec calculates the margin between the winners time and each horses time, scale is a very basic lbs per second scale which uses a simple loess regression based on the distance of the race (it should also take into account race speed), btn lbs converts the margin into llbs, and diff_wgts is the margin beaten and any difference in weight carried.</p>
+</aside></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>more handicapping</h2>
+
+<h3>RcappeR contains a family of functions</h3>
+
+<h3>uses zipf&#39;s law to help handicap races</h3>
+
+<ul class="subject-list">
+    <li class="name">
+        <code>zipf_race</code>
+        <br>
+        <ul>
+            <li>function to handicap a single race with another race</li>
+            <li><a href="http://durtal.github.io/RcappeR/handicap_with_zipf_race.html">vignette</a></li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        <code>zipf_hcp</code>
+        <br>
+        <ul>
+            <li>function to handicap a single race with numerous races</li>
+            <li><a href="http://durtal.github.io/RcappeR/handicap_with_zipf_hcp.html">vignette</a></li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        <code>zipf_init</code>
+        <br>
+        <ul>
+            <li>initialises a handicap</li>
+            <li><a href="http://durtal.github.io/RcappeR/initialise_a_handicap.html">vignette</a></li>
+        </ul>
+    </li>
+</ul>
+
     <aside class='notes'>
       
     </aside>
@@ -1021,6 +1077,13 @@ devtools::install_github(&#39;durtal/RcappeR&#39;)
     <h1 class="slide-title">servevolleyR</h1>
 
 <h3>simulate tennis points, games, tiebreaks, sets and matches</h3>
+
+<p><aside class="notes">
+    <p style="font-size:15px">When Scott approached me about this conference, I decided to build this package</p>
+    <p style="font-size:15px">Built over the course of the weekend break in matches at Wimbledon</p>
+    <p style="font-size:15px">Package is quite simple, look forward to hearing Dan Weston talk later to learn from him</p>
+    <p style="font-size:15px">Package uses some programming language basics like if else clauses, and while loops, as well as sampling, replicating random processes, and building objects to contain results</p>
+</aside></p>
 
     <aside class='notes'>
       
@@ -1038,6 +1101,136 @@ devtools::install_github(&#39;durtal/RcappeR&#39;)
 devtools::install_github(&#39;durtal/servevolleyR&#39;)
 </code></pre>
 
+<p><br></p>
+
+<pre><code class="r">library(servevolleyR)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3><code>simPoint</code></h3>
+
+<h3>simulates server winning a point on their serve</h3>
+
+<pre><code class="r">simPoint(p = .75, p2 = .56, firstServe = .68)
+</code></pre>
+
+<pre><code>## [1] 1
+</code></pre>
+
+<h3>used by all other <code>sim****</code> functions</h3>
+
+<pre><code class="r">points &lt;- replicate(1000, simPoint(p = .75, p2 = .56, firstServe = .68))
+head(points, 20)
+</code></pre>
+
+<pre><code>##  [1] 1 1 0 1 1 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+</code></pre>
+
+<pre><code class="r">table(points) / sum(table(points))
+</code></pre>
+
+<pre><code>## points
+##     0     1 
+## 0.345 0.655
+</code></pre>
+
+<p><aside class="notes">
+    <p style="font-size:15px">function is called by all other functions in the package</p>
+    <p style="font-size:15px">does not take into account returner strength</p>
+    <p style="font-size:15px">source code is on github if anyone wants to make it better</p>
+</aside></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3><code>simGame</code></h3>
+
+<pre><code class="r">simGame(p = .75, p2 = .56, firstServe = .68)
+</code></pre>
+
+<pre><code>## [1] 1
+</code></pre>
+
+<h3><code>simGames</code></h3>
+
+<pre><code class="r">games &lt;- simGames(n = 1000, p = .75, p2 = .56, firstServe = .68)
+games
+</code></pre>
+
+<pre><code>## 
+## Simulation of 1000 service games:
+## Server won 0.899 (899/1000) of games.
+## 
+## Server probabilities:
+##     p   p2 firstServe
+##  0.75 0.56       0.68
+</code></pre>
+
+<p><aside class="notes">
+    <p style="font-size:15px">simGame simulates the server winning a game on his serve</p>
+    <p style="font-size:15px">while simGames simulates many games, an alternative to using simGame inside replicate</p>
+    <p style="font-size:15px">simGames returns a lot of data about those simulated games</p>
+</aside></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3><code>simSet</code> and <code>simSets</code></h3>
+
+<pre><code class="r">sets &lt;- simSets(n = 1000, pA = .75, p2A = .56, firstServeA = .68,
+                pB = .68, p2B = .53, firstServeB = .63, playTiebreak = TRUE)
+</code></pre>
+
+<p><img src="assets/fig/simSets-1.png" alt="plot of chunk simSets"> </p>
+
+<p><aside class="notes">
+    <p style="font-size:15px">the sets object returned by the simSets function has a number of methods, including plot</p>
+    <p style="font-size:15px">the plot shows the probability of set scores for the given parameters, once again, this can be improved by accounting for players returning ability</p>
+</aside></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h3><code>simMatch</code> and <code>simMatches</code></h3>
+
+<pre><code class="r">matches &lt;- simMatches(n = 1000, sets = 3,
+                      pA = .75, p2A = .56, firstServeA = .68,
+                      pB = .68, p2B = .53, firstServeB = .63, finalSetTiebreak = TRUE)
+</code></pre>
+
+<p><img src="assets/fig/simMatches-1.png" alt="plot of chunk simMatches"> </p>
+
+<p><aside class="notes">
+    <p style="font-size:15px">the sets object returned by the simSets function has a number of methods, including plot</p>
+    <p style="font-size:15px">the plot shows the probability of set scores for the given parameters, once again, this can be improved by accounting for players returning ability</p>
+</aside></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2><code>svRshiny</code></h2>
+
+<h3>a simple web application</h3>
+
+<pre><code class="r">svRshiny()
+</code></pre>
+
+<h3>or visit</h3>
+
+<h2><a href="https://durtal.shinyapps.io/servevolleyR">https://durtal.shinyapps.io/servevolleyR</a></h2>
+
     <aside class='notes'>
       
     </aside>
@@ -1047,6 +1240,62 @@ devtools::install_github(&#39;durtal/servevolleyR&#39;)
    <section class='title' data-state=''>
     
     <h1 class="slide-title">example workflow</h1>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>data analysis workflow</h2>
+
+<p><img src="assets/img/hadley-process.jpg"></p>
+
+<p><sub><a href="https://dl.dropboxusercontent.com/u/41902/future-da-5-unconf.pdf">Hadley Wickham, Chief Scientist RStudio</a></sub></p>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <ol class="subject-list">
+    <li class="name">
+        obtain/collect data
+        <ul>
+            <li>harvest data from ATP website</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        clean/munge data
+        <ul>
+            <li>clean and organise data that can be useful</li>
+            <li>convert strings to format needed for <code>servevolleyR</code></li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        explore
+        <ul>
+            <li>useful to find bugs in code used in the collection and cleaning of data</li>
+            <li>(as I discovered)</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        model
+        <ul>
+            <li>use my <code>servevolleyR</code> functions to simulate matches</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        interpret/communicate
+        <ul>
+            <li>build a dedicated website to share results</li>
+            <li>use make to automate the whole process, from data collection to communication</li>
+        </ul>
+    </li>
+</ol>
 
     <aside class='notes'>
       

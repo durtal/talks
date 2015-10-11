@@ -335,7 +335,11 @@ head(tournaments, 2)
         </ul>
     </li>
     <br>
-    <li class="name">SAS, SPSS, Stata: <a href="https://cran.r-project.org/web/packages/foreign/index.html">foreign</a></li>
+    <li class="name">SAS, SPSS, Stata:
+        <ul>
+            <li><a href="https://cran.r-project.org/web/packages/foreign/index.html">foreign</a></li>
+        </ul>
+    </li>
     <br>
     <li class="name">Web
         <ul>
@@ -517,7 +521,7 @@ ggplot(data = gulfstream) +
 
 --- &vertical .title
 
-# a community
+<h1 class="slide-title">a community</h1>
 
 ***
 
@@ -554,7 +558,7 @@ ggplot(data = gulfstream) +
 
 --- &vertical .title
 
-# learn R
+<h1 class="slide-title">learn R</h1>
 
 ***
 
@@ -603,7 +607,7 @@ ggplot(data = gulfstream) +
 
 --- &vertical .title
 
-<h1 class="slide-title">What is Git?</h1>
+<h1 class="slide-title">what is Git?</h1>
 
 ***
 
@@ -712,6 +716,10 @@ ggplot(data = gulfstream) +
 
 ### to aid the analysis and handicapping of horse racing
 
+<aside class="notes">
+    <p style="font-size:15px">This was package was the reason I wanted to learn R, to help me with some horse racing analysis and handicapping I wanted to do</p>
+</aside>
+
 ***
 
 ## [help pages](http://durtal.github.io/RcappeR/)
@@ -725,7 +733,6 @@ ggplot(data = gulfstream) +
 # install.packages('devtools')
 devtools::install_github('durtal/RcappeR')
 ```
-
 <br>
 
 ```{r}
@@ -785,11 +792,63 @@ races %>%
     head(5)
 ```
 
+<aside class="notes">
+    <p style="font-size:15px">This code combines RcappeR with dplyr to mutate a dataset of races, the gulfstream dataset.</p>
+    <p style="font-size:15px">It groups rows together so individual races are in groups, then creates additional variables using existing variables and some of RcappeR's functions.</p>
+    <p style="font-size:15px">btn_sec calculates the margin between the winners time and each horses time, scale is a very basic lbs per second scale which uses a simple loess regression based on the distance of the race (it should also take into account race speed), btn lbs converts the margin into llbs, and diff_wgts is the margin beaten and any difference in weight carried.</p>
+</aside>
+
+***
+
+## more handicapping
+
+### RcappeR contains a family of functions
+
+### uses zipf's law to help handicap races
+
+<ul class="subject-list">
+    <li class="name">
+        <code>zipf_race</code>
+        <br>
+        <ul>
+            <li>function to handicap a single race with another race</li>
+            <li><a href="http://durtal.github.io/RcappeR/handicap_with_zipf_race.html">vignette</a></li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        <code>zipf_hcp</code>
+        <br>
+        <ul>
+            <li>function to handicap a single race with numerous races</li>
+            <li><a href="http://durtal.github.io/RcappeR/handicap_with_zipf_hcp.html">vignette</a></li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        <code>zipf_init</code>
+        <br>
+        <ul>
+            <li>initialises a handicap</li>
+            <li><a href="http://durtal.github.io/RcappeR/initialise_a_handicap.html">vignette</a></li>
+        </ul>
+    </li>
+</ul>
+
+
+
 --- &vertical .title
 
 <h1 class="slide-title">servevolleyR</h1>
 
 ### simulate tennis points, games, tiebreaks, sets and matches
+
+<aside class="notes">
+    <p style="font-size:15px">When Scott approached me about this conference, I decided to build this package</p>
+    <p style="font-size:15px">Built over the course of the weekend break in matches at Wimbledon</p>
+    <p style="font-size:15px">Package is quite simple, look forward to hearing Dan Weston talk later to learn from him</p>
+    <p style="font-size:15px">Package uses some programming language basics like if else clauses, and while loops, as well as sampling, replicating random processes, and building objects to contain results</p>
+</aside>
 
 ***
 
@@ -811,9 +870,154 @@ devtools::install_github('durtal/servevolleyR')
 library(servevolleyR)
 ```
 
+***
+
+### `simPoint`
+
+### simulates server winning a point on their serve
+
+```{r}
+simPoint(p = .75, p2 = .56, firstServe = .68)
+```
+
+### used by all other `sim****` functions
+
+```{r}
+points <- replicate(1000, simPoint(p = .75, p2 = .56, firstServe = .68))
+head(points, 20)
+
+table(points) / sum(table(points))
+```
+
+<aside class="notes">
+    <p style="font-size:15px">function is called by all other functions in the package</p>
+    <p style="font-size:15px">does not take into account returner strength</p>
+    <p style="font-size:15px">source code is on github if anyone wants to make it better</p>
+</aside>
+
+***
+
+### `simGame`
+
+```{r}
+simGame(p = .75, p2 = .56, firstServe = .68)
+```
+
+### `simGames`
+
+```{r}
+games <- simGames(n = 1000, p = .75, p2 = .56, firstServe = .68)
+games
+```
+
+<aside class="notes">
+    <p style="font-size:15px">simGame simulates the server winning a game on his serve</p>
+    <p style="font-size:15px">while simGames simulates many games, an alternative to using simGame inside replicate</p>
+    <p style="font-size:15px">simGames returns a lot of data about those simulated games</p>
+</aside>
+
+***
+
+### `simSet` and `simSets`
+
+```{r cache = TRUE}
+sets <- simSets(n = 1000, pA = .75, p2A = .56, firstServeA = .68,
+                pB = .68, p2B = .53, firstServeB = .63, playTiebreak = TRUE)
+```
+```{r simSets, echo=FALSE}
+plot(sets)
+```
+
+<aside class="notes">
+    <p style="font-size:15px">the sets object returned by the simSets function has a number of methods, including plot</p>
+    <p style="font-size:15px">the plot shows the probability of set scores for the given parameters, once again, this can be improved by accounting for players returning ability</p>
+</aside>
+
+***
+
+### `simMatch` and `simMatches`
+
+```{r cache = TRUE}
+matches <- simMatches(n = 1000, sets = 3,
+                      pA = .75, p2A = .56, firstServeA = .68,
+                      pB = .68, p2B = .53, firstServeB = .63, finalSetTiebreak = TRUE)
+```
+```{r simMatches, echo=FALSE}
+plot(matches)
+```
+
+<aside class="notes">
+    <p style="font-size:15px">the sets object returned by the simSets function has a number of methods, including plot</p>
+    <p style="font-size:15px">the plot shows the probability of set scores for the given parameters, once again, this can be improved by accounting for players returning ability</p>
+</aside>
+
+***
+
+## `svRshiny`
+
+### launch in R
+
+```{r eval=FALSE}
+svRshiny()
+```
+
+### or visit
+
+## [https://durtal.shinyapps.io/servevolleyR](https://durtal.shinyapps.io/servevolleyR)
+
 --- &vertical .title
 
 <h1 class="slide-title">example workflow</h1>
+
+***
+
+## data analysis workflow
+
+<img src="assets/img/hadley-process.jpg">
+
+<sub><a href="https://dl.dropboxusercontent.com/u/41902/future-da-5-unconf.pdf">Hadley Wickham, Chief Scientist RStudio</a></sub>
+
+***
+
+<ol class="subject-list">
+    <li class="name">
+        obtain/collect data
+        <ul>
+            <li>harvest data from ATP website</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        clean/munge data
+        <ul>
+            <li>clean and organise data that can be useful</li>
+            <li>convert strings to format needed for <code>servevolleyR</code></li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        explore
+        <ul>
+            <li>useful to find bugs in code used in the collection and cleaning of data</li>
+            <li>(as I discovered)</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        model
+        <ul>
+            <li>use my <code>servevolleyR</code> functions to simulate matches</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        interpret/communicate
+        <ul>
+            <li>build a dedicated website to share results</li>
+            <li>look to automate the whole process, from data collection to communication</li>
+        </ul>
+    </li>
+</ol>
 
 --- .title
 
