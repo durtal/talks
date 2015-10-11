@@ -8,6 +8,8 @@ collect-matches:
 predict-matches:
 	Rscript R/predict-matches.R
 
+tennis: collect-tournaments collect-matches predict-matches
+
 # build website
 HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd)) \
               $(patsubst %.md, %.html ,$(wildcard *.md))
