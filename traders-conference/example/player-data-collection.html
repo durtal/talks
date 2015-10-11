@@ -143,6 +143,14 @@ img {
 				<li>
 				    <a href="servevolleyR.html">servevolleyR</a>
 				</li>
+				<li>
+					<a href="make.html">make</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav pull-right">
+				<li>
+					<a href="output.html">past predictions</a>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -172,8 +180,8 @@ img {
 <pre><code>##              Key                                    Value
 ## 1    Andy Murray    /en/players/andy-murray/mc10/overview
 ## 2      Andy Sugg      /en/players/andy-sugg/sf80/overview
-## 3 Andy Schrecker /en/players/andy-schrecker/s590/overview
-## 4   Andy Stewart   /en/players/andy-stewart/s599/overview
+## 3   Andy Stewart   /en/players/andy-stewart/s599/overview
+## 4 Andy Schrecker /en/players/andy-schrecker/s590/overview
 ## 5  Randy Rocchio  /en/players/randy-rocchio/r710/overview
 ## 6     Andy Solis     /en/players/andy-solis/s294/overview</code></pre>
 <p>If you go to <a href="http://www.atpworldtour.com/en/players/andy-murray/mc10/overview" class="uri">http://www.atpworldtour.com/en/players/andy-murray/mc10/overview</a>, then it should take you to <em>Andy Murray</em>’s profile page, which includes various sections about the player. It takes you to the overview page, the data we want for the various functions found in <code>servevolleyR</code> is behind the player stats tab, shown below. When selecting that tab the url changes from <code>overview</code> to <code>player-stats</code>, this can be done in R using the following code:</p>
