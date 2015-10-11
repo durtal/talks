@@ -71,8 +71,8 @@ if(length(matches$name) > 0) {
             filter(grepl("1st Serve|2nd Serve", stat)) %>%
             mutate(new_value = str_replace(value, "[[:punct:]]", ""),
                    new_value = as.numeric(new_value) / 100)
-        outlist[[tennis_match]]$pB <- playerA_stats[2, 3]
-        outlist[[tennis_match]]$firstServeB <- playerA_stats[1, 3]
+        outlist[[tennis_match]]$pB <- playerB_stats[2, 3]
+        outlist[[tennis_match]]$firstServeB <- playerB_stats[1, 3]
         outlist[[tennis_match]]$p2B <- playerB_stats[3, 3]
 
         winA <- replicate(1e3, simMatch(pA = outlist[[tennis_match]]$pA,
