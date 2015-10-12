@@ -1248,13 +1248,13 @@ andy_murray_stats
 
 ## write R scripts
 
-### collect [tournament data](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-tournament-data.R)
+### collect <a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-tournament-data.R">tournament data</a>
 
-### collect [match data](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-matches.R)
+### collect <a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-matches.R">match data</a>
 
-### collect [player data and predict matches](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/predict-matches.R)
+### collect <a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/predict-matches.R">player data and predict matches</a>
 
-## [Make](https://www.gnu.org/software/make/) is used to build a pipeline
+## <a href="https://www.gnu.org/software/make/">Make</a> is used to build a pipeline
 
 
 <aside class="notes">
@@ -1307,7 +1307,7 @@ clean:
 
 ***
 
-## [result](http://durtal.github.io/talks/traders-conference/example/)
+## <a href="http://durtal.github.io/talks/traders-conference/example/">result</a>
 
 <img src="assets/img/example-workflow-website.jpg">
 
