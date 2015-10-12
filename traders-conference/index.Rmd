@@ -1106,12 +1106,44 @@ get_player_stats <- function(player) {
 
 ***
 
+## write R scripts
+
+### collect [tournament data](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-tournament-data.R)
+
+### collect [match data](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-matches.R)
+
+### collect [player data and predict matches](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/predict-matches.R)
+
+## [Make](https://www.gnu.org/software/make/) is used to build a pipeline
 
 
+<aside class="notes">
+    <p style="font-size:15px">Make can be used to manage a project where some files rely on other data, so here, we need the up to date tournament data to see matches being played today, then we need the current matches to find the players.  Make enables us to combine multiple scripts and sources of data into one smooth pipeline
+</aside>
 
 ***
 
-## [example workflow](http://durtal.github.io/talks/traders-conference/example/)
+## example Makefile
+
+```{r echo=FALSE}
+makefile <- paste0(readLines("example/Makefile", warn = FALSE), collapse = "\n")
+```
+
+```make
+`r makefile`
+```
+
+***
+
+## `make tennis`
+
+## `make website`
+
+***
+
+## [result](http://durtal.github.io/talks/traders-conference/example/)
+
+<img src="assets/img/example-workflow-website.jpg">
 
 --- .title
 

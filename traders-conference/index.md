@@ -1217,6 +1217,7 @@ andy_murray_stats
 
 ***
 
+## write a function
 
 
 
@@ -1245,25 +1246,70 @@ andy_murray_stats
 
 ***
 
-## murray vs federer
+## write R scripts
+
+### collect [tournament data](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-tournament-data.R)
+
+### collect [match data](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-matches.R)
+
+### collect [player data and predict matches](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/predict-matches.R)
+
+## [Make](https://www.gnu.org/software/make/) is used to build a pipeline
 
 
-```r
-result <- simMatches(n = 1000, sets = 5,
-                     pA= murray[2, 3], p2A = murray[3, 3], firstServeA = murray[1, 3],
-                     pB = federer[2, 3], p2B = federer[3, 3], firstServeB = federer[1, 3],
-                     finalSetTiebreak = TRUE)
-
-plot(result)
-```
-
-![plot of chunk murray-federer](assets/fig/murray-federer-1.png) 
-
-
+<aside class="notes">
+    <p style="font-size:15px">Make can be used to manage a project where some files rely on other data, so here, we need the up to date tournament data to see matches being played today, then we need the current matches to find the players.  Make enables us to combine multiple scripts and sources of data into one smooth pipeline
+</aside>
 
 ***
 
-## [example workflow](http://durtal.github.io/talks/traders-conference/example/)
+## example Makefile
+
+
+
+```make
+# collect data
+collect-tournaments:
+	Rscript R/collect-tournament-data.R
+
+collect-matches:
+	Rscript R/collect-matches.R
+
+predict-matches:
+	Rscript R/predict-matches.R
+
+tennis: collect-tournaments collect-matches predict-matches
+
+# build website
+HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd)) \
+              $(patsubst %.md, %.html ,$(wildcard *.md))
+
+all: clean html
+
+html: $(HTML_FILES)
+
+%.html: %.Rmd
+	R --vanilla --slave -e "rmarkdown::render('$<')"
+
+%.html: %.md
+	R --vanilla --slave -e "rmarkdown::render('$<')"
+
+.PHONY: clean
+clean:
+	$(RM) $(HTML_FILES)
+```
+
+***
+
+## `make tennis`
+
+## `make website`
+
+***
+
+## [result](http://durtal.github.io/talks/traders-conference/example/)
+
+<img src="assets/img/example-workflow-website.jpg">
 
 --- .title
 

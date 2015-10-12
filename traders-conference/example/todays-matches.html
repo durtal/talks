@@ -170,12 +170,12 @@ img {
 
 
 <p>Where available this page will document a couple of randomly selected games scheduled to play today, 2015-10-12. Using the data returned by the various scripts found in the repo <a href="https://github.com/durtal/talks/tree/gh-pages/traders-conference/example/R">here</a>, and walked through in the other pages on this site. There are <strong>10</strong> scheduled:</p>
-<div id="fabio-fognini-vs-joao-sousa" class="section level3">
-<h3>Fabio Fognini vs Joao Sousa</h3>
+<div id="pablo-cuevas-vs-viktor-troicki" class="section level3">
+<h3>Pablo Cuevas vs Viktor Troicki</h3>
 <div class="row">
 <div class="col-sm-6">
-<p>Player A, <strong>Fabio Fognini</strong> wins <strong>67</strong> % of his first serve points, <strong>47</strong>% of his second serve points, and his first serve in is <strong>59</strong>%.</p>
-<p>Player B, <strong>Joao Sousa</strong> wins <strong>69</strong> % of his first serve points, <strong>49</strong>% of his second serve points, and his first serve in is <strong>61</strong>%.</p>
+<p>Player A, <strong>Pablo Cuevas</strong> wins <strong>70</strong> % of his first serve points, <strong>51</strong>% of his second serve points, and his first serve in is <strong>61</strong>%.</p>
+<p>Player B, <strong>Viktor Troicki</strong> wins <strong>73</strong> % of his first serve points, <strong>47</strong>% of his second serve points, and his first serve in is <strong>60</strong>%.</p>
 <pre class="sourceCode r"><code class="sourceCode r">match_data &lt;-<span class="st"> </span><span class="kw">simMatches</span>(<span class="dt">n =</span> <span class="dv">1000</span>,
      <span class="dt">pA =</span> todays_matches$pA[ind[<span class="dv">1</span>]],
      <span class="dt">p2A =</span> todays_matches$p2A[ind[<span class="dv">1</span>]],
@@ -193,12 +193,12 @@ img {
 </div>
 <hr>
 </div>
-<div id="thomaz-bellucci-vs-milos-raonic" class="section level3">
-<h3>Thomaz Bellucci vs Milos Raonic</h3>
+<div id="albert-ramos-vinolas-vs-roger-federer" class="section level3">
+<h3>Albert Ramos-Vinolas vs Roger Federer</h3>
 <div class="row">
 <div class="col-sm-6">
-<p>Player A, <strong>Thomaz Bellucci</strong> wins <strong>71</strong> % of his first serve points, <strong>51</strong>% of his second serve points, and his first serve in is <strong>58</strong>%.</p>
-<p>Player B, <strong>Milos Raonic</strong> wins <strong>81</strong> % of his first serve points, <strong>54</strong>% of his second serve points, and his first serve in is <strong>62</strong>%.</p>
+<p>Player A, <strong>Albert Ramos-Vinolas</strong> wins <strong>67</strong> % of his first serve points, <strong>51</strong>% of his second serve points, and his first serve in is <strong>61</strong>%.</p>
+<p>Player B, <strong>Roger Federer</strong> wins <strong>77</strong> % of his first serve points, <strong>57</strong>% of his second serve points, and his first serve in is <strong>62</strong>%.</p>
 <pre class="sourceCode r"><code class="sourceCode r">match_data &lt;-<span class="st"> </span><span class="kw">simMatches</span>(<span class="dt">n =</span> <span class="dv">1000</span>,
      <span class="dt">pA =</span> todays_matches$pA[ind[<span class="dv">2</span>]],
      <span class="dt">p2A =</span> todays_matches$p2A[ind[<span class="dv">2</span>]],
@@ -215,8 +215,8 @@ img {
 </div>
 </div>
 <hr>
-<p><div id="htmlwidget-3020" style="width:100%;height:auto;" class="datatables"></div>
-<script type="application/json" data-for="htmlwidget-3020">{"x":{"filter":"none","data":[["Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China"],["Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard"],["1st Rd","2nd Rd","1st Rd","1st Rd","1st Rd","1st Rd","1st Rd","1st Rd"],["Tommy Haas","Albert Ramos-Vinolas","David Goffin","Richard Gasquet","Lukasz Kubot","Pablo Cuevas","Gilles Simon","Simone Bolelli"],[0.74,0.67,0.71,0.74,0.69,0.7,0.7,0.7],[0.52,0.51,0.51,0.53,0.48,0.51,0.52,0.53],[0.58,0.61,0.57,0.62,0.62,0.61,0.56,0.66],["Kevin Anderson","Roger Federer","Go Soeda","Gilles Muller","Jack Sock","Viktor Troicki","Nikoloz Basilashvili","Vasek Pospisil"],[0.76,0.77,0.67,0.77,0.75,0.73,0.65,0.76],[0.53,0.57,0.48,0.5,0.53,0.47,0.5,0.51],[0.65,0.62,0.55,0.61,0.57,0.6,0.67,0.57],[0.293,0.089,0.742,0.474,0.236,0.463,0.614,0.415]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>venue</th>\n      <th>surface</th>\n      <th>rd</th>\n      <th>playerA</th>\n      <th>pA</th>\n      <th>p2A</th>\n      <th>firstServeA</th>\n      <th>playerB</th>\n      <th>pB</th>\n      <th>p2B</th>\n      <th>firstServeB</th>\n      <th>winA</th>\n    </tr>\n  </thead>\n</table>","options":{"columnDefs":[{"className":"dt-right","targets":[4,5,6,8,9,10,11]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 4, 2);\nDTWidget.formatRound(this, row, data, 5, 2);\nDTWidget.formatRound(this, row, data, 6, 2);\nDTWidget.formatRound(this, row, data, 8, 2);\nDTWidget.formatRound(this, row, data, 9, 2);\nDTWidget.formatRound(this, row, data, 10, 2);\nDTWidget.formatRound(this, row, data, 11, 2);\n}"}},"evals":["options.rowCallback"]}</script></p>
+<p><div id="htmlwidget-6250" style="width:100%;height:auto;" class="datatables"></div>
+<script type="application/json" data-for="htmlwidget-6250">{"x":{"filter":"none","data":[["Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China"],["Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard"],["1st Rd","1st Rd","1st Rd","1st Rd","1st Rd","1st Rd","1st Rd","1st Rd"],["Thomaz Bellucci","Tommy Haas","David Goffin","Richard Gasquet","Fabio Fognini","Lukasz Kubot","Gilles Simon","Simone Bolelli"],[0.71,0.74,0.71,0.74,0.67,0.69,0.7,0.7],[0.51,0.52,0.51,0.53,0.47,0.48,0.52,0.53],[0.58,0.58,0.57,0.62,0.59,0.62,0.56,0.66],["Milos Raonic","Kevin Anderson","Go Soeda","Gilles Muller","Joao Sousa","Jack Sock","Nikoloz Basilashvili","Vasek Pospisil"],[0.81,0.76,0.67,0.77,0.69,0.75,0.65,0.76],[0.54,0.53,0.48,0.5,0.49,0.53,0.5,0.51],[0.62,0.65,0.55,0.61,0.61,0.57,0.67,0.57],[0.1,0.293,0.742,0.474,0.337,0.236,0.614,0.415]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>venue</th>\n      <th>surface</th>\n      <th>rd</th>\n      <th>playerA</th>\n      <th>pA</th>\n      <th>p2A</th>\n      <th>firstServeA</th>\n      <th>playerB</th>\n      <th>pB</th>\n      <th>p2B</th>\n      <th>firstServeB</th>\n      <th>winA</th>\n    </tr>\n  </thead>\n</table>","options":{"columnDefs":[{"className":"dt-right","targets":[4,5,6,8,9,10,11]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 4, 2);\nDTWidget.formatRound(this, row, data, 5, 2);\nDTWidget.formatRound(this, row, data, 6, 2);\nDTWidget.formatRound(this, row, data, 8, 2);\nDTWidget.formatRound(this, row, data, 9, 2);\nDTWidget.formatRound(this, row, data, 10, 2);\nDTWidget.formatRound(this, row, data, 11, 2);\n}"}},"evals":["options.rowCallback"]}</script></p>
 </div>
 
 

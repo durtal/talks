@@ -1371,7 +1371,9 @@ andy_murray_stats
     </aside>
    </section>
    <section class='' data-state=''>
-    <pre><code class="r">(murray &lt;- get_player_stats(player = &quot;andy murray&quot;))
+    <h2>write a function</h2>
+
+<pre><code class="r">(murray &lt;- get_player_stats(player = &quot;andy murray&quot;))
 </code></pre>
 
 <pre><code>##                   stat value new_value
@@ -1394,24 +1396,75 @@ andy_murray_stats
     </aside>
    </section>
    <section class='' data-state=''>
-    <h2>murray vs federer</h2>
+    <h2>write R scripts</h2>
 
-<pre><code class="r">result &lt;- simMatches(n = 1000, sets = 5,
-                     pA= murray[2, 3], p2A = murray[3, 3], firstServeA = murray[1, 3],
-                     pB = federer[2, 3], p2B = federer[3, 3], firstServeB = federer[1, 3],
-                     finalSetTiebreak = TRUE)
+<h3>collect <a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-tournament-data.R">tournament data</a></h3>
 
-plot(result)
-</code></pre>
+<h3>collect <a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-matches.R">match data</a></h3>
 
-<p><img src="assets/fig/murray-federer-1.png" alt="plot of chunk murray-federer"> </p>
+<h3>collect <a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/predict-matches.R">player data and predict matches</a></h3>
+
+<h2><a href="https://www.gnu.org/software/make/">Make</a> is used to build a pipeline</h2>
+
+<p><aside class="notes">
+    <p style="font-size:15px">Make can be used to manage a project where some files rely on other data, so here, we need the up to date tournament data to see matches being played today, then we need the current matches to find the players.  Make enables us to combine multiple scripts and sources of data into one smooth pipeline
+</aside></p>
 
     <aside class='notes'>
       
     </aside>
    </section>
    <section class='' data-state=''>
-    <h2><a href="http://durtal.github.io/talks/traders-conference/example/">example workflow</a></h2>
+    <h2>example Makefile</h2>
+
+<pre><code class="make"># collect data
+collect-tournaments:
+    Rscript R/collect-tournament-data.R
+
+collect-matches:
+    Rscript R/collect-matches.R
+
+predict-matches:
+    Rscript R/predict-matches.R
+
+tennis: collect-tournaments collect-matches predict-matches
+
+# build website
+HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd)) \
+              $(patsubst %.md, %.html ,$(wildcard *.md))
+
+all: clean html
+
+html: $(HTML_FILES)
+
+%.html: %.Rmd
+    R --vanilla --slave -e &quot;rmarkdown::render(&#39;$&lt;&#39;)&quot;
+
+%.html: %.md
+    R --vanilla --slave -e &quot;rmarkdown::render(&#39;$&lt;&#39;)&quot;
+
+.PHONY: clean
+clean:
+    $(RM) $(HTML_FILES)
+</code></pre>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2><code>make tennis</code></h2>
+
+<h2><code>make website</code></h2>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2><a href="http://durtal.github.io/talks/traders-conference/example/">result</a></h2>
+
+<p><img src="assets/img/example-workflow-website.jpg"></p>
 
     <aside class='notes'>
       
