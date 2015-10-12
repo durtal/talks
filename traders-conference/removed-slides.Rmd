@@ -57,3 +57,54 @@
     <p style="font-size:15px">being a language means code should run day after day</p>
     <p style="font-size:15px">I'll share some examples of using scripts to automate tasks later</p>
 </aside>
+
+***
+
+<ol class="subject-list">
+    <li class="name">
+        obtain/collect data
+        <ul>
+            <li>harvest data from ATP website</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        clean/munge data
+        <ul>
+            <li>clean and organise data that can be useful</li>
+            <li>convert strings to format needed for <code>servevolleyR</code></li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        explore
+        <ul>
+            <li>useful to find bugs in code used in the collection and cleaning of data</li>
+            <li>(as I discovered)</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        model
+        <ul>
+            <li>use my <code>servevolleyR</code> functions to simulate matches</li>
+        </ul>
+    </li>
+    <br>
+    <li class="name">
+        interpret/communicate
+        <ul>
+            <li>build a dedicated website to share results</li>
+            <li>look to automate the whole process, from data collection to communication</li>
+        </ul>
+    </li>
+</ol>
+
+<aside class="notes">
+    <p style="font-size:15px">this project will use my servevolleyR package, so we want to collect data from the ATP website</p>
+    <p style="font-size:15px">data will be harvested or scraped from the website, so will require a fair amount of cleaning ahead of using the data</p>
+    <p style="font-size:15px">I didn't write the code correctly first time up, so after I looked at the data, tried to use it, explore it, fixes were needed</p>
+    <p style="font-size:15px">as mentioned it's never a linear process, however using a programming language like R helps to identify where your errors are.</p>
+    <p style="font-size:15px">data is then used by the servevolleyR package I built.</p>
+    <p style="font-size:15px">finally I present results on a website built with the R packages I mentioned earlier, rmarkdown, knitr, and a couple of htmlwidgets.</p>
+</aside>

@@ -58,7 +58,7 @@ knit        : slidify::knit2slides
         <ul>
             <li><a href="http://durtal.github.io/RcappeR/">RcappeR</a> - horse racing</li>
             <li><a href="http://durtal.github.io/servevolleyR/">servevolleyR</a> - tennis</li>
-            <li><a href="http://durtal.github.io/betfaiR/">betfaiR</a> - Betfair (incomplete)</li>
+            <li><a href="http://durtal.github.io/fantasysocceR/">fantasysocceR</a>, <a href="http://durtal.github.io/rBloodstock/">rBloodstock</a>, <a href="http://durtal.github.io/calheatmapR/">calheatmapR</a>, <a href="http://durtal.github.io/betfaiR/">betfaiR</a> (incomplete)</li>
         </ul>
     </li>
     <br>
@@ -1081,7 +1081,7 @@ matches <- simMatches(n = 1000, sets = 3,
 
 ## `svRshiny`
 
-### a simple web application
+### launch in R
 
 
 ```r
@@ -1091,6 +1091,11 @@ svRshiny()
 ### or visit
 
 ## [https://durtal.shinyapps.io/servevolleyR](https://durtal.shinyapps.io/servevolleyR)
+
+<aside class="notes">
+    <p style="font-size:15px">shiny is an R package that enables you to build web applications.  It's a package developed by the team at RStudio, not sure of Hadley's contribution to that package, there are a lot of smart guys at RStudio developing some incredible tools, you will want to check them out.</p>
+    <p style="font-size:15px">you don't need to know anything about web development to use this package, just R, however knowing a bit about HTML, CSS and Javascript obviously helps</p>
+</aside>
 
 --- &vertical .title
 
@@ -1104,47 +1109,161 @@ svRshiny()
 
 <sub><a href="https://dl.dropboxusercontent.com/u/41902/future-da-5-unconf.pdf">Hadley Wickham, Chief Scientist RStudio</a></sub>
 
+<aside class="notes">
+    <p style="font-size:15px">just to remind ourselves of the worklow</p>
+</aside>
+
+
 ***
 
-<ol class="subject-list">
-    <li class="name">
-        obtain/collect data
-        <ul>
-            <li>harvest data from ATP website</li>
-        </ul>
-    </li>
-    <br>
-    <li class="name">
-        clean/munge data
-        <ul>
-            <li>clean and organise data that can be useful</li>
-            <li>convert strings to format needed for <code>servevolleyR</code></li>
-        </ul>
-    </li>
-    <br>
-    <li class="name">
-        explore
-        <ul>
-            <li>useful to find bugs in code used in the collection and cleaning of data</li>
-            <li>(as I discovered)</li>
-        </ul>
-    </li>
-    <br>
-    <li class="name">
-        model
-        <ul>
-            <li>use my <code>servevolleyR</code> functions to simulate matches</li>
-        </ul>
-    </li>
-    <br>
-    <li class="name">
-        interpret/communicate
-        <ul>
-            <li>build a dedicated website to share results</li>
-            <li>use make to automate the whole process, from data collection to communication</li>
-        </ul>
-    </li>
-</ol>
+## obtain/clean
+
+### tournaments
+#### [http://www.atpworldtour.com/en/tournaments](http://www.atpworldtour.com/en/tournaments)
+
+### matches
+#### [http://www.atpworldtour.com/en/tournaments/shanghai/5014/overview](http://www.atpworldtour.com/en/tournaments/shanghai/5014/overview)
+
+### players
+#### [http://www.atpworldtour.com/en/players/andy-murray/mc10/player-stats](http://www.atpworldtour.com/en/players/andy-murray/mc10/player-stats)
+
+***
+
+## player data
+
+#### [http://www.atpworldtour.com/en/players/andy-murray/mc10/player-stats](http://www.atpworldtour.com/en/players/andy-murray/mc10/player-stats)
+
+<img src="example/images/andy-murray.jpg">
+
+<aside class="notes">
+    <p style="font-size:15px">we can see the data we need for the servevolleyR functions</p>
+</aside>
+
+***
+
+#### load `rvest` for harvesting web data, read in andy murrays stats page using `html` function
+
+```r
+library(rvest)
+
+andy_murray_page <- html("http://www.atpworldtour.com/en/players/andy-murray/mc10/player-stats")
+```
+
+#### extract the first table from andy murrays stats page, his service stats
+
+
+```r
+andy_murray_stats <- andy_murray_page %>%
+    html_table() %>%
+    .[[1]]
+```
+
+
+```
+##          Service Record    NA
+## 1                  Aces 4,663
+## 2         Double Faults 1,675
+## 3             1st Serve   58%
+## 4  1st Serve Points Won   74%
+## 5  2nd Serve Points Won   52%
+## 6    Break Points Faced 4,099
+## 7    Break Points Saved   63%
+## 8  Service Games Played 8,443
+## 9     Service Games Won   82%
+## 10   Service Points Won   65%
+```
+
+<aside class="notes">
+    <p style="font-size:15px">andy murrays service stats are now in R, however they still require cleaning, the % symbol suggests that the number is stored as a character.</p>
+</aside>
+
+
+***
+
+#### change names of dataframe so they are easier to work with
+
+
+```r
+names(andy_murray_stats) <- c("stat", "value")
+```
+
+#### load `dplyr` package for manipulating data, and `stringr` for working with strings
+
+
+```r
+library(dplyr)
+library(stringr)
+
+andy_murray_stats <- andy_murray_stats %>%
+    filter(grepl("1st Serve|2nd Serve", stat)) %>%
+    mutate(new_value = str_replace(value, "[[:punct:]]", ""),
+           new_value = as.numeric(new_value) / 100)
+
+andy_murray_stats
+```
+
+```
+##                   stat value new_value
+## 1            1st Serve   58%      0.58
+## 2 1st Serve Points Won   74%      0.74
+## 3 2nd Serve Points Won   52%      0.52
+```
+
+<aside class="notes">
+    <p style="font-size: 15px">so in just a few lines of code we now have some data that can be used in the servevolleyR package</p>
+    <p style="font-size: 15px">the code is probably extremely odd to you if you don't use R... or maybe still odd if you do .. there are multiple ways you can do things in R</p>
+    <p style="font-size: 15px">to make life easier this code could be converted into a function</p>
+</aside>
+
+***
+
+
+
+
+```r
+(murray <- get_player_stats(player = "andy murray"))
+```
+
+```
+##                   stat value new_value
+## 1            1st Serve   58%      0.58
+## 2 1st Serve Points Won   74%      0.74
+## 3 2nd Serve Points Won   52%      0.52
+```
+
+
+```r
+(federer <- get_player_stats(player = "roger federer"))
+```
+
+```
+##                   stat value new_value
+## 1            1st Serve   62%      0.62
+## 2 1st Serve Points Won   77%      0.77
+## 3 2nd Serve Points Won   57%      0.57
+```
+
+***
+
+## murray vs federer
+
+
+```r
+result <- simMatches(n = 1000, sets = 5,
+                     pA= murray[2, 3], p2A = murray[3, 3], firstServeA = murray[1, 3],
+                     pB = federer[2, 3], p2B = federer[3, 3], firstServeB = federer[1, 3],
+                     finalSetTiebreak = TRUE)
+
+plot(result)
+```
+
+![plot of chunk murray-federer](assets/fig/murray-federer-1.png) 
+
+
+
+***
+
+## [example workflow](http://durtal.github.io/talks/traders-conference/example/)
 
 --- .title
 

@@ -12,6 +12,8 @@ library(rvest)
 library(stringr)
 library(servevolleyR)
 
+source("R/functions.R")
+
 #===============================================================================
 #   RETRIEVE MATCHES
 #===============================================================================
@@ -37,40 +39,14 @@ if(length(matches$name) > 0) {
                                         playerA = matches$playerA[tennis_match],
                                         playerB = matches$playerB[tennis_match])
 
-        playerA <- fromJSON(paste0(player_search, matches$playerA[tennis_match]))
-        playerA <- playerA$items
-        playerA <- playerA$Value[grepl(matches$playerA[tennis_match], playerA$Key)]
-        playerA <- paste0(base_url, playerA)
-        playerA <- gsub("overview", "player-stats", playerA)
+        playerA_stats <- get_player_stats(player = matches$playerA[tennis_match])
 
-        playerA_page <- html(playerA)
-        playerA_stats <- playerA_page %>%
-            html_table() %>%
-            .[[1]]
-        names(playerA_stats) <- c("stat", "value")
-        playerA_stats <- playerA_stats %>%
-            filter(grepl("1st Serve|2nd Serve", stat)) %>%
-            mutate(new_value = str_replace(value, "[[:punct:]]", ""),
-                   new_value = as.numeric(new_value) / 100)
         outlist[[tennis_match]]$pA <- playerA_stats[2, 3]
         outlist[[tennis_match]]$firstServeA <- playerA_stats[1, 3]
         outlist[[tennis_match]]$p2A <- playerA_stats[3, 3]
 
-        playerB <- fromJSON(paste0(player_search, matches$playerB[tennis_match]))
-        playerB <- playerB$items
-        playerB <- playerB$Value[grepl(matches$playerB[tennis_match], playerB$Key)]
-        playerB <- paste0(base_url, playerB)
-        playerB <- gsub("overview", "player-stats", playerB)
+        playerB_stats <- get_player_stats(player = matches$playerB[tennis_match])
 
-        playerB_page <- html(playerB)
-        playerB_stats <- playerB_page %>%
-            html_table() %>%
-            .[[1]]
-        names(playerB_stats) <- c("stat", "value")
-        playerB_stats <- playerB_stats %>%
-            filter(grepl("1st Serve|2nd Serve", stat)) %>%
-            mutate(new_value = str_replace(value, "[[:punct:]]", ""),
-                   new_value = as.numeric(new_value) / 100)
         outlist[[tennis_match]]$pB <- playerB_stats[2, 3]
         outlist[[tennis_match]]$firstServeB <- playerB_stats[1, 3]
         outlist[[tennis_match]]$p2B <- playerB_stats[3, 3]
