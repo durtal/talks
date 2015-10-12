@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>match data</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/united.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<style type="text/css">
+	/* padding for bootstrap navbar */
+	body {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		text-align: justify;
+	}
+	@media (max-width: 979px) {
+		body {
+			padding-top: 0;
+		}
+	}
+	/* offset scroll position for anchor links (for fixed navbar) */
+	@media (min-width: 980px) {
+		.section h2 {
+			padding-top: 52px;
+			margin-top: -52px;
+		}
+		.section h3 {
+			padding-top: 52px;
+			margin-top: -52px;
+		}
+	}
+	p {
+		font-size: 13px;
+	}
+	/* don't use link color in navbar */
+	.dropdown-menu>li>a {
+		color: black;
+	}
+	/* some padding for disqus */
+	#disqus_thread {
+		margin-top: 45px;
+	}
+</style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<h1>traders conference example workflow</h1>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="https://github.com/durtal">durtal@github</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="index.html">home</a>
+				</li>
+				<li class="dropdown">
+                    <a href="collection" class="dropdown-toggle" data-toggle="dropdown">
+                        data collection <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="tournament-data-collection.html">tournament data</a>
+                        </li>
+                        <li>
+                            <a href="match-data-collection.html">match data</a>
+                        </li>
+                        <li>
+                            <a href="player-data-collection.html">player data</a>
+                        </li>
+                    </ul>
+				</li>
+				<li>
+				    <a href="servevolleyR.html">servevolleyR</a>
+				</li>
+				<li>
+					<a href="make.html">make</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav pull-right">
+				<li>
+					<a href="todays-matches.html">todays matches</a>
+				</li>
+				<li>
+					<a href="output.html">all matches</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div id="header">
+<h1 class="title">match data</h1>
+</div>
+
+
+<p>Load the necessary packages, <code>rvest</code> for parsing HTML pages, <code>stringr</code> for manipulating strings and extracting data from characters, <code>jsonlite</code> to parse JSON data, and <code>dplyr</code> to manipulate data.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
+<span class="kw">library</span>(stringr)
+<span class="kw">library</span>(jsonlite)
+<span class="kw">library</span>(dplyr)</code></pre>
+<div class="row">
+<div class="col-sm-4">
+<p>Matches scheduled for <em>today</em> can be found on the individual tournament pages, the screenshot to the right shows the some of the matches scheduled for October 11th 2015 in the ATP World Tour Masters tournament. We looked at how to harvest data on invididual tournamets <a href="tournament-data-collection.html">here</a>, the data included url links to each individual tournaments as well as the dates the tournament is being played, which means we can use this to get <em>todays</em> matches.</p>
+</div>
+<div class="col-sm-8">
+<p><img class="img-reponsive" src="images/match-schedule.jpg"></p>
+</div>
+</div>
+<p>The tournaments csv file we created (<a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/data/tournaments.csv">here</a>) is used to get the relevant data, save us from unneccesarily harvesting more ATP data (this file will likely need updating ahead of 2016). The data is then filtered down to tournaments starting today.</p>
+<pre class="sourceCode r"><code class="sourceCode r">tourneys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/tournaments.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+tourneys$start_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(tourneys$start_date)
+tourneys$end_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(tourneys$end_date)
+
+current_tourneys &lt;-<span class="st"> </span><span class="kw">subset</span>(tourneys,
+                           start_date &lt;=<span class="st"> </span><span class="kw">Sys.Date</span>() &amp;
+<span class="st">                           </span>end_date &gt;=<span class="st"> </span><span class="kw">Sys.Date</span>())</code></pre>
+<p>For each tournament in <code>current_tourneys</code> we want to find the schedule, the code below shows how this is done for the first row in the <code>current_tourneys</code> dataset. We first create the url using the <code>link</code> in the dataset above, and the <code>base url</code> of the ATP website, which is <code>http://www.atpworldtour.com</code>, a few other changes are made to the url:</p>
+<pre class="sourceCode r"><code class="sourceCode r">tournament_url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://www.atpworldtour.com&quot;</span>, current_tourneys$link[<span class="dv">1</span>])
+tournament_url &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;overview&quot;</span>, <span class="st">&quot;daily-schedule&quot;</span>, tournament_url)
+tournament_url &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;tournaments&quot;</span>, <span class="st">&quot;scores/current&quot;</span>, tournament_url)</code></pre>
+<p>With our tournament specific url, we can then use <code>rvest</code> to harvest the data and matches from today. The code below parses the webpage with <code>html</code>, then collects data on the round of the tournament (<code>rd</code>), the name of playerA, playerB and the tour (<code>atp</code>). The <code>atp</code> variable is important as it allows us to filter to just mens singles, as this variable contains a head-to-head link, doubles matches do not, and womens matches have WTA. We build a dataframe of out matches, which is then filtered</p>
+<pre class="sourceCode r"><code class="sourceCode r">page &lt;-<span class="st"> </span><span class="kw">html</span>(tournament_url)
+
+rd &lt;-<span class="st"> </span>page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.day-table-round&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot; &quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">str_trim</span>(<span class="dt">side =</span> <span class="st">&quot;both&quot;</span>)
+
+playerA &lt;-<span class="st"> </span>page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.day-table-name:nth-child(4)&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot; &quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">str_trim</span>(<span class="dt">side =</span> <span class="st">&quot;both&quot;</span>)
+
+playerB &lt;-<span class="st"> </span>page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.day-table-name:nth-child(8)&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot; &quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">str_trim</span>(<span class="dt">side =</span> <span class="st">&quot;both&quot;</span>)
+
+atp &lt;-<span class="st"> </span>page %&gt;%
+<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.day-table-button&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">html_text</span>() %&gt;%
+<span class="st">    </span><span class="kw">str_replace_all</span>(<span class="st">&quot;[[:cntrl:]]&quot;</span>, <span class="st">&quot; &quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">str_trim</span>(<span class="dt">side =</span> <span class="st">&quot;both&quot;</span>)
+
+todays_matches &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> current_tourneys$name[<span class="dv">1</span>],
+                  <span class="dt">venue =</span> current_tourneys$venue[<span class="dv">1</span>],
+                  <span class="dt">tourney_dates =</span> current_tourneys$date[<span class="dv">1</span>],
+                  <span class="dt">surface =</span> current_tourneys$surface[<span class="dv">1</span>],
+                  <span class="dt">date =</span> <span class="kw">Sys.Date</span>(),
+                  <span class="dt">rd =</span> rd,
+                  <span class="dt">playerA =</span> playerA,
+                  <span class="dt">playerB =</span> playerB,
+                  <span class="dt">atp =</span> atp,
+                  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
+todays_matches &lt;-<span class="st"> </span>todays_matches %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;H2H&quot;</span>, atp))</code></pre>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

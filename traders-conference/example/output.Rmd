@@ -1,0 +1,24 @@
+---
+title: past predictions
+---
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE,
+               warning = FALSE,
+               echo = FALSE)
+```
+
+```{r}
+library(DT)
+library(dplyr)
+match_stats <- readRDS("data/match_stats.RDS")
+match_stats <- match_stats %>%
+    arrange(desc(date))
+
+match_stats %>%
+    select(venue, tourney_dates, surface, rd, playerA, playerB, pA, pB, winA) %>%
+    datatable(rownames = FALSE) %>%
+    formatRound(columns = c(5, 6, 7, 9, 10, 11, 12), digits = 2)
+```

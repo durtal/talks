@@ -1,0 +1,105 @@
+---
+title: "matches today"
+---
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE,
+               warning = FALSE)
+
+library(servevolleyR)
+library(dplyr)
+library(DT)
+
+todays_matches <- readRDS("data/match_stats.RDS")
+todays_matches <- todays_matches %>%
+    filter(date == Sys.Date())
+
+ind <- sample(x = 1:nrow(todays_matches), size = 2)
+```
+
+Where available this page will document a couple of randomly selected games scheduled to play today, `r Sys.Date()`.  Using the data returned by the various scripts found in the repo [here](https://github.com/durtal/talks/tree/gh-pages/traders-conference/example/R), and walked through in the other pages on this site.  There are **`r nrow(todays_matches)`** scheduled:
+
+
+### `r todays_matches$playerA[ind[1]]` vs `r todays_matches$playerB[ind[1]]`
+
+<div class="row">
+<div class="col-sm-6">
+
+Player A, **`r todays_matches$playerA[ind[1]]`** wins **`r todays_matches$pA[ind[1]] * 100`** % of his first serve points, **`r todays_matches$p2A[ind[1]] * 100`**% of his second serve points, and his first serve in is **`r todays_matches$firstServeA[ind[1]] * 100`**%.
+
+Player B, **`r todays_matches$playerB[ind[1]]`** wins **`r todays_matches$pB[ind[1]] * 100`** % of his first serve points, **`r todays_matches$p2B[ind[1]] * 100`**% of his second serve points, and his first serve in is **`r todays_matches$firstServeB[ind[1]] * 100`**%.
+
+```{r}
+match_data <- simMatches(n = 1000,
+     pA = todays_matches$pA[ind[1]],
+     p2A = todays_matches$p2A[ind[1]],
+     firstServeA = todays_matches$firstServeA[ind[1]],
+     pB = todays_matches$pB[ind[1]],
+     p2B = todays_matches$p2B[ind[1]],
+     firstServeB = todays_matches$firstServeB[ind[1]],
+     sets = 3,
+     players = c(todays_matches$playerA[ind[1]],
+                 todays_matches$playerB[ind[1]]))
+```
+
+</div>
+<div class="col-sm-6">
+
+```{r echo=FALSE}
+plot(match_data)
+
+objname <- paste0(c(todays_matches$playerA[ind[1]], todays_matches$playerB[ind[1]]), collapse = "_vs_")
+objname <- paste0("data/", gsub(" ", "-", objname), "_", Sys.Date(), ".RDS")
+saveRDS(match_data, objname)
+```
+</div>
+</div>
+
+<hr>
+
+### `r todays_matches$playerA[ind[2]]` vs `r todays_matches$playerB[ind[2]]`
+
+<div class="row">
+<div class="col-sm-6">
+
+Player A, **`r todays_matches$playerA[ind[2]]`** wins **`r todays_matches$pA[ind[2]] * 100`** % of his first serve points, **`r todays_matches$p2A[ind[2]] * 100`**% of his second serve points, and his first serve in is **`r todays_matches$firstServeA[ind[2]] * 100`**%.
+
+Player B, **`r todays_matches$playerB[ind[2]]`** wins **`r todays_matches$pB[ind[2]] * 100`** % of his first serve points, **`r todays_matches$p2B[ind[2]] * 100`**% of his second serve points, and his first serve in is **`r todays_matches$firstServeB[ind[2]] * 100`**%.
+
+```{r}
+match_data <- simMatches(n = 1000,
+     pA = todays_matches$pA[ind[2]],
+     p2A = todays_matches$p2A[ind[2]],
+     firstServeA = todays_matches$firstServeA[ind[2]],
+     pB = todays_matches$pB[ind[2]],
+     p2B = todays_matches$p2B[ind[2]],
+     firstServeB = todays_matches$firstServeB[ind[2]],
+     sets = 3,
+     players = c(todays_matches$playerA[ind[2]],
+                 todays_matches$playerB[ind[2]]))
+```
+
+</div>
+<div class="col-sm-6">
+
+```{r echo=FALSE}
+plot(match_data)
+
+objname <- paste0(c(todays_matches$playerA[ind[2]], todays_matches$playerB[ind[2]]), collapse = "_vs_")
+objname <- paste0("data/", gsub(" ", "-", objname), "_", Sys.Date(), ".RDS")
+saveRDS(match_data,  objname)
+```
+</div>
+</div>
+
+<hr>
+
+```{r echo=FALSE}
+todays_matches[-ind, ] %>%
+    select(venue, surface, rd, playerA, pA, p2A, firstServeA, playerB, pB, p2B, firstServeB, winA) %>%
+    datatable(rownames = FALSE) %>%
+    formatRound(columns = c(5, 6, 7, 9, 10, 11, 12), digits = 2)
+
+```

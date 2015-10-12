@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>matches today</title>
+
+<script src="libs/jquery-1.11.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/united.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<script src="libs/htmlwidgets-0.5/htmlwidgets.js"></script>
+<script src="libs/datatables-binding-0.1.30/datatables.js"></script>
+<script src="libs/datatables-1.10.7/jquery.dataTables.min.js"></script>
+<link href="libs/datatables-default-1.10.7/dataTables.extra.css" rel="stylesheet" />
+<link href="libs/datatables-default-1.10.7/jquery.dataTables.min.css" rel="stylesheet" />
+
+<style type="text/css">
+	/* padding for bootstrap navbar */
+	body {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		text-align: justify;
+	}
+	@media (max-width: 979px) {
+		body {
+			padding-top: 0;
+		}
+	}
+	/* offset scroll position for anchor links (for fixed navbar) */
+	@media (min-width: 980px) {
+		.section h2 {
+			padding-top: 52px;
+			margin-top: -52px;
+		}
+		.section h3 {
+			padding-top: 52px;
+			margin-top: -52px;
+		}
+	}
+	p {
+		font-size: 13px;
+	}
+	/* don't use link color in navbar */
+	.dropdown-menu>li>a {
+		color: black;
+	}
+	/* some padding for disqus */
+	#disqus_thread {
+		margin-top: 45px;
+	}
+</style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+<h1>traders conference example workflow</h1>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="https://github.com/durtal">durtal@github</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="index.html">home</a>
+				</li>
+				<li class="dropdown">
+                    <a href="collection" class="dropdown-toggle" data-toggle="dropdown">
+                        data collection <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="tournament-data-collection.html">tournament data</a>
+                        </li>
+                        <li>
+                            <a href="match-data-collection.html">match data</a>
+                        </li>
+                        <li>
+                            <a href="player-data-collection.html">player data</a>
+                        </li>
+                    </ul>
+				</li>
+				<li>
+				    <a href="servevolleyR.html">servevolleyR</a>
+				</li>
+				<li>
+					<a href="make.html">make</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav pull-right">
+				<li>
+					<a href="todays-matches.html">todays matches</a>
+				</li>
+				<li>
+					<a href="output.html">all matches</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div id="header">
+<h1 class="title">matches today</h1>
+</div>
+
+
+<p>Where available this page will document a couple of randomly selected games scheduled to play today, 2015-10-12. Using the data returned by the various scripts found in the repo <a href="https://github.com/durtal/talks/tree/gh-pages/traders-conference/example/R">here</a>, and walked through in the other pages on this site. There are <strong>10</strong> scheduled:</p>
+<div id="pablo-cuevas-vs-viktor-troicki" class="section level3">
+<h3>Pablo Cuevas vs Viktor Troicki</h3>
+<div class="row">
+<div class="col-sm-6">
+<p>Player A, <strong>Pablo Cuevas</strong> wins <strong>70</strong> % of his first serve points, <strong>51</strong>% of his second serve points, and his first serve in is <strong>61</strong>%.</p>
+<p>Player B, <strong>Viktor Troicki</strong> wins <strong>73</strong> % of his first serve points, <strong>47</strong>% of his second serve points, and his first serve in is <strong>60</strong>%.</p>
+<pre class="sourceCode r"><code class="sourceCode r">match_data &lt;-<span class="st"> </span><span class="kw">simMatches</span>(<span class="dt">n =</span> <span class="dv">1000</span>,
+     <span class="dt">pA =</span> todays_matches$pA[ind[<span class="dv">1</span>]],
+     <span class="dt">p2A =</span> todays_matches$p2A[ind[<span class="dv">1</span>]],
+     <span class="dt">firstServeA =</span> todays_matches$firstServeA[ind[<span class="dv">1</span>]],
+     <span class="dt">pB =</span> todays_matches$pB[ind[<span class="dv">1</span>]],
+     <span class="dt">p2B =</span> todays_matches$p2B[ind[<span class="dv">1</span>]],
+     <span class="dt">firstServeB =</span> todays_matches$firstServeB[ind[<span class="dv">1</span>]],
+     <span class="dt">sets =</span> <span class="dv">3</span>,
+     <span class="dt">players =</span> <span class="kw">c</span>(todays_matches$playerA[ind[<span class="dv">1</span>]],
+                 todays_matches$playerB[ind[<span class="dv">1</span>]]))</code></pre>
+</div>
+<div class="col-sm-6">
+<p><img src="todays-matches_files/figure-html/unnamed-chunk-3-1.png" title="" alt="" width="672" /></p>
+</div>
+</div>
+<hr>
+</div>
+<div id="albert-ramos-vinolas-vs-roger-federer" class="section level3">
+<h3>Albert Ramos-Vinolas vs Roger Federer</h3>
+<div class="row">
+<div class="col-sm-6">
+<p>Player A, <strong>Albert Ramos-Vinolas</strong> wins <strong>67</strong> % of his first serve points, <strong>51</strong>% of his second serve points, and his first serve in is <strong>61</strong>%.</p>
+<p>Player B, <strong>Roger Federer</strong> wins <strong>77</strong> % of his first serve points, <strong>57</strong>% of his second serve points, and his first serve in is <strong>62</strong>%.</p>
+<pre class="sourceCode r"><code class="sourceCode r">match_data &lt;-<span class="st"> </span><span class="kw">simMatches</span>(<span class="dt">n =</span> <span class="dv">1000</span>,
+     <span class="dt">pA =</span> todays_matches$pA[ind[<span class="dv">2</span>]],
+     <span class="dt">p2A =</span> todays_matches$p2A[ind[<span class="dv">2</span>]],
+     <span class="dt">firstServeA =</span> todays_matches$firstServeA[ind[<span class="dv">2</span>]],
+     <span class="dt">pB =</span> todays_matches$pB[ind[<span class="dv">2</span>]],
+     <span class="dt">p2B =</span> todays_matches$p2B[ind[<span class="dv">2</span>]],
+     <span class="dt">firstServeB =</span> todays_matches$firstServeB[ind[<span class="dv">2</span>]],
+     <span class="dt">sets =</span> <span class="dv">3</span>,
+     <span class="dt">players =</span> <span class="kw">c</span>(todays_matches$playerA[ind[<span class="dv">2</span>]],
+                 todays_matches$playerB[ind[<span class="dv">2</span>]]))</code></pre>
+</div>
+<div class="col-sm-6">
+<p><img src="todays-matches_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="672" /></p>
+</div>
+</div>
+<hr>
+<p><div id="htmlwidget-6250" style="width:100%;height:auto;" class="datatables"></div>
+<script type="application/json" data-for="htmlwidget-6250">{"x":{"filter":"none","data":[["Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China","Shanghai, China"],["Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard","Outdoor Hard"],["1st Rd","1st Rd","1st Rd","1st Rd","1st Rd","1st Rd","1st Rd","1st Rd"],["Thomaz Bellucci","Tommy Haas","David Goffin","Richard Gasquet","Fabio Fognini","Lukasz Kubot","Gilles Simon","Simone Bolelli"],[0.71,0.74,0.71,0.74,0.67,0.69,0.7,0.7],[0.51,0.52,0.51,0.53,0.47,0.48,0.52,0.53],[0.58,0.58,0.57,0.62,0.59,0.62,0.56,0.66],["Milos Raonic","Kevin Anderson","Go Soeda","Gilles Muller","Joao Sousa","Jack Sock","Nikoloz Basilashvili","Vasek Pospisil"],[0.81,0.76,0.67,0.77,0.69,0.75,0.65,0.76],[0.54,0.53,0.48,0.5,0.49,0.53,0.5,0.51],[0.62,0.65,0.55,0.61,0.61,0.57,0.67,0.57],[0.1,0.293,0.742,0.474,0.337,0.236,0.614,0.415]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>venue</th>\n      <th>surface</th>\n      <th>rd</th>\n      <th>playerA</th>\n      <th>pA</th>\n      <th>p2A</th>\n      <th>firstServeA</th>\n      <th>playerB</th>\n      <th>pB</th>\n      <th>p2B</th>\n      <th>firstServeB</th>\n      <th>winA</th>\n    </tr>\n  </thead>\n</table>","options":{"columnDefs":[{"className":"dt-right","targets":[4,5,6,8,9,10,11]}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 4, 2);\nDTWidget.formatRound(this, row, data, 5, 2);\nDTWidget.formatRound(this, row, data, 6, 2);\nDTWidget.formatRound(this, row, data, 8, 2);\nDTWidget.formatRound(this, row, data, 9, 2);\nDTWidget.formatRound(this, row, data, 10, 2);\nDTWidget.formatRound(this, row, data, 11, 2);\n}"}},"evals":["options.rowCallback"]}</script></p>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

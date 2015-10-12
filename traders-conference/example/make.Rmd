@@ -1,0 +1,38 @@
+---
+title: "make"
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE,
+               warning = FALSE)
+
+```
+
+[Make](https://www.gnu.org/software/make/) is a tool I use for some pretty _simple_ tasks, like building help pages for my R packages, these help pages include [servevolleyR](http://durtal.github.io/servevolleyR/) and [RcappeR](ttp://durtal.github.io/RcappeR/).  However it is a tool I haven't fully explored, so small project has provided an excellent opportunity.  What I will be using Make for is to build a pipeline that goes something like **COLLECT > CLEAN > PROCESS > ANALYSE > OUTPUT**
+
+The makefile below is the current makefile to build this website and collect, clean, process and analyse data.
+
+```{r echo=FALSE}
+makefile <- paste0(readLines("makefile", warn = FALSE), collapse = "\n")
+```
+
+```make
+`r makefile`
+```
+
+#### `collect-tournaments`
+
+The `collect-tournaments` task runs an R script called `collect-tournament-data.R`.  Which harvests data about the ATP tournaments in the current calendar year, it then adds any new tournaments to a csv file of tournaments.
+
+#### `collect-matches`
+
+The `collect-matches` task runs an R script called `collect-matches.R`.  This harvests data about any matches due to be played in any live tournaments, it then adds any matches to a dataframe of matches.
+
+#### `predict-matches`
+
+The `predict-matches` task uses the matches collected in the `collect-matches` task, filters to matches being played today and then uses the data to predict the match using the `servevolleyR` package.
+
+#### build website
+
+Everything below the comment `# build website` builds the website you are reading now.
