@@ -19,5 +19,6 @@ match_stats <- match_stats %>%
 
 match_stats %>%
     select(venue, tourney_dates, surface, rd, playerA, playerB, pA, pB, winA) %>%
-    datatable(rownames = FALSE)
+    datatable(rownames = FALSE) %>%
+    formatRound(columns = c(5, 6, 7, 9, 10, 11, 12), digits = 2)
 ```

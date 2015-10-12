@@ -10,6 +10,7 @@ opts_chunk$set(message = FALSE,
 
 library(servevolleyR)
 library(dplyr)
+library(DT)
 
 todays_matches <- readRDS("data/match_stats.RDS")
 todays_matches <- todays_matches %>%
@@ -26,9 +27,9 @@ Where available this page will document a couple of randomly selected games sche
 <div class="row">
 <div class="col-sm-6">
 
-Player A, **`r todays_matches$playerA[ind[1]]`** wins **`r todays_matches$pA[ind[1]] * 100`** % of his first serve points, **`r todays_matches$p2A[ind[1]] * 100`** of his second serve points, and his first serve in is **`r todays_matches$firstServeA[ind[1]] * 100`**.
+Player A, **`r todays_matches$playerA[ind[1]]`** wins **`r todays_matches$pA[ind[1]] * 100`** % of his first serve points, **`r todays_matches$p2A[ind[1]] * 100`**% of his second serve points, and his first serve in is **`r todays_matches$firstServeA[ind[1]] * 100`**%.
 
-Player B, **`r todays_matches$playerB[ind[1]]`** wins **`r todays_matches$pB[ind[1]] * 100`** % of his first serve points, **`r todays_matches$p2B[ind[1]] * 100`** of his second serve points, and his first serve in is **`r todays_matches$firstServeB[ind[1]] * 100`**.
+Player B, **`r todays_matches$playerB[ind[1]]`** wins **`r todays_matches$pB[ind[1]] * 100`** % of his first serve points, **`r todays_matches$p2B[ind[1]] * 100`**% of his second serve points, and his first serve in is **`r todays_matches$firstServeB[ind[1]] * 100`**%.
 
 ```{r}
 match_data <- simMatches(n = 1000,
@@ -63,9 +64,9 @@ saveRDS(match_data, objname)
 <div class="row">
 <div class="col-sm-6">
 
-Player A, **`r todays_matches$playerA[ind[2]]`** wins **`r todays_matches$pA[ind[2]] * 100`** % of his first serve points, **`r todays_matches$p2A[ind[2]] * 100`** of his second serve points, and his first serve in is **`r todays_matches$firstServeA[ind[2]] * 100`**.
+Player A, **`r todays_matches$playerA[ind[2]]`** wins **`r todays_matches$pA[ind[2]] * 100`** % of his first serve points, **`r todays_matches$p2A[ind[2]] * 100`**% of his second serve points, and his first serve in is **`r todays_matches$firstServeA[ind[2]] * 100`**%.
 
-Player B, **`r todays_matches$playerB[ind[2]]`** wins **`r todays_matches$pB[ind[2]] * 100`** % of his first serve points, **`r todays_matches$p2B[ind[2]] * 100`** of his second serve points, and his first serve in is **`r todays_matches$firstServeB[ind[2]] * 100`**.
+Player B, **`r todays_matches$playerB[ind[2]]`** wins **`r todays_matches$pB[ind[2]] * 100`** % of his first serve points, **`r todays_matches$p2B[ind[2]] * 100`**% of his second serve points, and his first serve in is **`r todays_matches$firstServeB[ind[2]] * 100`**%.
 
 ```{r}
 match_data <- simMatches(n = 1000,
@@ -76,7 +77,7 @@ match_data <- simMatches(n = 1000,
      p2B = todays_matches$p2B[ind[2]],
      firstServeB = todays_matches$firstServeB[ind[2]],
      sets = 3,
-     players = c(todays_matches$playerA[ind[2]], 
+     players = c(todays_matches$playerA[ind[2]],
                  todays_matches$playerB[ind[2]]))
 ```
 
@@ -93,3 +94,12 @@ saveRDS(match_data,  objname)
 </div>
 </div>
 
+<hr>
+
+```{r echo=FALSE}
+todays_matches[-ind, ] %>%
+    select(venue, surface, rd, playerA, pA, p2A, firstServeA, playerB, pB, p2B, firstServeB, winA) %>%
+    datatable(rownames = FALSE) %>%
+    formatRound(columns = c(5, 6, 7, 9, 10, 11, 12), digits = 2)
+
+```
