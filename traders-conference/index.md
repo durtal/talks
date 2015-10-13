@@ -871,9 +871,7 @@ races <- gulfstream %>%
 
 ## more handicapping
 
-### RcappeR contains a family of functions
-
-### uses zipf's law to help handicap races
+### family of functions uses zipf's law to handicap races
 
 <ul class="subject-list">
     <li class="name">
@@ -904,7 +902,11 @@ races <- gulfstream %>%
     </li>
 </ul>
 
+***
 
+## <a href="http://durtal.github.io/gulfstream/">RcappeR @ Gulfstream Park</a>
+
+<img src="assets/img/RcappeR-website.jpg" style="height:75%">
 
 --- &vertical .title
 
@@ -949,23 +951,23 @@ library(servevolleyR)
 
 
 ```r
-simPoint(p = .75, p2 = .56, firstServe = .68)
+simPoint(p = .75)
 ```
 
 ```
 ## [1] 1
 ```
 
-### used by all other `sim****` functions
+### used by all other `sim____` functions
 
 
 ```r
-points <- replicate(1000, simPoint(p = .75, p2 = .56, firstServe = .68))
+points <- replicate(10000, simPoint(p = .75))
 head(points, 20)
 ```
 
 ```
-##  [1] 1 1 0 1 1 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+##  [1] 0 0 1 1 1 0 0 0 1 1 1 1 1 0 0 1 0 0 0 1
 ```
 
 ```r
@@ -974,8 +976,8 @@ table(points) / sum(table(points))
 
 ```
 ## points
-##     0     1 
-## 0.345 0.655
+##      0      1 
+## 0.2493 0.7507
 ```
 
 <aside class="notes">
