@@ -907,7 +907,7 @@ races <- gulfstream %>%
 
 ## <a href="http://durtal.github.io/gulfstream/">RcappeR @ Gulfstream Park</a>
 
-<img src="assets/img/RcappeR-website.jpg" style="height:75%">
+<img src="assets/img/RcappeR-website.jpg">
 
 --- &vertical .title
 
