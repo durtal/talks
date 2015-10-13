@@ -73,6 +73,16 @@ command <- command:length(makefile1)
 
 The section above from our Makefile builds this website, each page is written before hand in `rmarkdown`, a mix of plain text and code chunks, and converts this into html files.
 
+
+So for each day I just need to type in two commands to the command line:
+
+```bash
+make tennis
+make website
+```
+
+I could go one step further and schedule a task on my laptop that ran these two commands at midnight every day, which would fully automate the process allowing me to get on with other things, which might include making improvements to my `servevolleyR` package, or analysing other data that could help me make smarter decisions.
+
 ### complete `Makefile`
 
 ```{r echo=FALSE}
