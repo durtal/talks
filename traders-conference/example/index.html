@@ -139,8 +139,20 @@ img {
 
 
 <p>This website serves as an example workflow using R to collect and clean ATP tennis data, and using that data to potentially make smarter decisions when striking a bet or bets. Other tools like <a href="https://www.gnu.org/software/make/">Make</a> and <a href="https://git-scm.com/">Git</a> are used. Make is used to build pipelines and join different tasks together, such as the collection and cleaning of data, as its name suggests it helps make or build things, while Git helps to manage all the different parts.</p>
+<div id="collection" class="section level3">
+<h3>collection</h3>
 <p>The collection of tennis data has been split into 3 sections, I walk through collecting <a href="tournament-data-collection.html">tournament data</a>, <a href="match-data-collection.html">match data</a> and <a href="player-data-collection.html">player data</a>. If we were to use this code interactively then we can just go after the individual player data either with code, or navigating to the website and just typing in values, so the tournament data and match data doesn’t offer much value. However, if this is to ever be fully automated, then it requires a pipeline; automation can help save time and allow you to focus on other valuable work which can be integrated later.</p>
+</div>
+<div id="make-pipeline" class="section level3">
+<h3><code>make</code> pipeline</h3>
 <p>So the pipeline requires tournament data to tell us which tournaments are live, this helps us to find matches scheduled for <em>today</em>, and match data contains the players, whose data we require.</p>
+<p>The <a href="">Makefile</a> included used to build this website has a number of commands and operations, details of these can be found on the <a href="make.html">make</a></p>
+</div>
+<div id="rmarkdown-website" class="section level3">
+<h3><code>rmarkdown</code> website</h3>
+<p>This website is built using the <code>rmarkdown</code> package, developed by <a href="">Rstudio</a>, help pages can be found <a href="">here</a>. <code>rmarkdown</code> uses the <code>knitr</code> package to help create dynamic documents. What is a dynamic document? A dynamic document is basically facilitates reproducibility, other users can recreate the document on their own machine (if they have access to the same data). It also allows you to build entire websites (like this one) which can host content that changes over time, with little to no input from the creator once they scaffolded the website out. This building can then be automated which means they can focus on developing other tools to help them.</p>
+<p>The <a href="todays-matches.html">todays matches</a> page shows the dynamic nature</p>
+</div>
 
 
 </div>

@@ -138,8 +138,43 @@ img {
 </div>
 
 
-<p><a href="https://www.gnu.org/software/make/">Make</a> is a tool I use for some pretty <em>simple</em> tasks, like building help pages for my R packages, these help pages include <a href="http://durtal.github.io/servevolleyR/">servevolleyR</a> and <a href="ttp://durtal.github.io/RcappeR/">RcappeR</a>. However it is a tool I haven’t fully explored, so small project has provided an excellent opportunity. What I will be using Make for is to build a pipeline that goes something like <strong>COLLECT &gt; CLEAN &gt; PROCESS &gt; ANALYSE &gt; OUTPUT</strong></p>
-<p>The makefile below is the current makefile to build this website and collect, clean, process and analyse data.</p>
+<p><a href="https://www.gnu.org/software/make/">Make</a> is a tool I use for some pretty <em>simple</em> tasks, like building help pages for my R packages, these help pages include <a href="http://durtal.github.io/servevolleyR/">servevolleyR</a> and <a href="ttp://durtal.github.io/RcappeR/">RcappeR</a>. However it is a tool I haven’t fully explored, so this small project has provided an excellent opportunity. What I will be using Make for is to build a pipeline that goes something like:</p>
+<div id="collect-clean-model-analyse-output" class="section level4">
+<h4>COLLECT &gt; CLEAN &gt; MODEL &gt; ANALYSE &gt; OUTPUT</h4>
+<p>The makefile at the bottom of the page is the current makefile to collect, clean, process and analyse data and also to build this website, but we’ll run through command by command. Each of the top three commands will return and save a tiny amount of data which will be used by future tasks, without one task the future tasks are redundant:</p>
+<pre class="make"><code>collect-tournaments:
+    Rscript R/collect-tournament-data.R</code></pre>
+<p>The <code>collect-tournaments</code> task runs an R script called <code>collect-tournament-data.R</code>. Which harvests data about the ATP tournaments in the current calendar year, it then adds any new tournaments to a csv file of tournaments.</p>
+<pre class="make"><code>collect-matches:
+    Rscript R/collect-matches.R</code></pre>
+<p>The <code>collect-matches</code> task runs an R script called <code>collect-matches.R</code>. This requires data returned the from <code>collect-tournaments</code> task so it has the most up to date list of tournaments, this list of tournaments will then be filtered to those which are currently live, and for each tournament it will look at the daily schedule and harvest the match data, including the players names, which will be used in the <code>predict-matches</code> task.</p>
+<pre class="make"><code>predict-matches:
+    Rscript R/predict-matches.R</code></pre>
+<p>The <code>predict-matches</code> task runs a third R script and uses the matches collected in the <code>collect-matches</code> task, filters matches being played today and then visits each players stats page to then harvest the necessary stats to be used with the <code>servevolleyR</code> package. This script also saves our predictions to another dataset, which is then used and displayed in the <a href="output.html">all matches</a> page, and also the <a href="todays-matches.html">todays matches</a> page.</p>
+<pre class="make"><code>tennis: collect-tournaments collect-matches predict-matches
+</code></pre>
+<p>The <code>tennis</code> task runs the 3 previous tasks in order, so typing <code>make tennis</code> will build our pipeline, collect, clean and model any ATP matches being played that day.</p>
+<pre class="make"><code># build website
+HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd)) \
+              $(patsubst %.md, %.html ,$(wildcard *.md))
+
+website: clean html
+
+html: $(HTML_FILES)
+
+%.html: %.Rmd
+    R --vanilla --slave -e &quot;rmarkdown::render(&#39;$&lt;&#39;)&quot;
+
+%.html: %.md
+    R --vanilla --slave -e &quot;rmarkdown::render(&#39;$&lt;&#39;)&quot;
+
+.PHONY: clean
+clean:
+    $(RM) $(HTML_FILES)</code></pre>
+<p>The section above from our Makefile builds this website, each page is written before hand in <code>rmarkdown</code>, a mix of plain text and code chunks, and converts this into html files.</p>
+</div>
+<div id="complete-makefile" class="section level3">
+<h3>complete <code>Makefile</code></h3>
 <pre class="make"><code># collect data
 collect-tournaments:
     Rscript R/collect-tournament-data.R
@@ -169,21 +204,6 @@ html: $(HTML_FILES)
 .PHONY: clean
 clean:
     $(RM) $(HTML_FILES)</code></pre>
-<div id="collect-tournaments" class="section level4">
-<h4><code>collect-tournaments</code></h4>
-<p>The <code>collect-tournaments</code> task runs an R script called <code>collect-tournament-data.R</code>. Which harvests data about the ATP tournaments in the current calendar year, it then adds any new tournaments to a csv file of tournaments.</p>
-</div>
-<div id="collect-matches" class="section level4">
-<h4><code>collect-matches</code></h4>
-<p>The <code>collect-matches</code> task runs an R script called <code>collect-matches.R</code>. This harvests data about any matches due to be played in any live tournaments, it then adds any matches to a dataframe of matches.</p>
-</div>
-<div id="predict-matches" class="section level4">
-<h4><code>predict-matches</code></h4>
-<p>The <code>predict-matches</code> task uses the matches collected in the <code>collect-matches</code> task, filters to matches being played today and then uses the data to predict the match using the <code>servevolleyR</code> package.</p>
-</div>
-<div id="build-website" class="section level4">
-<h4>build website</h4>
-<p>Everything below the comment <code># build website</code> builds the website you are reading now.</p>
 </div>
 
 
