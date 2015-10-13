@@ -634,17 +634,18 @@ ggplot(data = gulfstream) +
 
 ***
 
-## write code
-
-<br>
-
 <div>
-    <img src="assets/img/write-shitty-code.jpg" style="width: 50%">
+    <img src="assets/img/write-shitty-code.jpg" style="width: 90%">
 </div>
 
-<br>
+***
 
-## write more code
+## code
+
+<img src="assets/img/cookie-monster.gif" style="width:75%">
+
+## code code code code code
+
 
 --- &vertical .title
 
