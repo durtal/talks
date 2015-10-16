@@ -12,10 +12,10 @@ The collection of tennis data has been split into 3 sections, I walk through col
 
 So the pipeline requires tournament data to tell us which tournaments are live, this helps us to find matches scheduled for _today_, and match data contains the players, whose data we require.
 
-The [Makefile]() included used to build this website has a number of commands and operations, details of these can be found on the [make](make.html)
+The [Makefile](https://github.com/durtal/talks/blob/master/traders-conference/example/Makefile) included used to build this website has a number of commands and operations, details of these can be found on the [make](make.html)
 
 ### `rmarkdown` website
 
-This website is built using the `rmarkdown` package, developed by [Rstudio](), help pages can be found [here]().  `rmarkdown` uses the `knitr` package to help create dynamic documents.   What is a dynamic document?  A dynamic document is basically facilitates reproducibility, other users can recreate the document on their own machine (if they have access to the same data).  It also allows you to build entire websites (like this one) which can host content that changes over time, with little to no input from the creator once they scaffolded the website out.  This building can then be automated which means they can focus on developing other tools to help them.
+This website is built using the `rmarkdown` package, developed by [Rstudio](https://www.rstudio.com/), help pages can be found [here](http://rmarkdown.rstudio.com/).  `rmarkdown` uses the `knitr` package to help create dynamic documents.   What is a dynamic document?  A dynamic document is basically facilitates reproducibility, other users can recreate the document on their own machine (if they have access to the same data).  It also allows you to build entire websites (like this one) which can host content that changes over time, with little to no input from the creator once they scaffolded the website out.  This building can then be automated which means they can focus on developing other tools to help them.
 
 The [todays matches](todays-matches.html) page shows the dynamic nature
