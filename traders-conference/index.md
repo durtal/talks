@@ -228,29 +228,6 @@ knit        : slidify::knit2slides
 
 ***
 
-## data analysis workflow
-
-<h3 style="text-align:left">OSEMN</h3>
-<h3>Obtain</h3>
-<h3>Scrub</h3>
-<h3>Explore</h3>
-<h3>Model</h3>
-<h3>iNterpret</h3>
-
-<sub><a href="http://www.dataists.com/2010/09/a-taxonomy-of-data-science/">The Taxonomy of Data Science by Hilary Mason and Chris Wiggins</a></sub>
-
-<aside class="notes" style="font-size: 10px">
-    <p style="font-size: 15px">Similar to Hadley's slide is the AWESOME acronym for data analysis, by Hilary Mason and Chris Wiggins</p>
-    <p style="font-size: 15px">Obtain or Collect data</p>
-    <p style="font-size: 15px">Clean, Tidy and combine/munge data, data is rarely clean, this is a vitally important part of any analysis and can be around 80% of any analysis, learning a programming language means this step can be done with a level of consistency and care</p>
-    <p style="font-size: 15px">Explore and Visualise, another important step that will likely flag up potential issues/errors in the data.</p>
-    <p style="font-size: 15px">Build your Model</p>
-    <p style="font-size: 15px">Interpret and Communicate your results</p>
-    <p style="font-size: 15px">As Hadley's slide shows, the workflow isn't a linear process.  Learning to code helps as it affords you the flexibility to return to any stage</p>
-</aside>
-
-***
-
 ## obtain/collect
 
 <ul class="subject-list">
@@ -541,7 +518,7 @@ ggplot(data = gulfstream) +
     </li>
     <br>
     <li class="name">
-        <a href="https://cran.r-project.org/web/packages/caret/index.html">glmnet</a> - classification and regression training
+        <a href="https://cran.r-project.org/web/packages/caret/index.html">caret</a> - classification and regression training
     </li>
 </ul>
 
@@ -657,17 +634,18 @@ ggplot(data = gulfstream) +
 
 ***
 
-## write code
-
-<br>
-
 <div>
-    <img src="assets/img/write-shitty-code.jpg" style="width: 50%">
+    <img src="assets/img/write-shitty-code.jpg" style="width: 90%">
 </div>
 
-<br>
+***
 
-## write more code
+## code
+
+<img src="assets/img/cookie-monster.gif" style="width:75%">
+
+## code code code code code
+
 
 --- &vertical .title
 
@@ -894,9 +872,7 @@ races <- gulfstream %>%
 
 ## more handicapping
 
-### RcappeR contains a family of functions
-
-### uses zipf's law to help handicap races
+### family of functions uses zipf's law to handicap races
 
 <ul class="subject-list">
     <li class="name">
@@ -927,7 +903,11 @@ races <- gulfstream %>%
     </li>
 </ul>
 
+***
 
+## <a href="http://durtal.github.io/gulfstream/">RcappeR @ Gulfstream Park</a>
+
+<img src="assets/img/RcappeR-website.jpg">
 
 --- &vertical .title
 
@@ -972,23 +952,23 @@ library(servevolleyR)
 
 
 ```r
-simPoint(p = .75, p2 = .56, firstServe = .68)
+simPoint(p = .75)
 ```
 
 ```
 ## [1] 1
 ```
 
-### used by all other `sim****` functions
+### used by all other `sim____` functions
 
 
 ```r
-points <- replicate(1000, simPoint(p = .75, p2 = .56, firstServe = .68))
+points <- replicate(10000, simPoint(p = .75))
 head(points, 20)
 ```
 
 ```
-##  [1] 1 1 0 1 1 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+##  [1] 0 0 1 1 1 0 0 0 1 1 1 1 1 0 0 1 0 0 0 1
 ```
 
 ```r
@@ -997,8 +977,8 @@ table(points) / sum(table(points))
 
 ```
 ## points
-##     0     1 
-## 0.345 0.655
+##      0      1 
+## 0.2493 0.7507
 ```
 
 <aside class="notes">
@@ -1248,13 +1228,13 @@ andy_murray_stats
 
 ## write R scripts
 
-### collect [tournament data](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-tournament-data.R)
+### collect <a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-tournament-data.R">tournament data</a>
 
-### collect [match data](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-matches.R)
+### collect <a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/collect-matches.R">match data</a>
 
-### collect [player data and predict matches](https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/predict-matches.R)
+### collect <a href="https://github.com/durtal/talks/blob/gh-pages/traders-conference/example/R/predict-matches.R">player data and predict matches</a>
 
-## [Make](https://www.gnu.org/software/make/) is used to build a pipeline
+## <a href="https://www.gnu.org/software/make/">Make</a> is used to build a pipeline
 
 
 <aside class="notes">
@@ -1307,7 +1287,7 @@ clean:
 
 ***
 
-## [result](http://durtal.github.io/talks/traders-conference/example/)
+## <a href="http://durtal.github.io/talks/traders-conference/example/">result</a>
 
 <img src="assets/img/example-workflow-website.jpg">
 

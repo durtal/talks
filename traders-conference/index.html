@@ -304,37 +304,6 @@
     </aside>
    </section>
    <section class='' data-state=''>
-    <h2>data analysis workflow</h2>
-
-<h3 style="text-align:left">OSEMN</h3>
-
-<h3>Obtain</h3>
-
-<h3>Scrub</h3>
-
-<h3>Explore</h3>
-
-<h3>Model</h3>
-
-<h3>iNterpret</h3>
-
-<p><sub><a href="http://www.dataists.com/2010/09/a-taxonomy-of-data-science/">The Taxonomy of Data Science by Hilary Mason and Chris Wiggins</a></sub></p>
-
-<p><aside class="notes" style="font-size: 10px">
-    <p style="font-size: 15px">Similar to Hadley&#39;s slide is the AWESOME acronym for data analysis, by Hilary Mason and Chris Wiggins</p>
-    <p style="font-size: 15px">Obtain or Collect data</p>
-    <p style="font-size: 15px">Clean, Tidy and combine/munge data, data is rarely clean, this is a vitally important part of any analysis and can be around 80% of any analysis, learning a programming language means this step can be done with a level of consistency and care</p>
-    <p style="font-size: 15px">Explore and Visualise, another important step that will likely flag up potential issues/errors in the data.</p>
-    <p style="font-size: 15px">Build your Model</p>
-    <p style="font-size: 15px">Interpret and Communicate your results</p>
-    <p style="font-size: 15px">As Hadley&#39;s slide shows, the workflow isn&#39;t a linear process.  Learning to code helps as it affords you the flexibility to return to any stage</p>
-</aside></p>
-
-    <aside class='notes'>
-      
-    </aside>
-   </section>
-   <section class='' data-state=''>
     <h2>obtain/collect</h2>
 
 <ul class="subject-list">
@@ -626,7 +595,7 @@ tournaments$end_date &lt;- str_extract(tournaments$date,
     </li>
     <br>
     <li class="name">
-        <a href="https://cran.r-project.org/web/packages/caret/index.html">glmnet</a> - classification and regression training
+        <a href="https://cran.r-project.org/web/packages/caret/index.html">caret</a> - classification and regression training
     </li>
 </ul>
 
@@ -765,17 +734,20 @@ tournaments$end_date &lt;- str_extract(tournaments$date,
     </aside>
    </section>
    <section class='' data-state=''>
-    <h2>write code</h2>
-
-<p><br></p>
-
-<div>
-    <img src="assets/img/write-shitty-code.jpg" style="width: 50%">
+    <div>
+    <img src="assets/img/write-shitty-code.jpg" style="width: 90%">
 </div>
 
-<p><br></p>
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2>code</h2>
 
-<h2>write more code</h2>
+<p><img src="assets/img/cookie-monster.gif" style="width:75%"></p>
+
+<h2>code code code code code</h2>
 
     <aside class='notes'>
       
@@ -1033,9 +1005,7 @@ devtools::install_github(&#39;durtal/RcappeR&#39;)
    <section class='' data-state=''>
     <h2>more handicapping</h2>
 
-<h3>RcappeR contains a family of functions</h3>
-
-<h3>uses zipf&#39;s law to help handicap races</h3>
+<h3>family of functions uses zipf&#39;s law to handicap races</h3>
 
 <ul class="subject-list">
     <li class="name">
@@ -1065,6 +1035,15 @@ devtools::install_github(&#39;durtal/RcappeR&#39;)
         </ul>
     </li>
 </ul>
+
+    <aside class='notes'>
+      
+    </aside>
+   </section>
+   <section class='' data-state=''>
+    <h2><a href="http://durtal.github.io/gulfstream/">RcappeR @ Gulfstream Park</a></h2>
+
+<p><img src="assets/img/RcappeR-website.jpg"></p>
 
     <aside class='notes'>
       
@@ -1115,27 +1094,27 @@ devtools::install_github(&#39;durtal/servevolleyR&#39;)
 
 <h3>simulates server winning a point on their serve</h3>
 
-<pre><code class="r">simPoint(p = .75, p2 = .56, firstServe = .68)
+<pre><code class="r">simPoint(p = .75)
 </code></pre>
 
 <pre><code>## [1] 1
 </code></pre>
 
-<h3>used by all other <code>sim****</code> functions</h3>
+<h3>used by all other <code>sim____</code> functions</h3>
 
-<pre><code class="r">points &lt;- replicate(1000, simPoint(p = .75, p2 = .56, firstServe = .68))
+<pre><code class="r">points &lt;- replicate(10000, simPoint(p = .75))
 head(points, 20)
 </code></pre>
 
-<pre><code>##  [1] 1 1 0 1 1 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+<pre><code>##  [1] 0 0 1 1 1 0 0 0 1 1 1 1 1 0 0 1 0 0 0 1
 </code></pre>
 
 <pre><code class="r">table(points) / sum(table(points))
 </code></pre>
 
 <pre><code>## points
-##     0     1 
-## 0.345 0.655
+##      0      1 
+## 0.2493 0.7507
 </code></pre>
 
 <p><aside class="notes">

@@ -9,30 +9,85 @@ opts_chunk$set(message = FALSE,
 
 ```
 
-[Make](https://www.gnu.org/software/make/) is a tool I use for some pretty _simple_ tasks, like building help pages for my R packages, these help pages include [servevolleyR](http://durtal.github.io/servevolleyR/) and [RcappeR](ttp://durtal.github.io/RcappeR/).  However it is a tool I haven't fully explored, so small project has provided an excellent opportunity.  What I will be using Make for is to build a pipeline that goes something like **COLLECT > CLEAN > PROCESS > ANALYSE > OUTPUT**
+[Make](https://www.gnu.org/software/make/) is a tool I use for some pretty _simple_ tasks, like building help pages for my R packages, these help pages include [servevolleyR](http://durtal.github.io/servevolleyR/) and [RcappeR](ttp://durtal.github.io/RcappeR/).  However it is a tool I haven't fully explored, so this small project has provided an excellent opportunity.  What I will be using Make for is to build a pipeline that goes something like:
 
-The makefile below is the current makefile to build this website and collect, clean, process and analyse data.
+#### COLLECT > CLEAN > MODEL > ANALYSE > OUTPUT
+
+The makefile at the bottom of the page is the current makefile to collect, clean, process and analyse data and also to build this website, but we'll run through command by command.  Each of the top three commands will return and save a tiny amount of data which will be used by future tasks, without one task the future tasks are redundant:
+
+```{r echo=FALSE}
+makefile1 <- readLines("makefile", warn = FALSE)
+command <- grep("collect-tournaments:", makefile1)
+command <- c(command, command+1)
+```
+
+```make
+`r paste0(makefile1[command], collapse="\n")`
+```
+
+The `collect-tournaments` task runs an R script called `collect-tournament-data.R`.  Which harvests data about the ATP tournaments in the current calendar year, it then adds any new tournaments to a csv file of tournaments.
+
+
+```{r echo=FALSE}
+command <- grep("collect-matches:", makefile1)
+command <- c(command, command+1)
+```
+
+```make
+`r paste0(makefile1[command], collapse="\n")`
+```
+
+The `collect-matches` task runs an R script called `collect-matches.R`.  This requires data returned the from `collect-tournaments` task so it has the most up to date list of tournaments, this list of tournaments will then be filtered to those which are currently live, and for each tournament it will look at the daily schedule and harvest the match data, including the players names, which will be used in the `predict-matches` task.
+
+```{r echo=FALSE}
+command <- grep("predict-matches:", makefile1)
+command <- c(command, command+1)
+```
+
+```make
+`r paste0(makefile1[command], collapse="\n")`
+```
+
+The `predict-matches` task runs a third R script and uses the matches collected in the `collect-matches` task, filters matches being played today and then visits each players stats page to then harvest the necessary stats to be used with the `servevolleyR` package.  This script also saves our predictions to another dataset, which is then used and displayed in the [all matches](output.html) page, and also the [todays matches](todays-matches.html) page.
+
+```{r echo=FALSE}
+command <- grep("tennis", makefile1)
+command <- c(command, command+1)
+```
+
+```make
+`r paste0(makefile1[command], collapse="\n")`
+```
+
+The `tennis` task runs the 3 previous tasks in order, so typing `make tennis` will build our pipeline, collect, clean and model any ATP matches being played that day.
+
+
+```{r echo=FALSE}
+command <- grep("build website", makefile1)
+command <- command:length(makefile1)
+```
+
+```make
+`r paste0(makefile1[command], collapse="\n")`
+```
+
+The section above from our Makefile builds this website, each page is written before hand in `rmarkdown`, a mix of plain text and code chunks, and converts this into html files.
+
+
+So for each day I just need to type in two commands to the command line:
+
+```bash
+make tennis
+make website
+```
+
+I could go one step further and schedule a task on my laptop that ran these two commands at midnight every day, which would fully automate the process allowing me to get on with other things, which might include making improvements to my `servevolleyR` package, or analysing other data that could help me make smarter decisions.
+
+### complete `Makefile`
 
 ```{r echo=FALSE}
 makefile <- paste0(readLines("makefile", warn = FALSE), collapse = "\n")
 ```
-
 ```make
 `r makefile`
 ```
-
-#### `collect-tournaments`
-
-The `collect-tournaments` task runs an R script called `collect-tournament-data.R`.  Which harvests data about the ATP tournaments in the current calendar year, it then adds any new tournaments to a csv file of tournaments.
-
-#### `collect-matches`
-
-The `collect-matches` task runs an R script called `collect-matches.R`.  This harvests data about any matches due to be played in any live tournaments, it then adds any matches to a dataframe of matches.
-
-#### `predict-matches`
-
-The `predict-matches` task uses the matches collected in the `collect-matches` task, filters to matches being played today and then uses the data to predict the match using the `servevolleyR` package.
-
-#### build website
-
-Everything below the comment `# build website` builds the website you are reading now.

@@ -1,6 +1,8 @@
 Subjects to cover and Plan
 ==========================
 
+Find final talk [here](http://durtal.github.io/talks/traders-conference/)
+
 * Introduction
     - what I'll try cover
 * Introduction to R
